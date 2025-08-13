@@ -1,6 +1,10 @@
 "use client";
 import React, { useRef, useEffect, useState } from "react";
-import JoditEditor from "jodit-react";
+import dynamic from "next/dynamic";
+
+const JoditEditor = dynamic(() => import("jodit-react"), {
+  ssr: false,
+});
 import { Button } from "@/components/ui/button";
 import {
     Form, FormControl, FormField, FormItem, FormLabel, FormMessage
