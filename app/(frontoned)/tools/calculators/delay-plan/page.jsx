@@ -5,6 +5,7 @@ import { CalculatorReturnChart } from "@/components/charts/calculatorReturnChart
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { calculators } from "@/data/calculators";
+import InnerBanner from "@/components/InnerBanner/InnerBanner";
 
 export default function DelayCostCalculator() {
   const router = useRouter();
@@ -38,7 +39,7 @@ export default function DelayCostCalculator() {
           setChartData(yearlyData);
         }
       } catch (error) {
-        // console.log(error);
+        console.log(error);
       }
     };
     calculateDelayCost();
@@ -74,8 +75,9 @@ export default function DelayCostCalculator() {
   };
 
   return (
-    <div className="pt-20">
-      <div className="max-w-screen-xl mx-auto main_section text-[var(--rv-white)]">
+    <div className="">
+      <InnerBanner pageName="Delay Cost Calculator" />
+      <div className="max-w-screen-xl mx-auto main_section">
         <div className="">
           <div className="mb-5 flex flex-col md:flex-row gap-5 justify-between">
             <div className="">
@@ -86,7 +88,7 @@ export default function DelayCostCalculator() {
             <div className="flex justify-between gap-4">
               <span>Explore other calculators</span>
               <select
-                className="w-full bg-[var(--rv-black)] border border-gray-600 rounded-lg p-2"
+                className="w-full border border-gray-500 rounded-lg p-2"
                 onChange={handleCalculatorChange}
                 defaultValue=""
               >
@@ -104,7 +106,7 @@ export default function DelayCostCalculator() {
           <div>
             <div>
               <div className="grid lg:grid-cols-2 grid-cols-1 gap-4 mb-4">
-                <div className="col-span-1 rounded-2xl bg-[var(--rv-background)] border border-[var(--rv-primary)] p-5">
+                <div className="col-span-1 border border-[var(--rv-primary)] rounded-2xl bg-white p-5">
                   <div className="sip-calculator container mx-auto p-3 sticky top-0 z-10">
                     <div className="input-fields mt-5 mb-10">
                       {/* Monthly SIP */}
@@ -120,7 +122,7 @@ export default function DelayCostCalculator() {
                                 parseFloat(e.target.value.replace(/,/g, ""))
                               )
                             }
-                            className="text-[var(--rv-white)] bg-[var(--rv-forth)] w-36 border px-2 py-2 rounded"
+                            className="font-semibold text-var(--rv-primary) w-36 border px-2 py-2 rounded"
                           />
                         </div>
                       </div>
@@ -151,7 +153,7 @@ export default function DelayCostCalculator() {
                             onChange={(e) =>
                               setTimePeriod(parseFloat(e.target.value))
                             }
-                            className="text-[var(--rv-white)] bg-[var(--rv-forth)] w-20 border px-2 py-2 rounded"
+                            className="font-semibold text-var(--rv-primary) w-20 border px-2 py-2 rounded"
                           />
                         </div>
                         <input
@@ -182,7 +184,7 @@ export default function DelayCostCalculator() {
                             onChange={(e) =>
                               setExpectedReturn(parseFloat(e.target.value))
                             }
-                            className="text-[var(--rv-white)] bg-[var(--rv-forth)] w-20 border px-2 py-2 rounded"
+                            className="font-semibold text-var(--rv-primary) w-20 border px-2 py-2 rounded"
                           />
                         </div>
                         <input
@@ -213,7 +215,7 @@ export default function DelayCostCalculator() {
                             onChange={(e) =>
                               setDelayMonths(parseFloat(e.target.value))
                             }
-                            className="text-[var(--rv-white)] bg-[var(--rv-forth)] w-20 border px-2 py-2 rounded"
+                            className="font-semibold text-var(--rv-primary) w-20 border px-2 py-2 rounded"
                           />
                         </div>
                         <input

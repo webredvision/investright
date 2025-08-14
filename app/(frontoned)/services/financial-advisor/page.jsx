@@ -10,6 +10,7 @@ import {
   Target,
 } from "lucide-react";
 import Link from "next/link";
+import InnerBanner from "@/components/InnerBanner/InnerBanner";
 
 export const metadata = {
   title: "Financial Advisor Services",
@@ -19,15 +20,12 @@ export const metadata = {
 
 const FinancialAdvisorPage = () => {
   return (
-    <section className="max-w-screen-xl mx-auto lg:px-0 md:px-2 px-4 py-40 text-[var(--rv-white)]">
+    <div>
+        <InnerBanner pageName="Financial Advisor Services" />
+      <div className="bg-white">
+<section className="max-w-screen-xl mx-auto main_section ">
       {/* Heading */}
-      <div className="text-center mb-10">
-        <h1 className="text-4xl font-bold text-[var(--rv-white)]">Financial Advisor Services</h1>
-        <p className="text-lg mt-2">
-          Personalized guidance for every stage of your financial journey.
-        </p>
-      </div>
-
+     
       {/* Introduction */}
       <div className="text-base leading-relaxed space-y-4 mb-10">
         <p>
@@ -90,7 +88,7 @@ const FinancialAdvisorPage = () => {
 
       {/* Our Financial Planning Services */}
       <div className="mb-10">
-        <h2 className="text-2xl font-semibold text-[var(--rv-white)] mb-6">Our Financial Planning Services</h2>
+        <h2 className="text-2xl font-semibold text-[var(--rv-primary)] mb-6">Our Financial Planning Services</h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {[
             {
@@ -139,7 +137,7 @@ const FinancialAdvisorPage = () => {
       </div>
 
       {/* CTA */}
-      <div className="bg-gradient-to-r from-[var(--rv-primary)] to-[var(--rv-bg-primary)] p-6 rounded-lg shadow-md mt-10">
+      <div className="bg-gradient-to-r from-[var(--rv-primary)] text-white to-[var(--rv-secondary)] p-6 rounded-lg shadow-md mt-10">
         <p className="mb-4">
           Make smarter financial decisions with confidence. <strong>SunGlobeLink</strong> is your trusted partner in navigating life’s financial milestones.
         </p>
@@ -148,6 +146,8 @@ const FinancialAdvisorPage = () => {
         </Link>
       </div>
     </section>
+      </div>
+    </div>
   );
 };
 

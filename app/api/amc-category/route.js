@@ -1,23 +1,20 @@
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
+import axios from "axios";
+
 export async function GET() {
   try {
-    const response = await fetch('https://redvisionweb.com/api/category', {
-      method: 'GET',
+    const response = await axios.get("https://redvisionweb.com/api/category", {
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
-      cache: 'no-store', // Ensures fresh data on every request (optional)
     });
 
-    if (!response.ok) {
-      throw new Error(`External API Error: ${response.status}`);
-    }
-
-    const data = await response.json();
-
-    return NextResponse.json(data, { status: 200 });
+    return NextResponse.json(response.data, { status: 200 });
   } catch (error) {
-    console.error('GET Error:', error);
-    return NextResponse.json({ error: 'Failed to fetch categories' }, { status: 500 });
+    console.error("GET Error:", error.message || error);
+    return NextResponse.json(
+      { error: "Failed to fetch categories" },
+      { status: 500 }
+    );
   }
 }

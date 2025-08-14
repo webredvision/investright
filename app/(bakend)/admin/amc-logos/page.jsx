@@ -37,38 +37,35 @@ const AmcsLogo = () => {
 
   const closeModal = () => setShowModal(false);
 
-  const fetchCategories = async () => {
-    try {
-      const res = await fetch("/api/amc-category");
-      
-      const data = await res.json();
-      setAllCategory(data);
-      if (data.length > 0 && !logoCategory) {
-        setLogoCategory(data[0]._id); // Set initial logo category
-      }
-    } catch (error) {
-      console.error("Error fetching categories:", error);
+
+
+const fetchCategories = async () => {
+  try {
+    const res = await axios.get("/api/amc-category");
+    const data = res.data;
+
+    setAllCategory(data);
+    if (data.length > 0 && !logoCategory) {
+      setLogoCategory(data[0]._id); // Set initial logo category
     }
-  };
+  } catch (error) {
+    console.error("Error fetching categories:", error.message || error);
+  }
+};
 
 const fetchAllLogos = async () => {
   try {
-    const res = await fetch("/api/amc-logos", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        categoryID: logoCategory || "", // Only include if logoCategory exists
-      }),
+    const res = await axios.post("/api/amc-logos", {
+      categoryID: logoCategory || "", // Only include if logoCategory exists
     });
 
-    const data = await res.json();
-    setAllAmcsLogos(data.data); // Make sure to access `data.data` as returned from backend
+    const data = res.data;
+    setAllAmcsLogos(data.data); // Access `data.data` from backend response
   } catch (error) {
-    console.error("Error fetching AMC logos:", error);
+    console.error("Error fetching AMC logos:", error.message || error);
   }
 };
+
 
 useEffect(() => {
   if (logoCategory) {

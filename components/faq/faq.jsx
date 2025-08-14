@@ -45,10 +45,10 @@ const childFade = {
 export function FAQ({ Faqs }) {
   const [openIndex, setOpenIndex] = useState(0);
   return (
-    <div className="">
+    <div className="bg-white">
       <div className=" max-w-screen-xl main_section mx-auto  text-center items-center overflow-hidden">
         <motion.h2
-          className="text-4xl text-[var(--rv-white)] font-bold mb-4"
+          className="text-4xl  font-bold mb-4"
           variants={fadeInUp}
           initial="hidden"
           whileInView="visible"
@@ -87,14 +87,14 @@ export function FAQ({ Faqs }) {
             {Faqs.map((faq, index) => (
               <motion.div
                 key={index}
-                className="mb-2 border border-white rounded-2xl overflow-hidden"
+                className="mb-2 border border-[var(--rv-secondary)] bg-[var(--rv-secondary)] rounded-2xl overflow-hidden"
                 variants={childFade}
               >
                 <Button
                   className="items-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 text-primary-foreground shadow w-full flex justify-between text-left whitespace-normal p-5"
                   onClick={() => setOpenIndex(openIndex === index ? null : index)}
                 >
-                  <span className="text-[16px] md:text-lg font-bold text-[var(--rv-white)] text-left break-words hover:text-[var(--rv-primary)]">
+                  <span className="text-[16px]  md:text-lg font-bold text-[var(--rv-white)] text-left break-words hover:text-[var(--rv-primary)]">
                     {faq.question}
                   </span>
                   {openIndex === index ? (
@@ -104,7 +104,7 @@ export function FAQ({ Faqs }) {
                   )}
                 </Button>
                 {openIndex === index && (
-                  <div className="p-4 bg-[var(--rv-ternary)] text-[var(--rv-white)] border-t" dangerouslySetInnerHTML={{ __html: faq.answer }}>
+                  <div className="p-4 bg-[var(--rv-primary)] text-[var(--rv-white)] border-t" dangerouslySetInnerHTML={{ __html: faq.answer }}>
 
                   </div>
                 )}

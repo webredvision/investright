@@ -1,14 +1,12 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { SippieChart } from "@/components/charts/sippiechart"; // Ensure you have the chart component
-import { CalculatorReturnChart } from "@/components/charts/calculatorReturnChart"; // Ensure you have the chart component
 import { calculators } from "@/data/calculators";
 import { useRouter } from "next/navigation";
-import axios from "axios";
 import { formatValue } from "react-currency-input-field";
-import Currencyinput from "react-currency-input-field";
+import { RetirementChart } from "@/components/charts/retirementpiechart";
 import RetrementBarChart from "@/components/charts/retirementReturnChart";
+import InnerBanner from "@/components/InnerBanner/InnerBanner";
 
 const amountToCommaSeperated = (value) => {
   const newValue = formatValue({
@@ -23,7 +21,6 @@ const amountToCommaSeperated = (value) => {
 
 export default function RetirementCalculator() {
   const router = useRouter();
-
   const [curentAge, setCurrentAge] = useState("30");
   const [RetirementAge, setRetirementAge] = useState("60");
   const [lifeExpectancy, setLifeExpectancy] = useState("85");
@@ -33,22 +30,11 @@ export default function RetirementCalculator() {
   const [postretrement, setPostretrement] = useState("7");
 
   const [inflationpostretrement, setInflationpostretrement] = useState("5");
-  // Table graph
-  const [table, setTable] = useState(false);
-  const [graph, setgraph] = useState(true);
   const [data, setData] = useState();
-  const [namerow, setRowName] = useState();
-  //double sip Amount
   const [totalMonthlyExpences, setTotalMonthlyExpences] = useState();
   const [totalLumpsumCorpuss, setTotalLumpsumCorpuss] = useState();
   const [totalThroughSips, setTotalThroughSips] = useState();
   const [totalThroughLumpsums, setTotalThroughLumpsums] = useState();
-  //piec chart data
-  const [principalAmount, setPrincipalAmount] = useState();
-  const [intrestAmount, setIntrestAmount] = useState();
-
-  // barChart graph
-
   const [years, setYears] = useState();
   const [principalBarAmount, setPrincipalBarAmount] = useState();
   const [Intrested, setIntrested] = useState();
@@ -140,14 +126,11 @@ export default function RetirementCalculator() {
         (((Math.pow(1 + monthlyRates / 12, duration * 12) - 1) /
           (monthlyRates / 12)) *
           (1 + monthlyRates / 12));
-
       var cage = parseInt(curentAge);
       var mage = parseInt(RetirementAge);
       var eage = parseInt(lifeExpectancy);
       var cmexp = parseInt(currentlyMonth);
-      var inte = parseInt(InflationRate) / 400;
       var infla = parseInt(InflationRate);
-      var exret = parseInt(pretrement) / 400;
       var intre = parseInt(pretrement);
       var expextintre = parseInt(postretrement);
       var amut = cmexp;
@@ -194,15 +177,12 @@ export default function RetirementCalculator() {
       var monthArr = [];
       var tableData = [];
       var exportData = [];
-      var rowname = [];
       var mage = parseInt(RetirementAge);
       var retexps = parseInt(postretrement) / 100;
       var ann_exp = a;
       var corpus1 = fuvalue;
       var rage = 0;
       var balance = corpus1 - ann_exp;
-
-      var balancess = corpus1 - ann_exp;
       var blnc_grwth = Math.round(balance + balance * retexps);
       var bintr = Math.round(balance * retexp);
 
@@ -213,51 +193,10 @@ export default function RetirementCalculator() {
           blnc_grwth = 0;
         }
         var age = parseInt(mage);
-
-        var balances = formatValue({
-          value: balance?.toString(),
-          groupSeparator: ",",
-          decimalSeparator: ".",
-          prefix: "₹",
-          intlConfig: { locale: "en-IN", currency: "INR" },
-        });
-        var corpus = corpus1;
-        var corpus = formatValue({
-          value: corpus1?.toString(),
-          groupSeparator: ",",
-          decimalSeparator: ".",
-          prefix: "₹",
-          intlConfig: { locale: "en-IN", currency: "INR" },
-        });
-
         var MonthlyExpences = Math.round(ann_exp / 12);
-        var MonthlyExpence = formatValue({
-          value: MonthlyExpences?.toString(),
-          groupSeparator: ",",
-          decimalSeparator: ".",
-          prefix: "₹",
-          intlConfig: { locale: "en-IN", currency: "INR" },
-        });
-
         var AnnualExpense = Math.round(ann_exp);
-        var AnnualExpenses = formatValue({
-          value: AnnualExpense?.toString(),
-          groupSeparator: ",",
-          decimalSeparator: ".",
-          prefix: "₹",
-          intlConfig: { locale: "en-IN", currency: "INR" },
-        });
-        // var interest = bintr
         var interest = formatValue({
           value: bintr?.toString(),
-          groupSeparator: ",",
-          decimalSeparator: ".",
-          prefix: "₹",
-          intlConfig: { locale: "en-IN", currency: "INR" },
-        });
-        // var BalanceGrowth = blnc_grwth
-        var BalanceGrowth = formatValue({
-          value: blnc_grwth?.toString(),
           groupSeparator: ",",
           decimalSeparator: ".",
           prefix: "₹",
@@ -279,7 +218,6 @@ export default function RetirementCalculator() {
             parseInt(blnc_grwth).toFixed(0)
           ),
         });
-
         exportData.push({
           age: age,
           corpus: corpus1,
@@ -289,7 +227,6 @@ export default function RetirementCalculator() {
           interest: bintr,
           BalanceGrowth: blnc_grwth,
         });
-
         principalArr.push(ann_exp);
         n_year = parseInt(n_year) + 1;
         yearArr.push(`Age-${mage} Years`);
@@ -300,16 +237,14 @@ export default function RetirementCalculator() {
         corpus1 = blnc_grwth;
         ann_exp = Math.round(ann_exp + ann_exp * infrete);
         balance = corpus1 - ann_exp;
+        // console.log(balance, "balance");
         blnc_grwth = Math.round(balance + balance * retexp);
         bintr = Math.round(balance * retexp);
       }
-
       setYears(yearArr);
       setPrincipalBarAmount(principalArr);
       setIntrested(monthArr);
       setBalance(balanceArr);
-
-
       var p = sipAmounts;
       var n = ((duration + 1) * 12) / 3;
       var i_rate = parseInt(postretrement) / 400;
@@ -321,14 +256,7 @@ export default function RetirementCalculator() {
       amount2 = Math.pow(amount2, -1 / 3);
       amount2 = 1 - amount2;
       var final_amount = amount1 / amount2;
-      var sipAmount = parseInt(p);
-      var sipMonth = parseInt(n);
-      var rateofReturn = Math.round(i_rate, 10);
       final_amount = Math.round(final_amount);
-      var invest_amount = sipAmount * ((duration + 1) * 12);
-      setPrincipalAmount(invest_amount);
-      var interest_total = final_amount - invest_amount;
-      setIntrestAmount(interest_total);
       setData(tableData);
     };
     calculateCorpus();
@@ -343,20 +271,12 @@ export default function RetirementCalculator() {
     inflationpostretrement,
   ]);
 
-  const chartConfig = {
-    invested: {
-      label: "Future Monthly Expenses",
-      color: "var(--rv-secondary)",
-    },
-    return: {
-      label: "Current Monthly Expenses",
-      color: "var(--rv-primary)",
-    },
-  };
+
 
   return (
-    <div className="pt-20">
-      <div className="max-w-screen-xl mx-auto main_section text-[var(--rv-white)]">
+    <div className="">
+      <InnerBanner pageName={"Retirement Planning Calculator"} />
+      <div className="max-w-screen-xl mx-auto main_section">
         <div>
           <div>
             <div className="mb-5 flex flex-col md:flex-row gap-5 justify-between ">
@@ -368,7 +288,7 @@ export default function RetirementCalculator() {
               <div className="flex justify-between gap-4">
                 <span>Explore other calculators</span>
                 <select
-                  className="w-full bg-[var(--rv-black)] border border-gray-600  rounded-lg p-2"
+                  className="w-full border border-gray-500 rounded-lg p-2"
                   onChange={handleCalculatorChange}
                   defaultValue=""
                 >
@@ -384,7 +304,7 @@ export default function RetirementCalculator() {
               </div>
             </div>
             <div className="grid lg:grid-cols-2 grid-cols-1 gap-4 mb-4">
-              <div className="col-span-1  rounded-2xl bg-[var(--rv-background)] border border-[var(--rv-primary)] p-5">
+              <div className="col-span-1 border border-[var(--rv-primary)] rounded-2xl bg-white p-5">
                 <div className="sip-calculator container mx-auto p-3 sticky top-0 z-10">
                   <div className="input-fields mt-5 mb-10">
                     <div>
@@ -398,7 +318,7 @@ export default function RetirementCalculator() {
                             max="100"
                             placeholder="0"
                             onChange={handleCurrentAge}
-                            className="text-[var(--rv-white)] bg-[var(--rv-forth)] w-20 border px-2 py-2 rounded"
+                            className="font-semibold text-var(--rv-primary) w-20 border border-[var(--rv-primary)] px-2 py-2 rounded"
                           />
                         </div>
                       </div>
@@ -429,7 +349,7 @@ export default function RetirementCalculator() {
                           placeholder="0"
                           value={RetirementAge || ""}
                           onChange={handleRetrimentAge}
-                          className="text-[var(--rv-white)] bg-[var(--rv-forth)] w-20 border px-2 py-2 rounded"
+                          className="font-semibold text-var(--rv-primary) border-[var(--rv-primary)] w-20 border px-2 py-2 rounded"
                         />
                       </div>
                       <input
@@ -459,7 +379,7 @@ export default function RetirementCalculator() {
                           type="text"
                           value={lifeExpectancy || ""}
                           onChange={handleLifeExpectancy}
-                          className="text-[var(--rv-white)] bg-[var(--rv-forth)] w-20 border px-2 py-2 rounded"
+                          className="font-semibold text-var(--rv-primary) w-20 border-[var(--rv-primary)] border px-2 py-2 rounded"
                         />
                       </div>
                       <input
@@ -484,7 +404,7 @@ export default function RetirementCalculator() {
                       <div className="flex justify-between">
                         <span>Current Monthly Expenses (₹)</span>
                         <div>
-                          <span className="text-[var(--rv-white)] bg-[var(--rv-forth)]">
+                          <span className="font-semibold text-var(--rv-primary)">
 
                           </span>
                           <input
@@ -494,7 +414,7 @@ export default function RetirementCalculator() {
                             placeholder="0"
                             value={currentlyMonth || ""}
                             onChange={handleCurrentMonth}
-                            className="text-[var(--rv-white)] bg-[var(--rv-forth)] w-30 border px-2 py-2 rounded"
+                            className="font-semibold text-var(--rv-primary) border-[var(--rv-primary)] w-30 border px-2 py-2 rounded"
                           />
                         </div>
                       </div>
@@ -526,7 +446,7 @@ export default function RetirementCalculator() {
                           placeholder="0"
                           value={InflationRate}
                           onChange={handleInflationRate}
-                          className="text-[var(--rv-white)] bg-[var(--rv-forth)]  w-20 border px-2 py-2 rounded"
+                          className="font-semibold text-[var(--rv-primary)] w-20 border px-2 py-2 rounded"
                         />
                       </div>
 
@@ -559,7 +479,7 @@ export default function RetirementCalculator() {
                           placeholder="0"
                           value={pretrement === "" ? "" : Number(pretrement)}
                           onChange={handlePreretrement}
-                          className="text-[var(--rv-white)] bg-[var(--rv-forth)]  w-20 border px-2 py-2 rounded"
+                          className="font-semibold text-[var(--rv-primary)] w-20 border px-2 py-2 rounded"
                         />
                       </div>
 
@@ -591,7 +511,7 @@ export default function RetirementCalculator() {
                           placeholder="0"
                           value={postretrement === "" ? "" : Number(postretrement)}
                           onChange={handlePostretrement}
-                          className="text-[var(--rv-white)] bg-[var(--rv-forth)]  w-20 border px-2 py-2 rounded"
+                          className="font-semibold text-[var(--rv-primary)] w-20 border px-2 py-2 rounded"
                         />
                       </div>
 
@@ -647,17 +567,20 @@ export default function RetirementCalculator() {
                 </div>
               </div>
               <div className="col-span-1 space-y-5">
-                <SippieChart
+                <RetirementChart
                   piedata={{
-                    totalInvestment: Number(
+                    CurrentMonthlyExpenses: Number(
                       parseFloat(currentlyMonth)?.toFixed(2)
                     ),
-                    futureValue: Number(
+                    FutureMonthlyExpenses: Number(
                       totalMonthlyExpences?.toFixed(2)
                     ),
                   }}
                   title={"Future & Current Monthly Expenses Breakup"}
-                  chartConfig={chartConfig}
+                  customLabels={{
+                    FutureMonthlyExpenses: "Future Monthly Expenses",
+                    CurrentMonthlyExpenses: "Current Monthly Expenses",
+                  }}
                   className="h-full"
                 />
                 <RetrementBarChart

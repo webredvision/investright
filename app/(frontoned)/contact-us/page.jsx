@@ -16,7 +16,7 @@ export default async function ContactUs() {
 
           {/* Headings Row */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-            <div className="bg-[var(--rv-primary)] text-[var(--rv-white)] shadow-md p-4 min-h-[70px] flex flex-col gap-6 ">
+            <div className="bg-[var(--rv-secondary)] text-[var(--rv-white)] shadow-md p-4 min-h-[70px] flex flex-col gap-6 ">
               <div className="flex flex-col items-center">
                 <Phone size={24} className="mt-4" />
                 <h3 className="text-lg font-medium mt-2">Call Us</h3>
@@ -25,7 +25,7 @@ export default async function ContactUs() {
                 <Link href={`tel:${sitedata.mobile}`}>{sitedata.mobile}</Link>
               </p>
             </div>
-            <div className="bg-[var(--rv-primary)] text-[var(--rv-white)] shadow-md p-4 min-h-[70px] flex flex-col gap-6 ">
+            <div className="bg-[var(--rv-secondary)] text-[var(--rv-white)] shadow-md p-4 min-h-[70px] flex flex-col gap-6 ">
               <div className="flex flex-col items-center">
                 <Mail size={24} className="mt-4" />
                 <h3 className="text-lg font-medium mt-2">Mail Us</h3>
@@ -34,7 +34,7 @@ export default async function ContactUs() {
                 <Link href={`mailto:${sitedata.email}`}>{sitedata.email}</Link>
               </p>
             </div>
-            <div className="bg-[var(--rv-primary)] text-[var(--rv-white)] shadow-md p-4 min-h-[70px] flex flex-col gap-6 justify-center items-center">
+            <div className="bg-[var(--rv-secondary)] text-[var(--rv-white)] shadow-md p-4 min-h-[70px] flex flex-col gap-6 justify-center items-center">
               <div className="flex flex-col items-center">
                 <MapPin size={24} className="mt-4" />
                 <h3 className="text-lg font-medium mt-2">Reach Us</h3>
@@ -50,7 +50,7 @@ export default async function ContactUs() {
       </div>
       <div className=" max-w-screen-xl mx-auto  main_section">
         <h2
-          className="text-4xl font-bold mb-6 text-[var(--rv-white)] items-center text-center"
+          className="text-4xl font-bold mb-6  items-center text-center"
           initial={{ x: -100, opacity: 0 }}
         // animate={isInView ? { x: 0, opacity: 1 } : {}}
         // transition={{ duration: 0.6, ease: "easeOut" }}

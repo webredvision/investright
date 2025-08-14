@@ -1,19 +1,12 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { input } from "@/components/ui/input";
 import { SippieChart } from "@/components/charts/sippiechart";
 import { CalculatorReturnChart } from "@/components/charts/calculatorReturnChart";
 import axios from "axios";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
 import { calculators } from "@/data/calculators";
 import { useRouter } from "next/navigation";
+
+import InnerBanner from "@/components/InnerBanner/InnerBanner";
 
 export default function Page() {
   const router = useRouter();
@@ -89,8 +82,11 @@ export default function Page() {
   };
 
   return (
-    <div className="pt-20">
-      <div className="max-w-screen-xl mx-auto main_section text-[var(--rv-white)]">
+    <div className="">
+
+      <InnerBanner pageName={"SWP Calculator"} />
+      
+      <div className="max-w-screen-xl mx-auto main_section">
         <div className="">
           <div className="mb-5 flex flex-col md:flex-row gap-5 justify-between">
             <span className="text-2xl md:text-3xl font-bold uppercase">
@@ -99,7 +95,7 @@ export default function Page() {
             <div className="flex justify-between gap-4">
               <span>Explore other calculators</span>
               <select
-                className="w-full bg-[var(--rv-black)] border-gray-600 border rounded-lg p-2"
+                className="w-full border border-gray-500 rounded-lg p-2"
                 onChange={handleCalculatorChange}
                 defaultValue=""
               >
@@ -119,7 +115,7 @@ export default function Page() {
               <div>
                 <div className="mb-10"></div>
                 <div className="grid lg:grid-cols-2 grid-cols-1 gap-4 mb-4">
-                  <div className="col-span-1  rounded-2xl bg-[var(--rv-background)] border border-[var(--rv-primary)] p-5">
+                  <div className="col-span-1 border border-[var(--rv-primary)] rounded-2xl bg-white p-5">
                     <div className="input-fields mt-5 mb-10">
                       <div className="items-center mt-5">
                         <div className="flex justify-between">
@@ -133,7 +129,7 @@ export default function Page() {
                               onChange={(e) =>
                                 setInvestedAmount(parseFloat(e.target.value))
                               }
-                              className="text-[var(--rv-white)] bg-[var(--rv-forth)] w-36 border px-2 py-2 rounded"
+                              className="font-semibold text-[var(--rv-primary)] w-36 border px-2 py-2 rounded"
                             />
                           </div>
                         </div>
@@ -166,7 +162,7 @@ export default function Page() {
                               onChange={(e) =>
                                 setWithdrawalAmount(parseFloat(e.target.value))
                               }
-                              className="text-[var(--rv-white)] bg-[var(--rv-forth)]  w-36 border px-2 py-2 rounded"
+                              className="font-semibold text-[var(--rv-primary)] w-36 border px-2 py-2 rounded"
                             />
                           </div>
                         </div>
@@ -197,7 +193,7 @@ export default function Page() {
                             onChange={(e) =>
                               setTransferPeriod(parseFloat(e.target.value))
                             }
-                            className="text-[var(--rv-white)] bg-[var(--rv-forth)]  w-20 border px-2 py-2 rounded"
+                            className="font-semibold text-[var(--rv-primary)] w-20 border px-2 py-2 rounded"
                           />
                         </div>
                         <input
@@ -226,7 +222,7 @@ export default function Page() {
                             onChange={(e) =>
                               setExpectedReturnSource(parseFloat(e.target.value))
                             }
-                            className="text-[var(--rv-white)] bg-[var(--rv-forth)]  w-20 border px-2 py-2 rounded"
+                            className="font-semibold text-[var(--rv-primary)] w-20 border px-2 py-2 rounded"
                           />
                         </div>
                         <input
@@ -281,7 +277,7 @@ export default function Page() {
                       </div>
                     )}
                   </div>
-                  <div className="col-span-1">
+                  <div className="col-span-1 space-y-3">
                     <SippieChart
                       piedata={{
                         totalInvestment: result?.investedAmount,

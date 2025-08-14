@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 export default function AboutUsSection({ aboutUs, sitedata }) {
   return (
-    <section className={`${styles.aboutUs} main_section1 text-white`}>
+    <section className={`${styles.aboutUs} bg-white main_section1 `}>
       <div className="max-w-screen-xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2">
           {/* Left Image Section */}
@@ -51,7 +51,7 @@ export default function AboutUsSection({ aboutUs, sitedata }) {
               
                           {/* Paragraph */}
                           <motion.p
-                            className="text-gray-300  mt-4  text-justify"
+                            className="text-gray-700  mt-4  text-justify"
                             initial={{ y: -20, opacity: 0 }}
                             whileInView={{ y: 0, opacity: 1 }}
                             transition={{ delay: 0.9, duration: 0.6 }}
@@ -62,7 +62,7 @@ export default function AboutUsSection({ aboutUs, sitedata }) {
         Invest Right is a leading financial advisory firm offering end-to-end investment, insurance, and tax planning solutions. With a legacy of 15+ years and the trust of over 1,000 families, we bring a client-focused, transparent, and strategic approach to wealth creation.
                           </motion.p>
  <motion.ul
-    className="text-gray-300 list-none pl-2 space-y-1"
+    className="text-gray-700 list-none pl-2 space-y-1"
     initial={{ y: -10, opacity: 0 }}
     whileInView={{ y: 0, opacity: 1 }}
     transition={{ delay: 1.2, duration: 0.6 }}

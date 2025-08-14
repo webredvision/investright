@@ -5,7 +5,7 @@ dotenv.config({ path: "/rvdata/rvtools/env-files/investright.env" });
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["res.cloudinary.com","redvisionweb.com"],
+    domains: ["res.cloudinary.com","redvisionweb.com","wealthelite.in"],
   },
 };
 

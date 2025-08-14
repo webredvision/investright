@@ -69,15 +69,15 @@ const router= useRouter()
     }
 
   return (
-    <div className=" text-[var(--rv-white)]">
+    <div className=" ">
       <div className="grid grid-cols-5 gap-5 px-10">
         {tabs.map((tab, index) => (
           <button
             key={index}
             className={`flex items-center gap-2 p-4 rounded-t text-[20px]  font-semibold transition-all duration-300 ${
               activeTab === tab
-                ? " bg-[var(--rv-gredient)]"
-                : " hover:bg-[var(--rv-gredient)] "
+                ? " bg-[var(--rv-gredient)] text-white"
+                : " hover:bg-[var(--rv-gredient)] hover:text-white "
             }`}
             onClick={() => handleCategorySelect(tab)}
           >

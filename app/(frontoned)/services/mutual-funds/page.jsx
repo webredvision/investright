@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import TopTaxSavingFunds from "@/components/MutalfundSection/TopPerformanceFund/page";
+import InnerBanner from "@/components/InnerBanner/InnerBanner";
 
 export const metadata = {
   title: "Mutual Fund Services",
@@ -21,16 +22,11 @@ export const metadata = {
 
 const MutualFundsPage = () => {
   return (
-    <section className="max-w-screen-xl mx-auto lg:px-0 md:px-2 px-4 py-40 text-[var(--rv-white)]">
-      {/* Heading */}
-      <div className="text-center mb-10">
-        <h1 className="text-4xl font-bold text-[var(--rv-white)]">Mutual Fund Services</h1>
-        <p className="text-lg mt-2">
-          Smart, goal-based mutual fund investments with expert support every step of the way.
-        </p>
-      </div>
-
-      {/* Introduction */}
+    <div className="">
+      <InnerBanner pageName="Mutual Fund Services" />
+      <div className="bg-white">
+        <section className="max-w-screen-xl mx-auto main_section ">
+      
       <div className="text-base leading-relaxed space-y-4 mb-10">
         <p>
           Mutual funds are one of the most efficient ways to build long-term wealth through
@@ -99,7 +95,7 @@ const MutualFundsPage = () => {
 
       {/* Our Mutual Fund Solutions */}
       <div className="mb-10">
-        <h2 className="text-2xl font-semibold text-[var(--rv-white)] mb-6">Our Mutual Fund Solutions</h2>
+        <h2 className="text-2xl font-semibold text-[var(--rv-primary)] mb-6">Our Mutual Fund Solutions</h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {[
             {
@@ -149,7 +145,7 @@ const MutualFundsPage = () => {
 
       <div className="">
         {/* Types of Mutual Funds */}
-        <h2 className="text-4xl text-[var(--rv-white)] text-center font-bold mb-4">
+        <h2 className="text-4xl text-[var(--rv-primary)] text-center font-bold mb-4">
           <span className="text-[var(--rv-secondary)]">Top Performing </span>{" "}
           Funds
         </h2>
@@ -158,7 +154,7 @@ const MutualFundsPage = () => {
       </div>
 
       {/* CTA */}
-      <div className="bg-gradient-to-r from-[var(--rv-primary)] to-[var(--rv-bg-primary)] p-6 rounded-lg shadow-md mt-10">
+      <div className="bg-gradient-to-r text-white from-[var(--rv-primary)] to-[var(--rv-secondary)] p-6 rounded-lg shadow-md mt-10">
         <p className="mb-4">
           Start your journey to smart investing with <strong>Invest Right</strong>. Whether you're a
           first-time investor or looking to optimize your portfolio, we’ve got you covered.
@@ -168,6 +164,8 @@ const MutualFundsPage = () => {
         </Link>
       </div>
     </section>
+      </div>
+    </div>
   );
 };
 

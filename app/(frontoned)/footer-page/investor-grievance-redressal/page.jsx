@@ -10,7 +10,7 @@ export default async function InvestorGrievanceRedressal() {
     return (
         <div className={`${styles.footerpage} `}>
             <InnerBanner pageName={"Investor Grievance"} />
-            <div className="max-w-screen-xl mx-auto main_section text-white">
+            <div className="max-w-screen-xl mx-auto main_section text-gray-700">
 
                 <div className="container">
                     <div>

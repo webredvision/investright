@@ -22,18 +22,18 @@ export default function Page() {
                     <div className="inline-flex border border-[var(--rv-primary)] rounded-full shadow-inner">
                         <Link
                             href={"/tools/calculators?tab=calculator"}
-                            className={`px-10 md:px-20 py-1 text-lg font-medium border border-[var(--rv-primary)] hover:bg-[var(--rv-third)] rounded-l-full transition-all duration-300 ${isMonthlySip
+                            className={`px-10 md:px-20 py-1 text-lg font-medium border border-[var(--rv-primary)] hover:text-[var(--rv-white)] hover:bg-[var(--rv-secondary)] rounded-l-full transition-all duration-300 ${isMonthlySip
                                 ? "bg-[var(--rv-secondary)] text-white"
-                                : "bg-[var(--rv-white)] text-black hover:text-white"
+                                : "bg-[var(--rv-white)] text-black "
                                 }`}
                         >
                             Calculators
                         </Link>
                         <Link
                             href={"/tools/calculators?tab=performance"}
-                            className={`px-10 md:px-20 py-1 text-lg hover:bg-[var(--rv-third)] font-medium border border-[var(--rv-primary)] rounded-r-full transition-all duration-300 ${!isMonthlySip
+                            className={`px-10 md:px-20 py-1 text-lg font-medium border border-[var(--rv-primary)] rounded-r-full transition-all duration-300 ${!isMonthlySip
                                 ? "bg-[var(--rv-secondary)] text-white"
-                                : "bg-[var(--rv-white)] text-black hover:text-white"
+                                : "bg-[var(--rv-white)] text-black "
                                 }`}
                         >
                             Performance

@@ -23,7 +23,7 @@ export const description = "A stacked bar chart with a legend";
 
 export function CalculatorReturnChart({ data, title, chartConfig }) {
     return (
-        <Card className="border border-[var(--rv-primary)] bg-[var(--rv-secondary)] text-center">
+        <Card className="border border-[var(--rv-primary)]  text-center">
             <CardHeader>
                 <CardTitle >{title} Projected Value</CardTitle>
             </CardHeader>
@@ -53,7 +53,7 @@ export function CalculatorReturnChart({ data, title, chartConfig }) {
                         <Bar
                             dataKey="growth"
                             stackId="a"
-                            fill="var(--rv-white)"
+                            fill="var(--rv-secondary)"
                             radius={[4, 4, 0, 0]}
                         />
                     </BarChart>

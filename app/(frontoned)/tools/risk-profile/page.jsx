@@ -15,6 +15,7 @@ import { useRouter } from "next/navigation";
 import HCaptcha from "@hcaptcha/react-hcaptcha";
 import { footerData } from "@/data/footer";
 import Link from "next/link";
+import InnerBanner from "@/components/InnerBanner/InnerBanner";
 
 
 const RiskProfile = () => {
@@ -45,7 +46,7 @@ const RiskProfile = () => {
         }
     }
 
-    useEffect(() => { fetchSiteData(),fetchQuestions() }, [])
+
     const FormSchema = z.object({
         username: z.string().min(2, { message: "Username must be at least 2 characters." }),
         mobile: z.string().nonempty({ message: "Mobile number is required." }),
@@ -56,7 +57,6 @@ const RiskProfile = () => {
     const fetchQuestions = async () => {
         try {
             const response = await axios.get(`/api/risk-questions`);
-            // console.log(response)
             if (response.status == 200) {
                 setQuestions(response.data)
             }
@@ -66,7 +66,7 @@ const RiskProfile = () => {
         }
     };
 
-    useEffect(() => { fetchQuestions() }, [])
+    useEffect(() => { fetchSiteData(),fetchQuestions() }, [])
 
     const InquiryForm = () => {
         const [hcaptchaToken, setHcaptchaToken] = useState(null);
@@ -291,7 +291,8 @@ Here are the answers you provided:
     };
 
     return (
-        <div className="pt-20">
+        <div className="">
+            <InnerBanner pageName={"Risk Profile"} />
         <div className="main_section">
             <div className="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-lg">
             <Toaster />

@@ -1,16 +1,24 @@
 "use client";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import {
+    Breadcrumb,
+    BreadcrumbItem,
+    BreadcrumbLink,
+    BreadcrumbList,
+    BreadcrumbSeparator,
+    BreadcrumbPage,
+} from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
 import { Toaster } from "@/components/ui/toaster";
 import { FaFilePdf } from "react-icons/fa6";
 // import SipPerformanceTable from "@/components/SipPerformanceTable";
-import { generateSchemePDF } from "@/lib/generatePdf";
+import { generatePDF, generateSchemePDF } from "@/lib/generatePdf";
 import { SchemePerformanceChart } from "@/components/charts/schemePerformanceChart";
 import SchemePerformanceTable from "@/components/schemePerformanceTable";
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import InnerBanner from "@/components/InnerBanner/InnerBanner";
+
 
 export default function Page() {
     function getTodayDate() {
@@ -226,24 +234,25 @@ export default function Page() {
     return (
         <div className="">
             <InnerBanner pageName={"Scheme Performance"} />
-            <div className="px-3 lg:px-2 max-w-screen-xl mx-auto main_section text-[var(--rv-white)] ">
+         
+            <div className="px-3 lg:px-2 max-w-screen-xl mx-auto py-[30px] md:py-[60px]  ">
                 <Toaster />
                 <div>
-                    <div className='col-span-1 bg-gradient-to-br from-[var(--rv-gredient)] to-[var(--rv-gredient1)]  rounded-2xl  p-2 mb-3'>
+                    <div className='col-span-1 border border-gray-200 rounded-2xl bg-white p-2 mb-3'>
                         <div className="Scheme-calculator container mx-auto p-3 sticky top-0 z-10">
                             <div className="flex space-x-4 mb-8">
                                 <Button
                                     onClick={() => (setIsMonthlyScheme(true), setSchemesData([]), setGraphData(false), setSelectedAcms([]))}
-                                    className={`text-sm rounded-full hover:bg-[var(--rv-ternary)] hover:text-[var(--rv-white)] ${isMonthlyScheme ? "bg-[var(--rv-primary)] text-[var(--rv-white)]"
-                                        : "bg-[var(--rv-secondary)] text-white border"
+                                    className={`text-sm rounded-full hover:bg-[var(--rv-primary)] hover:text-white ${isMonthlyScheme ? "bg-[var(--rv-secondary)] text-[var(--rv-primary)]"
+                                        : "bg-[var(--rv-white)] text-black border"
                                         }`}
                                 >
                                     Fund House
                                 </Button>
                                 <Button
                                     onClick={() => (setIsMonthlyScheme(false), setSchemesData([]), setGraphData(false), setSelectedAssets(new Set()))}
-                                    className={`text-sm rounded-full hover:bg-[var(--rv-ternary)] hover:text-[var(--rv-white)] ${!isMonthlyScheme ? "bg-[var(--rv-primary)] text-[var(--rv-white)]"
-                                        : "bg-[var(--rv-secondary)] text-white border"
+                                    className={`text-sm rounded-full hover:bg-[var(--rv-primary)] hover:text-white ${!isMonthlyScheme ? "bg-[var(--rv-secondary)] text-[var(--rv-primary)]"
+                                        : "bg-[var(--rv-white)] text-black border"
                                         }`}
                                 >
                                     Asset Category
@@ -252,12 +261,12 @@ export default function Page() {
                             <div className="input-fields mt-5 mb-5">
                                 {isMonthlyScheme ? (
                                     <div className="w-full">
-                                        <h4 className="font-semibold dark:text-[var(--rv-white)]">Select AMC</h4>
+                                        <h4 className="font-semibold text-gray-700">Select AMC</h4>
                                         <div className="max-w-full mt-2 border border-gray-300 p-3 rounded h-60 overflow-y-auto">
                                             <input
                                                 type="text"
                                                 placeholder="Search Scheme"
-                                                className="w-full px-3 py-2 border rounded mb-1 dark:text-[var(--rv-white)]"
+                                                className="w-full px-3 py-2 border rounded mb-1 text-gray-800"
                                                 value={searchQuery}
                                                 onChange={(e) => setSearchQuery(e.target.value.toLowerCase())} // Update search query
                                             />
@@ -274,7 +283,7 @@ export default function Page() {
                                                             onChange={() => handleAcmSelect(scheme)}
                                                             className="mr-2"
                                                         />
-                                                        <label htmlFor={`acm-${index}`} className="dark:text-[var(--rv-white)] text-sm">
+                                                        <label htmlFor={`acm-${index}`} className="text-stone-900 text-sm">
                                                             {scheme?.funddes}
                                                         </label>
                                                     </div>
@@ -284,10 +293,9 @@ export default function Page() {
                                 ) : (
                                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-4">
                                         <div>
-                                            <p className="font-semibold dark:text-[var(--rv-white)]">
+                                            <p className="font-semibold text-gray-700">
                                                 Select Equity Funds
                                             </p>
-                                            {/* {console.log(assetCategory)} */}
                                             <div className="mt-2 border border-gray-300 p-3 rounded h-60 overflow-y-auto">
                                                 {/* Equity Funds checkboxes here */}
                                                 {assetCategory
@@ -305,7 +313,7 @@ export default function Page() {
                                                             />
                                                             <label
                                                                 htmlFor={`asset-equity-${index}`}
-                                                                className="dark:text-[var(--rv-white)] text-sm"
+                                                                className="text-stone-900 text-sm"
                                                             >
                                                                 Equity - {scheme?.assets_class}
                                                             </label>
@@ -314,7 +322,7 @@ export default function Page() {
                                             </div>
                                         </div>
                                         <div>
-                                            <p className="font-semibold dark:text-[var(--rv-white)]">
+                                            <p className="font-semibold text-gray-700">
                                                 Select Debt Funds
                                             </p>
                                             <div className="mt-2 border border-gray-300 p-3 rounded h-60 overflow-y-auto">
@@ -333,7 +341,7 @@ export default function Page() {
                                                             />
                                                             <label
                                                                 htmlFor={`asset-debt-${index}`}
-                                                                className="dark:text-[var(--rv-white)] text-sm"
+                                                                className="text-stone-900 text-sm"
                                                             >
                                                                 Debt - {scheme?.assets_class}
                                                             </label>
@@ -342,7 +350,7 @@ export default function Page() {
                                             </div>
                                         </div>
                                         <div>
-                                            <p className="font-semibold dark:text-[var(--rv-white)]">
+                                            <p className="font-semibold text-gray-700">
                                                 Select Hybrid Funds
                                             </p>
                                             <div className="mt-2 border border-gray-300 p-3 rounded h-60 overflow-y-auto">
@@ -362,7 +370,7 @@ export default function Page() {
                                                             />
                                                             <label
                                                                 htmlFor={`asset-hybrid-${index}`}
-                                                                className="dark:text-[var(--rv-white)] text-sm"
+                                                                className="text-stone-900 text-sm"
                                                             >
                                                                 Hybrid - {scheme?.assets_class}
                                                             </label>
@@ -371,7 +379,7 @@ export default function Page() {
                                             </div>
                                         </div>
                                         <div>
-                                            <p className="font-semibold dark:text-[var(--rv-white)]">
+                                            <p className="font-semibold text-gray-700">
                                                 Select Commodity Funds/ Others
                                             </p>
                                             <div className="mt-2 border border-gray-300 p-3 rounded h-60 overflow-y-auto">
@@ -395,7 +403,7 @@ export default function Page() {
                                                             />
                                                             <label
                                                                 htmlFor={`asset-other-${index}`}
-                                                                className="dark:text-[var(--rv-white)] text-sm"
+                                                                className="text-stone-900 text-sm"
                                                             >
                                                                 Other - {scheme?.assets_class}
                                                             </label>
@@ -409,12 +417,12 @@ export default function Page() {
                             <hr />
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                                 <div className="mb-4">
-                                    <label htmlFor="schemeSelect" className="text-sm block font-semibold dark:text-[var(--rv-white)] mb-1">
+                                    <label htmlFor="schemeSelect" className="text-sm block font-semibold text-gray-700 mb-1">
                                         Select Scheme
                                     </label>
                                     <select
                                         id="schemeSelect"
-                                        className="bg-gray-50 border border-gray-300  dark:text-[var(--rv-black)] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                         onChange={(e) => {
                                             const selectedScheme = schemesData?.data.find(
                                                 (scheme) => scheme.funddes === e.target.value
@@ -456,32 +464,32 @@ export default function Page() {
                                     </select>
                                 </div>
                                 <div className="mb-4">
-                                    <label htmlFor="schemeName" className="text-sm block font-semibold dark:text-[var(--rv-white)] mb-1">Scheme Amount (Monthly)</label>
+                                    <label htmlFor="schemeName" className="text-sm block font-semibold text-gray-700 mb-1">Scheme Amount (Monthly)</label>
                                     <input
                                         type="number"
                                         id="schemeName"
                                         placeholder="Enter scheme name"
-                                        className="bg-gray-50 border border-gray-300  dark:text-[var(--rv-black)] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                         value={SchemeAmount}
                                         onChange={(e) => setSchemeAmount(e.target.value)}
                                     />
                                 </div>
                                 <div className="mb-4">
-                                    <label htmlFor="schemeDate" className="text-sm block font-semibold dark:text-[var(--rv-white)] mb-1"> Start Date</label>
+                                    <label htmlFor="schemeDate" className="text-sm block font-semibold text-gray-700 mb-1">Scheme Start Date</label>
                                     <input
                                         type="date"
                                         id="schemeDate"
-                                        className="bg-gray-50 border border-gray-300  dark:text-[var(--rv-black)] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                         value={startSchemeDate}
                                         onChange={(e) => setStartSchemeDate(e.target.value)}
                                     />
                                 </div>
                                 <div className="mb-4">
-                                    <label htmlFor="schemeDate" className="text-sm block font-semibold dark:text-[var(--rv-white)] mb-1">End Date</label>
+                                    <label htmlFor="schemeDate" className="text-sm block font-semibold text-gray-700 mb-1">Scheme End Date</label>
                                     <input
                                         type="date"
                                         id="schemeDate"
-                                        className="bg-gray-50 border border-gray-300  dark:text-[var(--rv-black)] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                         min={startSchemeDate}
                                         value={endSchemeDate}
                                         onChange={(e) => setEndSchemeDate(e.target.value)}
@@ -490,7 +498,7 @@ export default function Page() {
                             </div>
                             {/* Date input for selecting a date */}
                             <div className="p-2">
-                                <label htmlFor="sensex" className="text-md block font-semibold dark:text-[var(--rv-white)] mb-1">Compare Fund</label>
+                                <label htmlFor="sensex" className="text-md block font-semibold text-gray-700 mb-1">Compare Fund</label>
                                 <div className="mb-4 flex">
                                     <input
                                         type="checkbox"
@@ -498,60 +506,59 @@ export default function Page() {
                                         checked={sensex}
                                         onChange={(e) => setSensex((prev) => !prev)}
                                     />
-                                    <label htmlFor="sensex" className="text-sm block font-semibold dark:text-[var(--rv-white)] mb-1 ml-1 mr-5">SENSEX</label>
+                                    <label htmlFor="sensex" className="text-sm block font-semibold text-gray-700 mb-1 ml-1 mr-5">SENSEX</label>
                                 </div>
                             </div>
-                            <Button className="bg-[var(--rv-primary)]  text-[var(--rv-white)] disabled:opacity-50 hover:bg-[var(--rv-primary)]" onClick={() => handleSubmit()}>Show</Button>
+                            <Button className="bg-[var(--rv-secondary)] hover:text-white text-[var(--rv-primary)] disabled:opacity-50 hover:bg-[var(--rv-primary)]" onClick={() => handleSubmit()}>Show</Button>
                         </div>
                     </div>
                     <div className='col-span-1'>
                         {graphData &&
                             <div className="mb-5 flex justify-between">
                                 <div className="space-x-2">
-                                    <Button variant="outline" className={`border-2 dark:text-[var(--rv-white)] ${viewby === 'graph' ? 'border-[var(--rv-secondary)]' : 'border-gray-600'} uppercase font-semibold text-gray-800 dark:text-[var(--rv-white)]`} onClick={() => setViewBy('graph')}>Graph</Button>
-                                    <Button variant="outline" className={`border-2 dark:text-[var(--rv-white)] ${viewby === 'table' ? 'border-[var(--rv-secondary)]' : 'border-gray-600'} uppercase font-semibold text-gray-800 dark:text-[var(--rv-white)]`} onClick={() => setViewBy('table')}>Table</Button>
+                                    <Button variant="outline" className={`border-2 ${viewby === 'graph' ? 'border-blue-600' : 'border-gray-600'} uppercase font-semibold text-gray-800`} onClick={() => setViewBy('graph')}>Graph</Button>
+                                    <Button variant="outline" className={`border-2 ${viewby === 'table' ? 'border-blue-600' : 'border-gray-600'} uppercase font-semibold text-gray-800`} onClick={() => setViewBy('table')}>Table</Button>
                                 </div>
                                 <div className="cursor-pointer" onClick={() => handlePdf(tableResult, title, startSchemeDate, valuationDate)}>
-                                    <h1 className="text-2xl dark:text-[var(--rv-white)]">{viewby === 'graph' && <FaFilePdf />}</h1>
+                                    <h1 className="text-2xl">{viewby === 'graph' && <FaFilePdf />}</h1>
                                 </div>
                             </div>
                         }
                         <div className="">
                             {result && viewby === 'graph' ?
-                            graphData && 
-                                <div className="">
+                                graphData && <div className="">
                                     <div className="grid lg:grid-cols-7 md:grid-cols-4 gap-x-3 gap-y-2 my-10">
                                         <div className="py-2 px-3 border border-stone-600 shadow shadow-emerald-100 rounded-sm text-center">
-                                            <h1 className="font-semibold text-gray-800 dark:text-[var(--rv-white)]  text-sm">Amount Invested</h1>
-                                            <h1 className="font-medium  dark:text-[var(--rv-white)] text-sm">{result?.investedAmount || 0}</h1>
+                                            <h1 className="font-semibold text-gray-800 text-sm">Amount Invested</h1>
+                                            <h1 className="font-medium text-gray-900 text-sm">{result?.investedAmount || 0}</h1>
                                         </div>
                                         <div className="py-2 px-3 border border-stone-600 shadow shadow-emerald-100 rounded-sm text-center">
-                                            <h1 className="font-semibold text-gray-800 dark:text-[var(--rv-white)] text-sm">Buy Units</h1>
-                                            <h1 className="font-medium  dark:text-[var(--rv-white)] text-sm">{result?.buyUnit || 0}</h1>
+                                            <h1 className="font-semibold text-gray-800 text-sm">Buy Units</h1>
+                                            <h1 className="font-medium text-gray-900 text-sm">{result?.buyUnit || 0}</h1>
                                         </div>
                                         <div className="py-2 px-3 border border-stone-600 shadow shadow-emerald-100 rounded-sm text-center">
-                                            <h1 className="font-semibold text-gray-800 dark:text-[var(--rv-white)] text-sm">Profit/Loss</h1>
-                                            <h1 className="font-medium  dark:text-[var(--rv-white)] text-sm">
+                                            <h1 className="font-semibold text-gray-800 text-sm">Profit/Loss</h1>
+                                            <h1 className="font-medium text-gray-900 text-sm">
                                                 {result?.maturityValue && result?.investedAmount
                                                     ? Math.floor(result.maturityValue - result.investedAmount)
                                                     : 0}
                                             </h1>
                                         </div>
                                         <div className="py-2 px-3 border border-stone-600 shadow shadow-emerald-100 rounded-sm text-center">
-                                            <h1 className="font-semibold text-gray-800 dark:text-[var(--rv-white)] text-sm">Maturity Rate</h1>
-                                            <h1 className="font-medium  dark:text-[var(--rv-white)] text-sm">{result?.RateAtMaturity || 0}</h1>
+                                            <h1 className="font-semibold text-gray-800 text-sm">Maturity Rate</h1>
+                                            <h1 className="font-medium text-gray-900 text-sm">{result?.RateAtMaturity || 0}</h1>
                                         </div>
                                         <div className="py-2 px-3 border border-stone-600 shadow shadow-emerald-100 rounded-sm text-center">
-                                            <h1 className="font-semibold text-gray-800 dark:text-[var(--rv-white)] text-sm">Maturity Value</h1>
-                                            <h1 className="font-medium  dark:text-[var(--rv-white)] text-sm">{result?.maturityValue || 0}</h1>
+                                            <h1 className="font-semibold text-gray-800 text-sm">Maturity Value</h1>
+                                            <h1 className="font-medium text-gray-900 text-sm">{result?.maturityValue || 0}</h1>
                                         </div>
                                         <div className="py-2 px-3 border border-stone-600 shadow shadow-emerald-100 rounded-sm text-center">
-                                            <h1 className="font-semibold text-gray-800 dark:text-[var(--rv-white)] text-sm">Absolute Return(%)</h1>
-                                            <h1 className="font-medium  dark:text-[var(--rv-white)] text-sm">{result?.absoluteReturns || 0}</h1>
+                                            <h1 className="font-semibold text-gray-800 text-sm">Absolute Return(%)</h1>
+                                            <h1 className="font-medium text-gray-900 text-sm">{result?.absoluteReturns || 0}</h1>
                                         </div>
                                         <div className="py-2 px-3 border border-stone-600 shadow shadow-emerald-100 rounded-sm text-center">
-                                            <h1 className="font-semibold text-gray-800 dark:text-[var(--rv-white)] text-sm">XIRR (%)</h1>
-                                            <h1 className="font-medium  dark:text-[var(--rv-white)] text-sm">{result?.xirrRate || 0}</h1>
+                                            <h1 className="font-semibold text-gray-800 text-sm">XIRR (%)</h1>
+                                            <h1 className="font-medium text-gray-900 text-sm">{result?.xirrRate || 0}</h1>
                                         </div>
                                     </div>
                                     <div id="graphId">

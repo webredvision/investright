@@ -8,8 +8,8 @@ import { SipPerformanceChart } from "@/components/charts/sipPerformanceChart";
 import { FaFilePdf } from "react-icons/fa6";
 import SipPerformanceTable from "@/components/sipPerformanceTable";
 import { generatePDF } from "@/lib/generatePdf";
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import InnerBanner from "@/components/InnerBanner/InnerBanner";
+
 
 export default function Page() {
   function getTodayDate() {
@@ -201,8 +201,6 @@ export default function Page() {
         }
       );
 
-      // console.log("Response:", response.data);
-      // console.log("Data field:", response.data.data);
 
       if (response.data.data == null || Object.keys(response.data.data).length === 0) { // Checks for null or undefined
         setGraphData(false);
@@ -227,32 +225,33 @@ export default function Page() {
   };
 
   const handlePdf = async (result, title, startsipDate, valuationDate) => {
-    // console.log(result)
+
     generatePDF(result, title, startsipDate, valuationDate, "graphId", siteData,);
   };
 
   return (
     <div className="">
-     <InnerBanner pageName={"SIP Performance"} />
-      <div className=" max-w-screen-xl mx-auto main_section">
+      <InnerBanner pageName={"SIP Performance"} />
+      {/* <Banner title={"SIP Performance"} /> */}
+      <div className="px-3 lg:px-2 max-w-screen-xl mx-auto py-[30px] md:py-[60px]">
         <Toaster />
         <div>
           <div>
-            <div className="col-span-1 text-[var(--rv-white)]  rounded-2xl bg-gradient-to-br from-[var(--rv-gredient)] to-[var(--rv-gredient1)] p-2 mb-3">
+            <div className="col-span-1 border border-gray-200 rounded-2xl bg-white p-2 mb-3">
               <div className="sip-calculator container mx-auto p-3 sticky top-0 z-10">
                 <div className="flex space-x-4 mb-8">
                   <Button
                     onClick={() => (setIsMonthlySip(true), setSchemesData([]), setGraphData(false), setSelectedAcms([]))}
-                    className={`text-sm rounded-full hover:bg-[var(--rv-primary)] hover:text-[var(--rv-white)] ${isMonthlySip ? "bg-[var(--rv-primary)] text-[var(--rv-white)]"
-                      : "bg-[var(--rv-secondary)] text-white border"
+                    className={`text-sm rounded-full hover:bg-[var(--rv-primary)] hover:text-white ${isMonthlySip ? "bg-[var(--rv-secondary)] text-[var(--rv-primary)]"
+                      : "bg-[var(--rv-white)] text-black border"
                       }`}
                   >
                     Fund House
                   </Button>
                   <Button
                     onClick={() => (setIsMonthlySip(false), setSchemesData([]), setGraphData(false), setSelectedAssets(new Set()))}
-                    className={`text-sm rounded-full hover:bg-[var(--rv-primary)] hover:text-[var(--rv-white)] ${!isMonthlySip ? "bg-[var(--rv-primary)] text-[var(--rv-white)]"
-                      : "bg-[var(--rv-secondary)] text-white border"
+                    className={`text-sm rounded-full hover:bg-[var(--rv-primary)] hover:text-white ${!isMonthlySip ? "bg-[var(--rv-secondary)] text-[var(--rv-primary)]"
+                      : "bg-[var(--rv-white)] text-black border"
                       }`}
                   >
                     Asset Category
@@ -261,12 +260,12 @@ export default function Page() {
                 <div className="input-fields mt-5 mb-5">
                   {isMonthlySip ? (
                     <div className="w-full">
-                      <h4 className="font-semibold text-[var(--rv-white]">Select AMC</h4>
-                      <div className="max-w-full mt-2 text-[var(--rv-white)] p-3 rounded h-60 overflow-y-auto">
+                      <h4 className="font-semibold text-gray-700">Select AMC</h4>
+                      <div className="max-w-full mt-2 border border-gray-300 p-3 rounded h-60 overflow-y-auto">
                         <input
                           type="text"
                           placeholder="Search Scheme"
-                          className="w-full px-3 py-2 border border-[var(--rv-ternary)] rounded mb-1"
+                          className="w-full px-3 py-2 border rounded mb-1"
                           value={searchQuery}
                           onChange={(e) => setSearchQuery(e.target.value.toLowerCase())} // Update search query
                         />
@@ -285,7 +284,7 @@ export default function Page() {
                               />
                               <label
                                 htmlFor={`acm-${index}`}
-                                className="text-[var(--rv-white] text-sm"
+                                className="text-stone-900 text-sm"
                               >
                                 {scheme?.funddes}
                               </label>
@@ -296,10 +295,10 @@ export default function Page() {
                   ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-4">
                       <div>
-                        <p className="font-semibold text-[var(--rv-white]">
+                        <p className="font-semibold text-gray-700">
                           Select Equity Funds
                         </p>
-                        {/* {console.log(assetCategory)} */}
+
                         <div className="mt-2 border border-gray-300 p-3 rounded h-60 overflow-y-auto">
                           {/* Equity Funds checkboxes here */}
                           {assetCategory
@@ -317,7 +316,7 @@ export default function Page() {
                                 />
                                 <label
                                   htmlFor={`asset-equity-${index}`}
-                                  className="text-[var(--rv-white] text-sm"
+                                  className="text-stone-900 text-sm"
                                 >
                                   Equity - {scheme?.assets_class}
                                 </label>
@@ -326,7 +325,7 @@ export default function Page() {
                         </div>
                       </div>
                       <div>
-                        <p className="font-semibold text-[var(--rv-white]">
+                        <p className="font-semibold text-gray-700">
                           Select Debt Funds
                         </p>
                         <div className="mt-2 border border-gray-300 p-3 rounded h-60 overflow-y-auto">
@@ -345,7 +344,7 @@ export default function Page() {
                                 />
                                 <label
                                   htmlFor={`asset-debt-${index}`}
-                                  className="text-[var(--rv-white] text-sm"
+                                  className="text-stone-900 text-sm"
                                 >
                                   Debt - {scheme?.assets_class}
                                 </label>
@@ -354,7 +353,7 @@ export default function Page() {
                         </div>
                       </div>
                       <div>
-                        <p className="font-semibold text-[var(--rv-white]">
+                        <p className="font-semibold text-gray-700">
                           Select Hybrid Funds
                         </p>
                         <div className="mt-2 border border-gray-300 p-3 rounded h-60 overflow-y-auto">
@@ -374,7 +373,7 @@ export default function Page() {
                                 />
                                 <label
                                   htmlFor={`asset-hybrid-${index}`}
-                                  className="text-[var(--rv-white] text-sm"
+                                  className="text-stone-900 text-sm"
                                 >
                                   Hybrid - {scheme?.assets_class}
                                 </label>
@@ -383,7 +382,7 @@ export default function Page() {
                         </div>
                       </div>
                       <div>
-                        <p className="font-semibold text-[var(--rv-white]">
+                        <p className="font-semibold text-gray-700">
                           Select Commodity Funds/ Others
                         </p>
                         <div className="mt-2 border border-gray-300 p-3 rounded h-60 overflow-y-auto">
@@ -407,7 +406,7 @@ export default function Page() {
                                 />
                                 <label
                                   htmlFor={`asset-other-${index}`}
-                                  className="text-[var(--rv-white] text-sm"
+                                  className="text-stone-900 text-sm"
                                 >
                                   Other - {scheme?.assets_class}
                                 </label>
@@ -418,12 +417,12 @@ export default function Page() {
                     </div>
                   )}
                 </div>
-              
+                <hr />
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                   <div className="mb-4">
                     <label
                       htmlFor="schemeSelect"
-                      className="text-sm block font-semibold text-[var(--rv-white] mb-1"
+                      className="text-sm block font-semibold text-gray-700 mb-1"
                     >
                       Select Scheme
                     </label>
@@ -473,7 +472,7 @@ export default function Page() {
                   <div className="mb-4">
                     <label
                       htmlFor="schemeName"
-                      className="text-sm block font-semibold text-[var(--rv-white] mb-1"
+                      className="text-sm block font-semibold text-gray-700 mb-1"
                     >
                       SIP Amount (Monthly)
                     </label>
@@ -489,9 +488,9 @@ export default function Page() {
                   <div className="mb-4">
                     <label
                       htmlFor="schemeDate"
-                      className="text-sm block font-semibold text-[var(--rv-white] mb-1"
+                      className="text-sm block font-semibold text-gray-700 mb-1"
                     >
-                      Start Date
+                      SIP Start Date
                     </label>
                     <input
                       type="date"
@@ -504,9 +503,9 @@ export default function Page() {
                   <div className="mb-4">
                     <label
                       htmlFor="schemeDate"
-                      className="text-sm block font-semibold text-[var(--rv-white] mb-1"
+                      className="text-sm block font-semibold text-gray-700 mb-1"
                     >
-                      End Date
+                      SIP End Date
                     </label>
                     <input
                       type="date"
@@ -521,7 +520,7 @@ export default function Page() {
                     <div className="mb-4">
                       <label
                         htmlFor="schemeDate"
-                        className="text-sm block font-semibold text-[var(--rv-white] mb-1"
+                        className="text-sm block font-semibold text-gray-700 mb-1"
                       >
                         Valuation As On
                       </label>
@@ -538,7 +537,7 @@ export default function Page() {
                   </div>
                 </div>
                 <Button
-                  className="bg-[var(--rv-primary)] text-[var(--rv-white)] "
+                  className="bg-[var(--rv-secondary)] text-[var(--rv-primary)] hover:bg-[var(--rv-primary)]  hover:text-white"
                   onClick={() => handleSubmit()}
                 // disabled={!pcode} // disables when pcode is falsy (empty, null, undefined)
                 >
@@ -552,15 +551,15 @@ export default function Page() {
                   <div className="space-x-2">
                     <Button
                       variant="outline"
-                      className={`border-2 dark:text-[var(--rv-white)] ${viewby === "graph" ? "border-blue-600 dark:border-[var(--rv-secondary)]" : "border-gray-600"
-                        } uppercase font-semibold text-gray-800 dark:text-[var(--rv-white)]`}
+                      className={`border-2 ${viewby === "graph" ? "border-blue-600" : "border-gray-600"
+                        } uppercase font-semibold text-gray-800`}
                       onClick={() => setViewBy("graph")}
                     >
                       Graph
                     </Button>
                     <Button
                       variant="outline"
-                      className={`border-2 dark:text-[var(--rv-white)] ${viewby === "table" ? "border-blue-600 dark:border-[var(--rv-secondary)]" : "border-gray-600"
+                      className={`border-2 ${viewby === "table" ? "border-blue-600" : "border-gray-600"
                         } uppercase font-semibold text-gray-800`}
                       onClick={() => setViewBy("table")}
                     >
@@ -573,15 +572,15 @@ export default function Page() {
                       handlePdf(result, title, startsipDate, valuationDate)
                     }
                   >
-                    <h1 className="text-2xl dark:text-[var(--rv-white)]">{viewby === "graph" && <FaFilePdf />}</h1>
+                    <h1 className="text-2xl">{viewby === "graph" && <FaFilePdf />}</h1>
                   </div>
                 </div>
               )}
               {graphData && result && (
                 viewby === "graph" ? (
                   <div>
-                    <div className="grid lg:grid-cols-7 md:grid-cols-3 gap-x-3 gap-y-2 my-10 dark:text-[var(--rv-white)]">
-                      <div className="py-2 px-3 border border-stone-600 shadow shadow-emerald-100 rounded-sm text-center dark:text-[var(--rv-white)]">
+                    <div className="grid lg:grid-cols-7 md:grid-cols-3 gap-x-3 gap-y-2 my-10">
+                      <div className="py-2 px-3 border border-stone-600 shadow shadow-emerald-100 rounded-sm text-center">
                         <h1 className="font-semibold text-sm">Amount Invested</h1>
                         <h1 className="font-medium text-sm">{result?.valuation?.investedAmount}</h1>
                       </div>
@@ -625,7 +624,7 @@ export default function Page() {
                   </div>
                 )
               )}
-              {/* {console.log(error)} */}
+
               {error && !graphData && (
                 <div className="">
                   Data Not Found

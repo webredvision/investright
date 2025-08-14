@@ -1,6 +1,16 @@
 "use client";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Line } from "react-chartjs-2";
+import "chart.js/auto";
+import {
+    Breadcrumb,
+    BreadcrumbItem,
+    BreadcrumbLink,
+    BreadcrumbList,
+    BreadcrumbSeparator,
+    BreadcrumbPage,
+} from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
 import { Toaster } from "@/components/ui/toaster";
@@ -23,8 +33,8 @@ import {
 import { Label } from "@radix-ui/react-label";
 import { SwpPerformanceChart } from "@/components/charts/swpPerformanceChart";
 import SwpPerformanceTable from "@/components/swpPerformanceTable";
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import InnerBanner from "@/components/InnerBanner/InnerBanner";
+
 
 export default function Page() {
     const [loading, setLoading] = useState(false);
@@ -288,26 +298,26 @@ export default function Page() {
     return (
         <div className="">
             <InnerBanner pageName={"SWP Performance"} />
-            <div className="max-w-screen-xl mx-auto main_section">
-               
+            {/* <Banner title={"SWP Performance"} /> */}
+            <div className="max-w-screen-xl mx-auto py-[30px] md:py-[60px] lg:px-1 px-3">
                 <Toaster />
                 <div>
-                    <div className='col-span-1  rounded-2xl bg-gradient-to-br from-[var(--rv-gredient)] to-[var(--rv-gredient1)] p-2 mb-3'>
+                    <div className='col-span-1 border border-gray-200 rounded-2xl bg-white p-2 mb-3'>
                         <div className="sip-calculator container mx-auto p-3 sticky top-0 z-10">
                             {/* Investment Type Toggle */}
                             <div className="flex space-x-4 mb-8">
                                 <Button
                                     onClick={() => (setIsMonthlySip(true), setSchemesData([]), setGraphData(false), setSelectedAcms([]))}
-                                    className={`text-sm rounded-full hover:bg-[var(--rv-ternary)] hover:text-[var(--rv-white)] ${isMonthlySip ? "bg-[var(--rv-primary)] text-[var(--rv-white)]"
-                                        : "bg-[var(--rv-secondary)] text-white border"
+                                    className={`text-sm rounded-full hover:bg-[var(--rv-primary)] hover:text-white ${isMonthlySip ? "bg-[var(--rv-secondary)] text-[var(--rv-primary)]"
+                                        : "bg-[var(--rv-white)] text-black border"
                                         }`}
                                 >
                                     Fund House
                                 </Button>
                                 <Button
                                     onClick={() => (setIsMonthlySip(false), setSchemesData([]), setGraphData(false), setSelectedAssets(new Set()))}
-                                    className={`text-sm rounded-full hover:bg-[var(--rv-ternary)] hover:text-[var(--rv-white)] ${!isMonthlySip ? "bg-[var(--rv-primary)] text-[var(--rv-white)]"
-                                        : "bg-[var(--rv-secondary)] text-white border"
+                                    className={`text-sm rounded-full hover:bg-[var(--rv-primary)] hover:text-white ${!isMonthlySip ? "bg-[var(--rv-secondary)] text-[var(--rv-primary)]"
+                                        : "bg-[var(--rv-white)] text-black border"
                                         }`}
                                 >
                                     Asset Category
@@ -316,8 +326,8 @@ export default function Page() {
                             <div className="input-fields mt-5 mb-5">
                                 {isMonthlySip ? (
                                     <div className="w-full">
-                                        <h4 className="font-semibold dark:text-[var(--rv-white)]">Select AMC</h4>
-                                        <div className="max-w-full mt-2  p-3 dark:text-[var(--rv-white)] rounded h-60 overflow-y-auto">
+                                        <h4 className="font-semibold text-gray-700">Select AMC</h4>
+                                        <div className="max-w-full mt-2 border border-gray-300 p-3 rounded h-60 overflow-y-auto">
                                             <input
                                                 type="text"
                                                 placeholder="Search Scheme"
@@ -338,7 +348,7 @@ export default function Page() {
                                                             onChange={() => handleAcmSelect(scheme)}
                                                             className="mr-2"
                                                         />
-                                                        <label htmlFor={`acm-${index}`} className="dark:text-[var(--rv-white)] text-sm">
+                                                        <label htmlFor={`acm-${index}`} className="text-stone-900 text-sm">
                                                             {scheme?.funddes}
                                                         </label>
                                                     </div>
@@ -348,10 +358,10 @@ export default function Page() {
                                 ) : (
                                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-4">
                                         <div>
-                                            <p className="font-semibold dark:text-[var(--rv-white)]">
+                                            <p className="font-semibold text-gray-700">
                                                 Select Equity Funds
                                             </p>
-                                            {console.log(assetCategory)}
+
                                             <div className="mt-2 border border-gray-300 p-3 rounded h-60 overflow-y-auto">
                                                 {/* Equity Funds checkboxes here */}
                                                 {assetCategory
@@ -369,7 +379,7 @@ export default function Page() {
                                                             />
                                                             <label
                                                                 htmlFor={`asset-equity-${index}`}
-                                                                className="dark:text-[var(--rv-white)] text-sm"
+                                                                className="text-stone-900 text-sm"
                                                             >
                                                                 Equity - {scheme?.assets_class}
                                                             </label>
@@ -378,7 +388,7 @@ export default function Page() {
                                             </div>
                                         </div>
                                         <div>
-                                            <p className="font-semibold dark:text-[var(--rv-white)]">
+                                            <p className="font-semibold text-gray-700">
                                                 Select Debt Funds
                                             </p>
                                             <div className="mt-2 border border-gray-300 p-3 rounded h-60 overflow-y-auto">
@@ -397,7 +407,7 @@ export default function Page() {
                                                             />
                                                             <label
                                                                 htmlFor={`asset-debt-${index}`}
-                                                                className="dark:text-[var(--rv-white)] text-sm"
+                                                                className="text-stone-900 text-sm"
                                                             >
                                                                 Debt - {scheme?.assets_class}
                                                             </label>
@@ -406,7 +416,7 @@ export default function Page() {
                                             </div>
                                         </div>
                                         <div>
-                                            <p className="font-semibold dark:text-[var(--rv-white)]">
+                                            <p className="font-semibold text-gray-700">
                                                 Select Hybrid Funds
                                             </p>
                                             <div className="mt-2 border border-gray-300 p-3 rounded h-60 overflow-y-auto">
@@ -426,7 +436,7 @@ export default function Page() {
                                                             />
                                                             <label
                                                                 htmlFor={`asset-hybrid-${index}`}
-                                                                className="dark:text-[var(--rv-white)] text-sm"
+                                                                className="text-stone-900 text-sm"
                                                             >
                                                                 Hybrid - {scheme?.assets_class}
                                                             </label>
@@ -435,7 +445,7 @@ export default function Page() {
                                             </div>
                                         </div>
                                         <div>
-                                            <p className="font-semibold dark:text-[var(--rv-white)]">
+                                            <p className="font-semibold text-gray-700">
                                                 Select Commodity Funds/ Others
                                             </p>
                                             <div className="mt-2 border border-gray-300 p-3 rounded h-60 overflow-y-auto">
@@ -459,7 +469,7 @@ export default function Page() {
                                                             />
                                                             <label
                                                                 htmlFor={`asset-other-${index}`}
-                                                                className="dark:text-[var(--rv-white)] text-sm"
+                                                                className="text-stone-900 text-sm"
                                                             >
                                                                 Other - {scheme?.assets_class}
                                                             </label>
@@ -470,16 +480,17 @@ export default function Page() {
                                     </div>
                                 )}
                             </div>
+                            <hr />
                             <div className="grid grid-cols-1 lg:grid-cols-6">
                                 <div className="col-span-2 mt-2 overflow-y-auto p-2">
                                     {/* Dropdown for selecting a scheme */}
                                     <div className="mb-4">
-                                        <label htmlFor="schemeSelect" className="text-sm block font-semibold dark:text-[var(--rv-white)] mb-1">
+                                        <label htmlFor="schemeSelect" className="text-sm block font-semibold text-gray-700 mb-1">
                                             Select Scheme
                                         </label>
                                         <select
                                             id="schemeSelect"
-                                            className="bg-gray-50 border border-gray-300 dark:text-[var(--rv-black)] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                             onChange={(e) => {
                                                 const selectedScheme = schemesData?.data.find(
                                                     (scheme) => scheme.funddes === e.target.value
@@ -524,12 +535,12 @@ export default function Page() {
                                 <div className="col-span-2 mt-2 overflow-y-auto p-2">
                                     {/* Text input for scheme name */}
                                     <div className="mb-4">
-                                        <label htmlFor="schemeName" className="text-sm block font-semibold dark:text-[var(--rv-white)] mb-1">Initial Amt</label>
+                                        <label htmlFor="schemeName" className="text-sm block font-semibold text-gray-700 mb-1">Initial Amt</label>
                                         <input
                                             type="number"
                                             id="schemeName"
                                             placeholder="Enter scheme name"
-                                            className="bg-gray-50 border border-gray-300 dark:text-[var(--rv-black)] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                             value={initialAmount}
                                             onChange={(e) => setInitialAmount(e.target.value)}
                                         />
@@ -538,12 +549,12 @@ export default function Page() {
                                 <div className="col-span-2 mt-2 overflow-y-auto p-2">
                                     {/* Text input for scheme name */}
                                     <div className="mb-4">
-                                        <label htmlFor="schemeName" className="text-sm block font-semibold dark:text-[var(--rv-white)] mb-1">Withdrawal Amt</label>
+                                        <label htmlFor="schemeName" className="text-sm block font-semibold text-gray-700 mb-1">Withdrawal Amt</label>
                                         <input
                                             type="number"
                                             id="schemeName"
                                             placeholder="Enter scheme name"
-                                            className="bg-gray-50 border border-gray-300 dark:text-[var(--rv-black)] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                             value={withdrawalAmount}
                                             onChange={(e) => setWithdrawalAmount(e.target.value)}
                                         />
@@ -552,11 +563,11 @@ export default function Page() {
                                 {/* Date input for selecting a date */}
                                 <div className="col-span-2 mt-2 overflow-y-auto p-2">
                                     <div className="mb-4">
-                                        <label htmlFor="schemeDate" className="text-sm block font-semibold dark:text-[var(--rv-white)] mb-1">Investment Date</label>
+                                        <label htmlFor="schemeDate" className="text-sm block font-semibold text-gray-700 mb-1">Investment Date</label>
                                         <input
                                             type="date"
                                             id="schemeDate"
-                                            className="bg-gray-50 border border-gray-300 dark:text-[var(--rv-black)] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                             min={startsipDate}
                                             max={getTodayDate()}
                                             value={valuationDate}
@@ -567,11 +578,11 @@ export default function Page() {
                                 {/* Date input for selecting a date */}
                                 <div className="col-span-2 mt-2 overflow-y-auto p-2">
                                     <div className="mb-4">
-                                        <label htmlFor="schemeDate" className="text-sm block font-semibold dark:text-[var(--rv-white)] mb-1">Start Date</label>
+                                        <label htmlFor="schemeDate" className="text-sm block font-semibold text-gray-700 mb-1">SWP Start Date</label>
                                         <input
                                             type="date"
                                             id="schemeDate"
-                                            className="bg-gray-50 border border-gray-300 dark:text-[var(--rv-black)] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                             value={startsipDate}
                                             onChange={(e) => setStartSipDate(e.target.value)}
                                         />
@@ -580,11 +591,11 @@ export default function Page() {
                                 {/* Date input for selecting a date */}
                                 <div className="col-span-2 mt-2 overflow-y-auto p-2">
                                     <div className="mb-4">
-                                        <label htmlFor="schemeDate" className="text-sm block font-semibold dark:text-[var(--rv-white)] mb-1">End Date</label>
+                                        <label htmlFor="schemeDate" className="text-sm block font-semibold text-gray-700 mb-1">SWP End Date</label>
                                         <input
                                             type="date"
                                             id="schemeDate"
-                                            className="bg-gray-50 border border-gray-300 dark:text-[var(--rv-black)] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                             min={startsipDate}
                                             value={endsipDate}
                                             onChange={(e) => setEndSipDate(e.target.value)}
@@ -592,18 +603,18 @@ export default function Page() {
                                     </div>
                                 </div>
                             </div>
-                            <Button className="bg-[var(--rv-primary)] text-[var(--rv-white)] disabled:opacity-50 hover:bg-[var(--rv-primary)]" onClick={() => handleSubmit()}>Show</Button>
+                            <Button className="bg-[var(--rv-secondary)] text-[var(--rv-primary)] hover:text-white disabled:opacity-50 hover:bg-[var(--rv-primary)]" onClick={() => handleSubmit()}>Show</Button>
                         </div>
                     </div>
                     <div className='col-span-1'>
                         {graphData &&
                             <div className="mb-5 flex justify-between">
                                 <div className="space-x-2">
-                                    <Button variant="outline" className={`border-2 text-white ${viewby === 'graph' ? 'border-blue-600' : 'dark:text-[var(--rv-white)]'} uppercase font-semibold `} onClick={() => setViewBy('graph')}>Graph</Button>
-                                    <Button variant="outline" className={`border-2 text-[var(--rv-white)] ${viewby === 'table' ? 'border-blue-600' : 'dark:text-[var(--rv-white)]'} uppercase font-semibold `} onClick={() => setViewBy('table')}>Table</Button>
+                                    <Button variant="outline" className={`border-2 ${viewby === 'graph' ? 'border-blue-600' : 'border-gray-600'} uppercase font-semibold text-gray-800`} onClick={() => setViewBy('graph')}>Graph</Button>
+                                    <Button variant="outline" className={`border-2 ${viewby === 'table' ? 'border-blue-600' : 'border-gray-600'} uppercase font-semibold text-gray-800`} onClick={() => setViewBy('table')}>Table</Button>
                                 </div>
                                 <div className="cursor-pointer" onClick={() => handlePdf(result, title, startsipDate, valuationDate, withdrawalAmount)}>
-                                    <h1 className="text-2xl dark:text-[var(--rv-white)] ">{viewby === "graph" && <FaFilePdf />}</h1>
+                                    <h1 className="text-2xl">{viewby === "graph" && <FaFilePdf />}</h1>
                                 </div>
                             </div>
                         }
@@ -611,28 +622,28 @@ export default function Page() {
                             graphData && <div className="">
                                 <div className="grid lg:grid-cols-6 md:grid-cols-3 grid-cols-1 gap-3 my-10">
                                     <div className="py-2 px-1 border border-stone-600 shadow shadow-emerald-100 rounded-sm text-center">
-                                        <h1 className="font-semibold dark:text-[var(--rv-white)] text-sm">Amount Invested</h1>
-                                        <h1 className="font-medium dark:text-[var(--rv-white)] text-sm">{result?.initialAmount}</h1>
+                                        <h1 className="font-semibold text-gray-800 text-sm">Amount Invested</h1>
+                                        <h1 className="font-medium text-gray-900 text-sm">{result?.initialAmount}</h1>
                                     </div>
                                     <div className="py-2 px-1 border border-stone-600 shadow shadow-emerald-100 rounded-sm text-center">
-                                        <h1 className="font-semibold dark:text-[var(--rv-white)] text-sm">Monthly Withdrawl</h1>
-                                        <h1 className="font-medium dark:text-[var(--rv-white)] text-sm">{withdrawalAmount}</h1>
+                                        <h1 className="font-semibold text-gray-800 text-sm">Monthly Withdrawl</h1>
+                                        <h1 className="font-medium text-gray-900 text-sm">{withdrawalAmount}</h1>
                                     </div>
                                     <div className="py-2 px-1 border border-stone-600 shadow shadow-emerald-100 rounded-sm text-center">
-                                        <h1 className="font-semibold dark:text-[var(--rv-white)] text-sm">Total Withdrawl (A)</h1>
-                                        <h1 className="font-medium dark:text-[var(--rv-white)] text-sm">{result?.totalWithdrawlAmount}</h1>
+                                        <h1 className="font-semibold text-gray-800 text-sm">Total Withdrawl (A)</h1>
+                                        <h1 className="font-medium text-gray-900 text-sm">{result?.totalWithdrawlAmount}</h1>
                                     </div>
                                     <div className="py-2 px-1 border border-stone-600 shadow shadow-emerald-100 rounded-sm text-center">
-                                        <h1 className="font-semibold dark:text-[var(--rv-white)] text-sm">Remaning Fund Value (B)</h1>
-                                        <h1 className="font-medium dark:text-[var(--rv-white)] text-sm">{result?.fundRemaining}</h1>
+                                        <h1 className="font-semibold text-gray-800 text-sm">Remaning Fund Value (B)</h1>
+                                        <h1 className="font-medium text-gray-900 text-sm">{result?.fundRemaining}</h1>
                                     </div>
                                     <div className="py-2 px-1 border border-stone-600 shadow shadow-emerald-100 rounded-sm text-center">
-                                        <h1 className="font-semibold dark:text-[var(--rv-white)] text-sm">Total Portfolio Value (A+B)</h1>
-                                        <h1 className="font-medium dark:text-[var(--rv-white)] text-sm">{result?.portFolioValue}</h1>
+                                        <h1 className="font-semibold text-gray-800 text-sm">Total Portfolio Value (A+B)</h1>
+                                        <h1 className="font-medium text-gray-900 text-sm">{result?.portFolioValue}</h1>
                                     </div>
                                     <div className="py-2 px-1 border border-stone-600 shadow shadow-emerald-100 rounded-sm text-center">
-                                        <h1 className="font-semibold dark:text-[var(--rv-white)] text-sm">XIRR (%)</h1>
-                                        <h1 className="font-medium dark:text-[var(--rv-white)] text-sm">{result?.xirrRate}</h1>
+                                        <h1 className="font-semibold text-gray-800 text-sm">XIRR (%)</h1>
+                                        <h1 className="font-medium text-gray-900 text-sm">{result?.xirrRate}</h1>
                                     </div>
                                 </div>
                                 <div id="graphId">
@@ -645,7 +656,7 @@ export default function Page() {
                             </div>
                         }
                         {error && (
-                            <div className="text-white">No Data Found</div>
+                            <div>No Data Found</div>
                         )}
                     </div>
                 </div>

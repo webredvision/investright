@@ -170,7 +170,7 @@ export default function Signin({siteData}) {
           </div>
 
           <div className="mt-4">
-            <p className="text-gray-200 text-center mb-2 ">For New User Download Our App </p>
+            <p className="text-gray-700 text-center mb-2 ">For New User Download Our App </p>
             <div className="flex  items-center justify-center gap-2 ">
               
           <Link  href={"https://play.google.com/store/apps"} target="_blank" rel="noopener noreferrer" className="cursor-pointer">

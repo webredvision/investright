@@ -44,7 +44,7 @@ const TeamSection = ({ teams }) => {
   };
 
   return (
-    <div className="bg-[var(--rv-secondary)]">
+    <div className="bg-white">
       <div className="max-w-screen-xl mx-auto main_section">
         <motion.section
           initial={{ opacity: 0, y: 20 }}
@@ -53,7 +53,7 @@ const TeamSection = ({ teams }) => {
           className="text-center"
         >
           <motion.h2
-            className="text-[var(--rv-white)] text-4xl font-bold mb-6"
+            className=" text-4xl font-bold mb-6"
             initial={{ x: 20, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.5 }}
@@ -78,7 +78,7 @@ const TeamSection = ({ teams }) => {
                       height={400}
                       className="w-full h-[400px] object-cover object-top"
                     />
-                    <div className="absolute bottom-0 w-full h-[30%] bg-gradient-to-t from-[var(--rv-primary)] via-[var(--rv-primary)]/50 to-transparent"></div>
+                    <div className="absolute bottom-0 w-full h-[30%] bg-gradient-to-t from-[var(--rv-secondary)] via-[var(--rv-secondary)]/50 to-transparent"></div>
                     <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-center text-[var(--rv-white)]">
                       <h3 className="text-xl font-semibold">{member?.name}</h3>
                        <p className="font-semibold ">
@@ -113,7 +113,7 @@ const TeamSection = ({ teams }) => {
       {/* Modal */}
       {isModalOpen && selectedMember && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center px-4">
-          <div className="relative bg-[var(--rv-ternary)] max-w-4xl w-full max-h-[90vh] rounded-xl overflow-y-auto shadow-xl flex flex-col md:flex-row">
+          <div className="relative bg-[var(--rv-secondary)] max-w-4xl w-full max-h-[90vh] rounded-xl overflow-y-auto shadow-xl flex flex-col md:flex-row">
             {/* Close Button */}
             <button
               onClick={closeModal}

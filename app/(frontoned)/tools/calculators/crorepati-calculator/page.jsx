@@ -5,6 +5,8 @@ import { CalculatorReturnChart } from "@/components/charts/calculatorReturnChart
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { calculators } from "@/data/calculators";
+import InnerBanner from "@/components/InnerBanner/InnerBanner";
+
 
 export default function CrorepatiPlanningCalculator() {
   const router = useRouter();
@@ -26,6 +28,7 @@ export default function CrorepatiPlanningCalculator() {
         );
         if (res.status === 200) {
           const data = res.data;
+          // console.log(data)
           const futureTargetWealth = data.futureTargetWealth;
           const savingsGrowth = data.savingsGrowth;
           const finalTargetWealth = data.finalTargetWealth;
@@ -46,6 +49,7 @@ export default function CrorepatiPlanningCalculator() {
           setChartData(yearlyData);
         }
       } catch (error) {
+        console.log(error);
       }
     };
     calculateCrorepatiPlan();
@@ -57,6 +61,7 @@ export default function CrorepatiPlanningCalculator() {
     expectedReturn,
     inflationRate,
   ]);
+
   const handleCalculatorChange = (e) => {
     const selectedRoute = e.target.value;
     if (selectedRoute) {
@@ -87,8 +92,10 @@ export default function CrorepatiPlanningCalculator() {
   };
 
   return (
-    <div className="pt-20">
-      <div className="max-w-screen-xl mx-auto main_section text-[var(--rv-white)]">
+    <div className="">
+      <InnerBanner pageName="Crorepati Planning Calculator" />
+      
+      <div className="max-w-screen-xl mx-auto main_section">
         <div className="">
           <div className="mb-5 flex flex-col md:flex-row gap-5 justify-between ">
             <div className="">
@@ -99,7 +106,7 @@ export default function CrorepatiPlanningCalculator() {
             <div className="flex justify-between gap-4">
               <span>Explore other calculators</span>
               <select
-                className="w-full bg-[var(--rv-black)] border border-gray-600 rounded-lg p-2"
+                className="w-full border border-gray-500 rounded-lg p-2"
                 onChange={handleCalculatorChange}
                 defaultValue=""
               >
@@ -117,14 +124,14 @@ export default function CrorepatiPlanningCalculator() {
 
           <div>
             <div className="grid lg:grid-cols-2 grid-cols-1 gap-4 mb-4">
-              <div className="space-y-3">
-                <div className="rounded-2xl bg-[var(--rv-background)] border border-[var(--rv-primary)] p-5">
+              <div className="">
+                <div className="border border-[var(--rv-primary)] rounded-2xl bg-white p-5">
                   <div className="sip-calculator container mx-auto p-3">
                     <div className="input-fields mt-5 mb-10">
                       {/* Target Wealth */}
                       <div>
                         <div className="flex justify-between mt-5">
-                          <span>Target Wealth (₹) ?</span>
+                          <span>Target Wealth (₹)</span>
                           <div>
                             <input
                               type="number"
@@ -135,15 +142,15 @@ export default function CrorepatiPlanningCalculator() {
                                   parseFloat(e.target.value.replace(/,/g, ""))
                                 )
                               }
-                              className="text-[var(--rv-white)] bg-[var(--rv-forth)] w-36  border px-2 py-2 rounded"
+                              className="font-semibold text-var(--rv-primary) w-36  border px-2 py-2 rounded"
                             />
                           </div>
                         </div>
                         <input
                           type="range"
-                          min="1000000"
+                          min="100000"
                           max="1000000000"
-                          step="100000"
+                          step="1000"
                           value={isNaN(targetWealth) ? 0 : targetWealth}
                           onChange={(e) =>
                             setTargetWealth(parseFloat(e.target.value))
@@ -170,7 +177,7 @@ export default function CrorepatiPlanningCalculator() {
                             onChange={(e) =>
                               setCurrentAge(parseFloat(e.target.value))
                             }
-                            className="text-[var(--rv-white)] bg-[var(--rv-forth)] w-20  border px-2 py-2 rounded"
+                            className="font-semibold text-var(--rv-primary) w-20  border px-2 py-2 rounded"
                           />
                         </div>
                         <input
@@ -203,7 +210,7 @@ export default function CrorepatiPlanningCalculator() {
                             onChange={(e) =>
                               setCrorepatiStartAge(parseFloat(e.target.value))
                             }
-                            className="text-[var(--rv-white)] bg-[var(--rv-forth)] w-20  border px-2 py-2 rounded"
+                            className="font-semibold text-var(--rv-primary) w-20  border px-2 py-2 rounded"
                           />
                         </div>
                         <input
@@ -241,7 +248,7 @@ export default function CrorepatiPlanningCalculator() {
                             onChange={(e) =>
                               setExpectedReturn(parseFloat(e.target.value))
                             }
-                            className="text-[var(--rv-white)] bg-[var(--rv-forth)] w-20  border px-2 py-2 rounded"
+                            className="font-semibold text-var(--rv-primary) w-20  border px-2 py-2 rounded"
                           />
                         </div>
                         <input
@@ -275,7 +282,7 @@ export default function CrorepatiPlanningCalculator() {
                             onChange={(e) =>
                               setInflationRate(parseFloat(e.target.value))
                             }
-                            className="text-[var(--rv-white)] bg-[var(--rv-forth)] w-20 border px-2 py-2 rounded"
+                            className="font-semibold text-var(--rv-primary) w-20  border px-2 py-2 rounded"
                           />
                         </div>
                         <input
@@ -312,7 +319,7 @@ export default function CrorepatiPlanningCalculator() {
                                   parseFloat(e.target.value.replace(/,/g, ""))
                                 )
                               }
-                              className="text-[var(--rv-white)] bg-[var(--rv-forth)] w-36  border px-2 py-2 rounded"
+                              className="font-semibold text-var(--rv-primary) w-36  border px-2 py-2 rounded"
                             />
                           </div>
                         </div>
@@ -338,51 +345,51 @@ export default function CrorepatiPlanningCalculator() {
                       </div>
                     </div>
                   </div>
-                </div>
-                <div className="rounded-2xl bg-[var(--rv-background)] border border-gray-600 p-5">
-                  {result && (
-                    <div>
-                      <div className="flex justify-between px-5 mb-3">
-                        <p>Your Targeted Wealth (Inflation Adjusted)</p>
-                        <p className="font-bold text-lg">
-                          ₹ {result.futureTargetWealth.toLocaleString()}
-                        </p>
+                  <div className="rounded-2xl bg-white">
+                    {result && (
+                      <div>
+                        <div className="flex justify-between px-5 mb-3">
+                          <p>Your Targeted Wealth (Inflation Adjusted)</p>
+                          <p className="font-bold text-lg">
+                            ₹ {result.futureTargetWealth.toLocaleString()}
+                          </p>
+                        </div>
+                        <div className="flex justify-between px-5 mb-3">
+                          <p>Growth of Savings</p>
+                          <p className="font-bold text-lg">
+                            ₹ {result.growthOfSavings.toLocaleString()}
+                          </p>
+                        </div>
+                        <div className="flex justify-between px-5 mb-3">
+                          <p>Monthly SIP Amount Required</p>
+                          <p className="font-bold text-lg">
+                            ₹ {result.sipInvestmentRequired.toLocaleString()}
+                          </p>
+                        </div>
+                        <div className="flex justify-between px-5 mb-3">
+                          <p>
+                            Amount Invested through SIP in{" "}
+                            {crorepatiStartAge - currentAge} years
+                          </p>
+                          <p className="font-bold text-lg">
+                            ₹ {result.totalSIPInvestment.toLocaleString()}
+                          </p>
+                        </div>
+                        <div className="flex justify-between px-5 mb-3">
+                          <p>SIP Growth</p>
+                          <p className="font-bold text-lg">
+                            ₹ {result.sipGrowth.toLocaleString()}
+                          </p>
+                        </div>
+                        <div className="flex justify-between px-5 mb-3">
+                          <p>Future Value of SIP</p>
+                          <p className="font-bold text-lg">
+                            ₹ {result.sipFutureValue.toLocaleString()}
+                          </p>
+                        </div>
                       </div>
-                      <div className="flex justify-between px-5 mb-3">
-                        <p>Growth of Savings</p>
-                        <p className="font-bold text-lg">
-                          ₹ {result.growthOfSavings.toLocaleString()}
-                        </p>
-                      </div>
-                      <div className="flex justify-between px-5 mb-3">
-                        <p>Monthly SIP Amount Required</p>
-                        <p className="font-bold text-lg">
-                          ₹ {result.sipInvestmentRequired.toLocaleString()}
-                        </p>
-                      </div>
-                      <div className="flex justify-between px-5 mb-3">
-                        <p>
-                          Amount Invested through SIP in{" "}
-                          {crorepatiStartAge - currentAge} years
-                        </p>
-                        <p className="font-bold text-lg">
-                          ₹ {result.totalSIPInvestment.toLocaleString()}
-                        </p>
-                      </div>
-                      <div className="flex justify-between px-5 mb-3">
-                        <p>SIP Growth</p>
-                        <p className="font-bold text-lg">
-                          ₹ {result.sipGrowth.toLocaleString()}
-                        </p>
-                      </div>
-                      <div className="flex justify-between px-5 mb-3">
-                        <p>Future Value of SIP</p>
-                        <p className="font-bold text-lg">
-                          ₹ {result.sipFutureValue.toLocaleString()}
-                        </p>
-                      </div>
-                    </div>
-                  )}
+                    )}
+                  </div>
                 </div>
               </div>
               <div className="space-y-3">
@@ -393,7 +400,7 @@ export default function CrorepatiPlanningCalculator() {
                   }}
                   title={'Education Planning Projection'}
                   chartConfig={chartConfig}
-                  className="mb-4"
+                  className="mb-10"
                 />
                 <CalculatorReturnChart data={chartData} chartConfig={chartConfig1} />
               </div>

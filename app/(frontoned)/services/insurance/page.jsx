@@ -8,6 +8,7 @@ import {
   Hospital,
 } from "lucide-react";
 import Link from "next/link";
+import InnerBanner from "@/components/InnerBanner/InnerBanner";
 
 export const metadata = {
   title: "Life & Health Insurance Advisory",
@@ -17,16 +18,12 @@ export const metadata = {
 
 const LifeHealthInsurancePage = () => {
   return (
-    <section className="max-w-screen-xl mx-auto lg:px-0 md:px-2 px-4 py-40 text-[var(--rv-white)]">
+    <div>
+        <InnerBanner pageName="Life & Health Insurance Advisory" />
+      <div className="bg-white">
+        <section className="max-w-screen-xl mx-auto main_section ">
       {/* Heading */}
-      <div className="text-center mb-10">
-        <h1 className="text-4xl font-bold text-[var(--rv-white)]">
-          Life & Health Insurance Advisory
-        </h1>
-        <p className="text-lg mt-2">
-          Term plans, mediclaim policies, and critical illness protection — tailored for your family’s future.
-        </p>
-      </div>
+      
 
       {/* Introduction */}
       <div className="text-base leading-relaxed space-y-4 mb-10">
@@ -89,7 +86,7 @@ const LifeHealthInsurancePage = () => {
       </div>
 
       {/* CTA */}
-      <div className="bg-gradient-to-r from-[var(--rv-primary)] to-[var(--rv-bg-primary)] p-6 rounded-lg shadow-md mt-10">
+      <div className="bg-gradient-to-r from-[var(--rv-primary)] to-[var(--rv-secondary)] text-white p-6 rounded-lg shadow-md mt-10">
         <p className="mb-4">
           It’s time to protect what truly matters. Talk to our experts at <strong>SunGlobeLink</strong> for guidance on life & health insurance plans that keep your loved ones safe and financially sound.
         </p>
@@ -98,6 +95,8 @@ const LifeHealthInsurancePage = () => {
         </Link>
       </div>
     </section>
+      </div>
+    </div>
   );
 };
 

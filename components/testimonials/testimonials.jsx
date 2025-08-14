@@ -33,29 +33,30 @@ export default function Testimonials({ testimonials }) {
   }, [activeIndex]);
 
   return (
-    <div
+    <div className='bg-white'>
+      <div
       ref={sectionRef}
-      className="padding-bottom-section padding-top-section"
+      className="main_section1"
     >
       <div className="container mx-auto px-4 lg:px-10">
-        <div className="flex flex-col items-center text-[var(--rv-white)]">
+        <div className="flex flex-col items-center ">
           {/* Heading Animation */}
           <motion.h2
             initial={{ y: -50, opacity: 0 }}
             animate={isInView ? { y: 0, opacity: 1 } : {}}
             transition={{ duration: 0.7, ease: 'easeOut' }}
-            className="text-4xl font-bold mb-6 text-center text-[var(--rv-white)]"
+            className="text-4xl font-bold mb-6 text-center "
           >
             Our <span className="text-[var(--rv-primary)]">Testimonials</span>
           </motion.h2>
 
-          <div className="flex gap-6 w-full justify-center min-h-[250px] lg:max-w-screen-xl mx-auto relative">
+          <div className="flex gap-6 w-full justify-center min-h-[250px] text-white lg:max-w-screen-xl mx-auto relative">
             {/* Active Testimonial Animation */}
             <motion.div
               initial={{ x: -100, opacity: 0 }}
               animate={isInView ? { x: 0, opacity: 1 } : {}}
               transition={{ duration: 0.8, ease: 'easeOut' }}
-              className="flex flex-col justify-between bg-gradient-to-br from-[var(--rv-gredient)] to-[var(--rv-gredient1)] rounded-2xl p-6  "
+              className="flex flex-col justify-between bg-gradient-to-br from-[var(--rv-primary)] to-[var(--rv-gredient1)] rounded-2xl p-6  "
             >
               {/* <div className="flex items-center space-x-1 text-yellow-400 text-xl">
                 {'★'.repeat(activeClient.rating)}
@@ -71,8 +72,8 @@ export default function Testimonials({ testimonials }) {
                   className="w-12 h-12 rounded-full"
                 />
                 <div>
-                  <div className="text-[var(--rv-primary)] font-bold">{activeClient?.author}</div>
-                  <div className="text-[var(--rv-white)]/70">{activeClient?.designation}</div>
+                  <div className="text-[var(--rv-secondary)] font-bold">{activeClient?.author}</div>
+                  <div className="text-gray-300">{activeClient?.designation}</div>
                 </div>
               </div>
             </motion.div>
@@ -145,6 +146,7 @@ export default function Testimonials({ testimonials }) {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 }

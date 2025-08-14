@@ -1,89 +1,161 @@
-import Image from "next/image";
+import React from "react";
+import {
+  UserCheck2,
+  BarChart3,
+  Landmark,
+  Handshake,
+  Banknote,
+  ShieldCheck,
+  FileCheck,
+  Target,
+} from "lucide-react";
 import Link from "next/link";
-
+import InnerBanner from "@/components/InnerBanner/InnerBanner";
 
 export const metadata = {
   title: "Financial Management Services",
-  description: "Manage your finances effectively with expert strategies and personalized guidance.",
+  description:
+    "Optimize your finances with SunGlobeLink’s financial management services. From budgeting to investment strategies, we help you take control of your money and build lasting wealth.",
 };
 
-export default function FinancialManagementPage() {
+const FinancialManagementPage = () => {
   return (
-    <main>
-      {/* Hero Section */}
-      <section className="relative h-[300px] md:h-[400px] w-full bg-black/60">
-        <Image
-          src="/images/services/financial-management.jpg"
-          alt="Financial Management"
-          fill
-          className="object-cover -z-10 opacity-60"
-        />
-        <div className="h-full w-full flex items-center justify-center">
-          <h1 className="text-white text-3xl md:text-5xl font-bold">
-            Financial Management
-          </h1>
-        </div>
-      </section>
+    <div>
+      <InnerBanner pageName="Financial Management Services" />
+      <div className="bg-white">
+        <section className="max-w-screen-xl mx-auto main_section">
+          {/* Introduction */}
+          <div className="text-base leading-relaxed space-y-4 mb-10">
+            <p>
+              Effective financial management is the foundation of long-term wealth and stability.
+              It involves balancing income, expenses, savings, and investments to achieve your
+              personal and professional goals.
+            </p>
+            <p>
+              At <strong>SunGlobeLink</strong>, we provide strategic financial management solutions
+              tailored to your unique needs, helping you make informed decisions and maximize the
+              value of your resources.
+            </p>
+          </div>
 
-      {/* Intro */}
-      <section className="max-w-6xl px-4 md:px-6 mx-auto py-12 space-y-6">
-        <h2 className="text-2xl md:text-3xl font-semibold text-gray-800">
-          Empowering Your Financial Decisions
-        </h2>
-        <p className="text-gray-600 text-lg">
-          Our Financial Management services are designed to help you take control of your finances, make informed decisions, and build a strong financial future. Whether you're an individual or a business, we offer tailored strategies to manage income, expenses, investments, and risk efficiently.
-        </p>
-      </section>
-
-      {/* Why Choose Us */}
-      <section className="bg-gray-50 py-12">
-        <div className="max-w-6xl px-4 md:px-6 mx-auto space-y-6">
-          <h3 className="text-xl md:text-2xl font-semibold text-gray-800">Why Choose Our Financial Management Services?</h3>
-          <ul className="list-disc list-inside text-gray-700 space-y-2">
-            <li>Comprehensive financial planning and budgeting assistance</li>
-            <li>Investment tracking and portfolio performance reviews</li>
-            <li>Debt reduction strategies and credit score improvement</li>
-            <li>Tax optimization and compliance support</li>
-            <li>Business cash flow and working capital management</li>
-          </ul>
-        </div>
-      </section>
-
-      {/* Services Offered */}
-      <section className="py-12 max-w-6xl px-4 md:px-6 mx-auto space-y-8">
-        <h3 className="text-xl md:text-2xl font-semibold text-gray-800">Our Financial Management Services Include:</h3>
-        <div className="grid gap-6 md:grid-cols-2">
-          {[
-            "Budget Planning & Expense Management",
-            "Income & Cash Flow Analysis",
-            "Goal-Based Financial Roadmaps",
-            "Debt Management & Loan Structuring",
-            "Investment Allocation Monitoring",
-            "Business Finance & Tax Planning",
-          ].map((item, idx) => (
-            <div key={idx} className="p-6 bg-white rounded-lg shadow border border-gray-200">
-              <h4 className="text-lg font-semibold text-gray-800 mb-2">{item}</h4>
-              <p className="text-gray-600 text-sm">
-                {`We provide expert guidance on ${item.toLowerCase()}.`}
-              </p>
+          {/* Why Choose Our Financial Management Services */}
+          <div className="mb-10">
+            <h2 className="text-2xl font-semibold text-[var(--rv-primary)] mb-6">
+              Why Choose Our Financial Management Services?
+            </h2>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[
+                {
+                  icon: <UserCheck2 className="text-[var(--rv-primary)] w-6 h-6" />,
+                  title: "Personalized Strategies",
+                  desc: "Customized financial plans that align with your lifestyle and objectives.",
+                },
+                {
+                  icon: <BarChart3 className="text-[var(--rv-primary)] w-6 h-6" />,
+                  title: "Data-Driven Decisions",
+                  desc: "In-depth analysis to guide smart, evidence-based financial choices.",
+                },
+                {
+                  icon: <Landmark className="text-[var(--rv-primary)] w-6 h-6" />,
+                  title: "Retirement & Long-Term Planning",
+                  desc: "Build a secure future with sustainable, well-structured plans.",
+                },
+                {
+                  icon: <Handshake className="text-[var(--rv-primary)] w-6 h-6" />,
+                  title: "Client-Centric Approach",
+                  desc: "Your goals and priorities drive every decision we help you make.",
+                },
+                {
+                  icon: <Banknote className="text-[var(--rv-primary)] w-6 h-6" />,
+                  title: "Asset Protection",
+                  desc: "Safeguard your wealth through smart allocation and risk control.",
+                },
+                {
+                  icon: <ShieldCheck className="text-[var(--rv-primary)] w-6 h-6" />,
+                  title: "Comprehensive Oversight",
+                  desc: "We manage the full picture of your finances for optimal results.",
+                },
+              ].map((item, i) => (
+                <div
+                  key={i}
+                  className="flex items-start gap-4 bg-gradient-to-r from-[var(--rv-secondary)] to-[var(--rv-bg-primary)] text-[var(--rv-white)] p-4 rounded-md shadow-sm"
+                >
+                  <div>{item.icon}</div>
+                  <div>
+                    <h3 className="font-semibold">{item.title}</h3>
+                    <p className="text-sm">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      </section>
+          </div>
 
-      {/* CTA */}
-      <section className="bg-[#004D4D] text-white py-16 px-4 text-center">
-        <h3 className="text-2xl md:text-3xl font-bold mb-4">Start Managing Your Finances Smartly Today</h3>
-        <p className="mb-6 text-white/90 max-w-xl mx-auto">
-          Reach out to our experienced advisors and take the first step toward a financially secure future.
-        </p>
-        <Link
-          href="/contact"
-          className="inline-block bg-white text-[#004D4D] font-semibold py-3 px-6 rounded hover:bg-gray-200 transition"
-        >
-          Talk to an Expert
-        </Link>
-      </section>
-    </main>
+          {/* Our Financial Management Services */}
+          <div className="mb-10">
+            <h2 className="text-2xl font-semibold text-[var(--rv-primary)] mb-6">
+              Our Financial Management Solutions
+            </h2>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[
+                {
+                  icon: <FileCheck className="text-[var(--rv-primary)] w-6 h-6" />,
+                  title: "Budget Planning",
+                  desc: "Design spending plans that ensure stability and savings growth.",
+                },
+                {
+                  icon: <FileCheck className="text-[var(--rv-primary)] w-6 h-6" />,
+                  title: "Cash Flow Optimization",
+                  desc: "Maintain a healthy cash position to meet short-term and long-term needs.",
+                },
+                {
+                  icon: <FileCheck className="text-[var(--rv-primary)] w-6 h-6" />,
+                  title: "Debt Management",
+                  desc: "Reduce liabilities strategically to free up resources for growth.",
+                },
+                {
+                  icon: <FileCheck className="text-[var(--rv-primary)] w-6 h-6" />,
+                  title: "Tax Planning",
+                  desc: "Maximize post-tax returns through efficient structuring.",
+                },
+                {
+                  icon: <FileCheck className="text-[var(--rv-primary)] w-6 h-6" />,
+                  title: "Investment Guidance",
+                  desc: "Allocate capital effectively across asset classes for optimal returns.",
+                },
+                {
+                  icon: <FileCheck className="text-[var(--rv-primary)] w-6 h-6" />,
+                  title: "Performance Monitoring",
+                  desc: "Track and adjust strategies to stay aligned with changing conditions.",
+                },
+              ].map((item, i) => (
+                <div
+                  key={i}
+                  className="flex items-start gap-4 bg-gradient-to-r from-[var(--rv-secondary)] to-[var(--rv-bg-primary)] text-[var(--rv-white)] p-4 rounded-md shadow-sm"
+                >
+                  <div>{item.icon}</div>
+                  <div>
+                    <h3 className="font-semibold">{item.title}</h3>
+                    <p className="text-sm">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* CTA */}
+          <div className="bg-gradient-to-r from-[var(--rv-primary)] text-white to-[var(--rv-secondary)] p-6 rounded-lg shadow-md mt-10">
+            <p className="mb-4">
+              Gain full control over your finances with <strong>SunGlobeLink</strong>’s expert
+              financial management services.
+            </p>
+            <Link href="/contact-us" className="btn-primary">
+              Start Managing Your Wealth Today
+            </Link>
+          </div>
+        </section>
+      </div>
+    </div>
   );
-}
+};
+
+export default FinancialManagementPage;

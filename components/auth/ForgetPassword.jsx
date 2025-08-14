@@ -54,9 +54,9 @@ export default function Signin() {
 
     return (
         <>
-            <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12 bg-gradient-to-br from-[var(--rv-gredient)] to-[var(--rv-gredient1)] ">
+            <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12  ">
                 <div className="mt-12 flex flex-col items-center">
-                    <h1 className="text-2xl xl:text-3xl font-extrabold text-white">Forget Password</h1>
+                    <h1 className="text-2xl xl:text-3xl font-extrabold">Forget Password</h1>
                     <div className="w-full flex-1 mt-8">
                         <div className="mx-auto max-w-xs">
                             <form onSubmit={handleSubmit}>

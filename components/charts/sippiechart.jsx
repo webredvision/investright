@@ -26,7 +26,7 @@ export function SippieChart({ piedata, title, chartConfig }) {
         {
             browser: "invested",
             visitors: piedata?.totalInvestment,
-            fill: "var(--rv-white)",
+            fill: "var(--rv-secondary)",
         },
         {
             browser: "return",
@@ -37,7 +37,7 @@ export function SippieChart({ piedata, title, chartConfig }) {
 
 
     return (
-        <Card className="flex flex-col bg-[var(--rv-secondary)] border border-[var(--rv-primary)]">
+        <Card className="flex flex-col  border border-[var(--rv-primary)]">
             <CardHeader className="items-center pb-0">
                 <CardTitle>{title || "Data"} - Pie Chart</CardTitle>
             </CardHeader>

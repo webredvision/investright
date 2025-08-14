@@ -26,7 +26,7 @@ const PrivacyPage = async () => {
                 {/* Introduction */}
                 <div className="mb-8 mt-8">
 
-                    <p className="text-[16px] text-gray-200">
+                    <p className="text-[16px] text-gray-700">
                         This privacy policy sets out how {sitedata.websiteName}{" "}
                         uses and protects any information that you share when you use this
                         website. {sitedata.websiteName} is committed to ensuring
@@ -66,17 +66,17 @@ const PrivacyPage = async () => {
 
                 {/* Our Mission and Values */}
                 <div className="mb-8">
-                    <h2 className="text-2xl font-semibold text-white mb-4">
+                    <h2 className="text-2xl font-semibold text-gray-700 mb-4">
                         What we collect
                     </h2>
-                    <p className="text-[16px] text-gray-200 mb-4">
+                    <p className="text-[16px] text-gray-600 mb-4">
                         We may collect the following information:
                     </p>
 
-                    <h2 className="text-2xl font-semibold text-white mb-4">
+                    <h2 className="text-2xl font-semibold text-gray-700 mb-4">
                         Name and contact details
                     </h2>
-                    <p className="text-[16px] text-gray-200 mb-4">
+                    <p className="text-[16px] text-gray-600 mb-4">
                         We may collect personal information directly from you, such as
                         your name, email address, contact details, or other identifiers,
                         when you register an account, make a purchase, or interact with
@@ -101,10 +101,10 @@ const PrivacyPage = async () => {
 
                 {/* Why Choose Us */}
                 <div className="mb-8">
-                    <h2 className="text-2xl font-semibold text-white mb-4">
+                    <h2 className="text-2xl font-semibold text-gray-700 mb-4">
                         Collection/Use of image data
                     </h2>
-                    <p className="text-[16px] text-gray-200">
+                    <p className="text-[16px] text-gray-600">
                         When you grant permission, our application may access your
                         device's camera or photo gallery to enable features that involve
                         capturing, uploading. <br />
@@ -118,20 +118,20 @@ const PrivacyPage = async () => {
                 </div>
 
                 <div className="mb-8">
-                    <h2 className="text-2xl font-semibold text-white mb-4">
+                    <h2 className="text-2xl font-semibold text-gray-700 mb-4">
                         Use of location data
                     </h2>
-                    <p className="text-[16px] text-gray-200">
+                    <p className="text-[16px] text-gray-600">
                         We access your location to verifying your identity and granting
                         access to the application's features and functionalities.
                     </p>
                 </div>
 
                 <div className="mb-8">
-                    <h2 className="text-2xl font-semibold text-white mb-4">
+                    <h2 className="text-2xl font-semibold text-gray-700 mb-4">
                         Security
                     </h2>
-                    <p className="text-[16px] text-gray-200">
+                    <p className="text-[16px] text-gray-600">
                         We are committed to ensuring that your information is secure. In
                         order to prevent unauthorized access or disclosure, we have put in
                         place suitable physical, electronic and managerial procedures to
@@ -140,10 +140,10 @@ const PrivacyPage = async () => {
                 </div>
 
                 <div className="mb-8">
-                    <h2 className="text-2xl font-semibold text-white mb-4">
+                    <h2 className="text-2xl font-semibold text-gray-700 mb-4">
                         Links to other websites
                     </h2>
-                    <p className="text-[16px] text-gray-200">
+                    <p className="text-[16px] text-gray-600">
                         Our website may contain links to other websites of interest.
                         However, once you have used these links to leave our site, you
                         should note that we do not have any control over such third-party
@@ -155,10 +155,10 @@ const PrivacyPage = async () => {
                 </div>
 
                 <div className="mb-8">
-                    <h2 className="text-2xl font-semibold text-white mb-4">
+                    <h2 className="text-2xl font-semibold text-gray-700 mb-4">
                         Controlling your personal information
                     </h2>
-                    <p className="text-[16px] text-gray-200">
+                    <p className="text-[16px] text-gray-600">
                         If you believe that any of your information with us is incorrect
                         or incomplete, please email us as soon as possible at{" "}
                         <span className="text-[var(--rv-secondary)]">{sitedata.email}</span> We
@@ -167,10 +167,10 @@ const PrivacyPage = async () => {
                 </div>
 
                 <div className="mb-8">
-                    <h2 className="text-2xl font-semibold text-white mb-4">
+                    <h2 className="text-2xl font-semibold text-gray-700 mb-4">
                         Security certificates
                     </h2>
-                    <p className="text-[16px] text-gray-200">
+                    <p className="text-[16px] text-gray-600">
                         We fully recognize and understand the security implications of
                         being a service provider with whom people trust their money. There
                         are many safeguards we adopt in this regard some of these are

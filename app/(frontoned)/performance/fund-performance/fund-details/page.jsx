@@ -11,6 +11,7 @@ import SipCalculator from "@/components/sipcalculator";
 import { ReturnChart } from "@/components/returnchart";
 import Loading from "./loading";
 import CryptoJS from "crypto-js";
+import InnerBanner from "@/components/InnerBanner/InnerBanner";
 
 export default function Page() {
   const [loading, setLoading] = useState(false);
@@ -96,8 +97,9 @@ export default function Page() {
   };
 
   return (
-    <div className="pt-20">
-      <div className="max-w-screen-xl mx-auto main_section lg:px-1 px-3 text-[var(--rv-white)]">
+    <div className="">
+      <InnerBanner pageName={performanceData?.funddes} />
+      <div className="max-w-screen-xl mx-auto main_section lg:px-1 px-3 ">
         <div>
           {loading ? (
             <Loading />
@@ -107,7 +109,7 @@ export default function Page() {
                 <h1 className="text-lg md:text-3xl font-bold uppercase">
                   {performanceData?.funddes}
                 </h1>
-                <h2 className="text-lg font-medium text-stone-400">
+                <h2 className="text-lg font-medium text-gray-700">
                   {performanceData?.schemeCategory}
                 </h2>
               </div>
@@ -119,16 +121,16 @@ export default function Page() {
                       {/* {performanceData?.threeyear_navStartDate &&
                       performanceData.threeyear_navStartDate !== "0.00" && (
                         <div>
-                          <p className="text-xs font-semibold text-stone-400">NAV: {performanceData?.threeyear_startDate}</p>
-                          <h4 className="font-bold text-stone-100">
+                          <p className="text-xs font-semibold text-gray-700">NAV: {performanceData?.threeyear_startDate}</p>
+                          <h4 className="font-bold text-gray-500">
                             ₹{performanceData?.threeyear_navStartDate}
                           </h4>
                         </div>
                       ) || (performanceData?.one_year &&
                         performanceData.one_year !== "0.00" && (
                           <div>
-                            <p className="text-xs font-semibold text-stone-400">NAV: 1 Year Data</p>
-                            <h4 className="text-lg font-bold text-stone-100">
+                            <p className="text-xs font-semibold text-gray-700">NAV: 1 Year Data</p>
+                            <h4 className="text-lg font-bold text-gray-500">
                               ₹{performanceData?.one_year}
                             </h4>
                           </div>
@@ -136,8 +138,8 @@ export default function Page() {
                         performanceData?.six_month &&
                         performanceData.six_month !== "0.00" && (
                           <div>
-                            <p className="text-xs font-semibold text-stone-400">NAV: 6 Month Data</p>
-                            <h4 className="text-lg font-bold text-stone-100">
+                            <p className="text-xs font-semibold text-gray-700">NAV: 6 Month Data</p>
+                            <h4 className="text-lg font-bold text-gray-500">
                               {performanceData?.six_month}
                             </h4>
                           </div>
@@ -146,10 +148,10 @@ export default function Page() {
                       {(performanceData?.threeyear_navEndDate &&
                         performanceData.threeyear_navEndDate !== "0.00" && (
                           <div>
-                            <p className="text-xs font-semibold text-stone-400">
+                            <p className="text-xs font-semibold text-gray-700">
                               NAV
                             </p>
-                            <h4 className="font-bold text-stone-100">
+                            <h4 className="font-bold text-gray-500">
                               ₹{performanceData?.threeyear_navEndDate}
                             </h4>
                           </div>
@@ -157,10 +159,10 @@ export default function Page() {
                       (performanceData?.one_year &&
                         performanceData.one_year !== "0.00" && (
                           <div>
-                            <p className="text-xs font-semibold text-stone-400">
+                            <p className="text-xs font-semibold text-gray-700">
                               NAV: 1 Year Data
                             </p>
-                            <h4 className="text-lg font-bold text-stone-100">
+                            <h4 className="text-lg font-bold text-gray-500">
                               {performanceData?.one_year}
                             </h4>
                           </div>
@@ -168,10 +170,10 @@ export default function Page() {
                         (performanceData?.six_month &&
                           performanceData.six_month !== "0.00" && (
                             <div>
-                              <h3 className="text-md text-stone-400">
+                              <h3 className="text-md text-gray-700">
                                 NAV: 6 Month Data
                               </h3>
-                              <h4 className="text-lg font-bold text-stone-100">
+                              <h4 className="text-lg font-bold text-gray-500">
                                 {performanceData?.six_month}
                               </h4>
                             </div>
@@ -179,10 +181,10 @@ export default function Page() {
 
                       {performanceData?.Corpus && (
                         <div>
-                          <p className="text-xs font-semibold text-stone-400">
+                          <p className="text-xs font-semibold text-gray-700">
                             Corpus
                           </p>
-                          <h4 className="font-bold text-stone-100">
+                          <h4 className="font-bold text-gray-500">
                             ₹{performanceData?.Corpus}
                           </h4>
                         </div>
@@ -232,7 +234,7 @@ export default function Page() {
 
                           return (
                             <>
-                              <p className="text-xs font-semibold text-stone-400">
+                              <p className="text-xs font-semibold text-gray-700">
                                 {label} CAGR returns
                               </p>
                               <p className="text-lg font-bold text-[var(--rv-primary)]">
@@ -266,59 +268,59 @@ export default function Page() {
                           Scheme Performance
                         </AccordionTrigger>
                         <AccordionContent className="px-10">
-                          <p className="text-sm font-medium text-stone-100 mb-3">
+                          <p className="text-sm font-medium text-gray-500 mb-3">
                             Returns and Ranks
                           </p>
                           <div className="border-y border-stone-500 flex justify-between py-4 items-center">
                             <div>
-                              <h5 className="text-md font-medium text-stone-100">
+                              <h5 className="text-md font-medium text-gray-500">
                                 Time Line
                               </h5>
                             </div>
                             <div className="grid grid-cols-4 text-center gap-x-20">
-                              <div className="text-lg font-bold text-stone-100">
+                              <div className="text-lg font-bold text-gray-500">
                                 1Y
                               </div>
-                              <div className="text-lg font-bold text-stone-100">
+                              <div className="text-lg font-bold text-gray-500">
                                 3Y
                               </div>
-                              <div className="text-lg font-bold text-stone-100">
+                              <div className="text-lg font-bold text-gray-500">
                                 5Y
                               </div>
-                              <div className="text-lg font-bold text-stone-100">
+                              <div className="text-lg font-bold text-gray-500">
                                 MAX
                               </div>
                             </div>
                           </div>
                           <div className="border-b border-stone-500 flex justify-between py-4">
                             <div>
-                              <h5 className="text-md font-medium text-stone-100">
+                              <h5 className="text-md font-medium text-gray-500">
                                 Trailing Returns
                               </h5>
                             </div>
                             <div className="grid grid-cols-4 text-center gap-x-16">
-                              <div className="text-md font-medium text-stone-100">
+                              <div className="text-md font-medium text-gray-500">
                                 {performanceData?.one_year !== "0.00" &&
                                 performanceData?.one_year
                                   ? `${performanceData.one_year}%`
                                   : performanceData?.onemonth || "-"}
                                 %
                               </div>
-                              <div className="text-md font-medium text-stone-100">
+                              <div className="text-md font-medium text-gray-500">
                                 {performanceData?.three_year !== "0.00" &&
                                 performanceData?.three_year
                                   ? `${performanceData.three_year}%`
                                   : performanceData?.six_month || "-"}
                                 %
                               </div>
-                              <div className="text-md font-medium text-stone-100">
+                              <div className="text-md font-medium text-gray-500">
                                 {performanceData?.five_year !== "0.00" &&
                                 performanceData?.five_year
                                   ? `${performanceData.five_year}%`
                                   : performanceData?.three_month || "-"}
                                 %
                               </div>
-                              <div className="text-md font-medium text-stone-100">
+                              <div className="text-md font-medium text-gray-500">
                                 {performanceData?.si || "-"}%
                               </div>
                             </div>
@@ -336,7 +338,7 @@ export default function Page() {
                                 .split(",")
                                 .map((manager, index) => (
                                   <div key={index} className="mr-4">
-                                    <div className="text-md font-bold text-stone-100">
+                                    <div className="text-md font-bold text-gray-500">
                                       {manager.trim()}
                                     </div>
                                   </div>
@@ -349,7 +351,7 @@ export default function Page() {
                       <AccordionTrigger className="text-xl">Fund Objective</AccordionTrigger>
                       <AccordionContent className="px-10">
                         <div className="mt-2">
-                          <div className="text-md text-stone-100">
+                          <div className="text-md text-gray-500">
                             The Investment objective of the scheme is to provide long term capital
                             appreciation by investing in equity and equity related instruments of
                             Public Sector Undertakings (PSUs). The Scheme does not

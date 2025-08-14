@@ -12,6 +12,7 @@ import SipCalculator from "@/components/sipcalculator";
 import { ReturnChart } from "@/components/returnchart";
 import Loader from "@/components/admin/common/Loader";
 import CryptoJS from "crypto-js";
+import InnerBanner from "@/components/InnerBanner/InnerBanner";
 
 export default function Page() {
   const [loading, setLoading] = useState(false);
@@ -75,7 +76,9 @@ export default function Page() {
 
   console.log(performanceData);
   return (
-    <div className="bg-[var(--rv-ternary)] text-[var(--rv-white)]  py-24">
+   <div>
+    <InnerBanner pageName={performanceData?.funddes} />
+     <div className="bg-[var(--rv-white)]">
       <div className="max-w-screen-xl mx-auto main_section">
         <div>
           {loading ? (
@@ -263,5 +266,6 @@ export default function Page() {
         </div>
       </div>
     </div>
+   </div>
   );
 }

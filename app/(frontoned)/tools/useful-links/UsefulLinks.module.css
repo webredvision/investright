@@ -8,7 +8,7 @@
     position: relative;
     /* width: 305px; */
     width: 260px;
-    background-color: var(--rv-background);
+    background-color: var(--rv-primary);
     transition: all 0.3s ease-in;
 }
 
@@ -39,6 +39,6 @@
 
 .cardsContainer:hover .usefulBox {
     opacity: 1;
-    background-color: var(--rv-forth);
+    background-color: var(--rv-secondary);
     transition: all 0.3s ease-in;
 }

@@ -1,19 +1,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbSeparator,
-  BreadcrumbPage,
-} from "@/components/ui/breadcrumb";
-import { Input } from "@/components/ui/input";
 import { SippieChart } from "@/components/charts/sippiechart";
 import { CalculatorReturnChart } from "@/components/charts/calculatorReturnChart";
 import axios from "axios";
 import { calculators } from "@/data/calculators";
 import { useRouter } from "next/navigation";
+import InnerBanner from "@/components/InnerBanner/InnerBanner";
 
 export default function Page() {
   const router = useRouter();
@@ -71,7 +63,7 @@ export default function Page() {
       label: "Return Amount",
       color: "var(--rv-secondary)",
     },
-  };
+  }
 
   const chartConfig1 = {
     investedAmount: {
@@ -84,9 +76,11 @@ export default function Page() {
     },
   };
 
+
   return (
-    <div className="py-20">
-      <div className="max-w-screen-xl mx-auto main_section text-[var(--rv-white)]">
+    <div className="">
+      <InnerBanner pageName="SIP Calculator" />
+      <div className="max-w-screen-xl mx-auto main_section">
         <div className="">
           <div className="mb-5 flex flex-col md:flex-row gap-5 justify-between">
             <div className="">
@@ -97,7 +91,7 @@ export default function Page() {
             <div className="flex justify-between gap-4">
               <span>Explore other calculators</span>
               <select
-                className="w-full bg-[var(--rv-black)] border border-gray-600 rounded-lg p-2"
+                className="w-full border border-gray-500 rounded-lg p-2"
                 onChange={handleCalculatorChange}
                 defaultValue=""
               >
@@ -115,7 +109,7 @@ export default function Page() {
           <div>
             <div>
               <div className="grid lg:grid-cols-2 grid-cols-1 gap-4 mb-4">
-                <div className="col-span-1  rounded-2xl bg-[var(--rv-background)] border border-[var(--rv-primary)] p-5">
+                <div className="col-span-1 border border-[var(--rv-primary)] rounded-2xl bg-white p-5">
                   <div className="sip-calculator container mx-auto p-3 sticky top-24 z-10">
                     <div className="input-fields mt-5 mb-10">
                       <div>
@@ -129,7 +123,7 @@ export default function Page() {
                               onChange={(e) =>
                                 setMonthlyInvestment(parseFloat(e.target.value))
                               }
-                              className="text-[var(--rv-white)] bg-[var(--rv-forth)] w-36 border px-2 py-2 rounded"
+                              className="font-semibold text-[var(--rv-primary] w-36 border px-2 py-2 rounded"
                             />
                           </div>
                         </div>
@@ -138,18 +132,13 @@ export default function Page() {
                           min="500"
                           max="100000"
                           step="100"
-                          value={
-                            isNaN(monthlyInvestment) ? 0 : monthlyInvestment
-                          }
+                          value={isNaN(monthlyInvestment) ? 0 : monthlyInvestment}
                           onChange={(e) =>
                             setMonthlyInvestment(parseFloat(e.target.value))
                           }
                           className="customRange w-full"
                           style={{
-                            "--progress": `${(((isNaN(monthlyInvestment)
-                              ? 0
-                              : monthlyInvestment) -
-                              100) /
+                            "--progress": `${(((isNaN(monthlyInvestment) ? 0 : monthlyInvestment) - 100) /
                               (100000 - 100)) *
                               100}%`,
                           }}
@@ -163,7 +152,7 @@ export default function Page() {
                             value={investmentDuration}
                             placeholder="0"
                             onChange={(e) => setDuration(e.target.value)} // Update duration
-                            className="text-[var(--rv-white)] bg-[var(--rv-forth)] w-20 border px-2 py-2 rounded"
+                            className="font-semibold text-[var(--rv-primary] w-20 border px-2 py-2 rounded"
                           />
                         </div>
                         <input
@@ -171,16 +160,11 @@ export default function Page() {
                           min="1"
                           max="40"
                           step="1"
-                          value={
-                            isNaN(investmentDuration) ? 0 : investmentDuration
-                          }
+                          value={isNaN(investmentDuration) ? 0 : investmentDuration}
                           onChange={(e) => setDuration(Number(e.target.value))} // Convert value to number
                           className="customRange w-full"
                           style={{
-                            "--progress": `${(((isNaN(investmentDuration)
-                              ? 0
-                              : investmentDuration) -
-                              1) /
+                            "--progress": `${(((isNaN(investmentDuration) ? 0 : investmentDuration) - 1) /
                               (40 - 1)) *
                               100}%`,
                           }}
@@ -195,7 +179,7 @@ export default function Page() {
                             value={expectedReturn}
                             placeholder="0"
                             onChange={(e) => setExpectedReturn(e.target.value)} // Update duration
-                            className="text-[var(--rv-white)] bg-[var(--rv-forth)] w-20   border px-2 py-2 rounded"
+                            className="font-semibold text-[var(--rv-primary] w-20   border px-2 py-2 rounded"
                           />
                         </div>
                         <input
@@ -208,10 +192,7 @@ export default function Page() {
                             setExpectedReturn(Number(e.target.value))
                           } // Convert to number
                           style={{
-                            "--progress": `${(((isNaN(expectedReturn)
-                              ? 0
-                              : expectedReturn) -
-                              1) /
+                            "--progress": `${(((isNaN(expectedReturn) ? 0 : expectedReturn) - 1) /
                               (30 - 1)) *
                               100}%`,
                           }}
@@ -251,18 +232,10 @@ export default function Page() {
                 </div>
                 <div className="col-span-1">
                   <div className="mb-3">
-                    <SippieChart
-                      piedata={result}
-                      title={"SIP Calculator"}
-                      chartConfig={chartConfig}
-                    />
+                    <SippieChart piedata={result} title={"SIP Calculator"} chartConfig={chartConfig} />
                   </div>
                   <div>
-                    <CalculatorReturnChart
-                      data={chartdata}
-                      title="SIP"
-                      chartConfig={chartConfig1}
-                    />
+                    <CalculatorReturnChart data={chartdata} title="SIP" chartConfig={chartConfig1} />
                   </div>
                 </div>
               </div>

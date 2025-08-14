@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/carousel";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import axios from "axios";
 
 const fadeInVariants = {
   hidden: { opacity: 0, y: 50 },
@@ -33,43 +34,48 @@ const SubscribCard = () => {
     }
   }, [selectedCategoryId]);
 
-  const fetchCategories = async () => {
-    try {
-      const res = await fetch("/api/amc-category");
-      const data = await res.json();
+ const fetchCategories = async () => {
+  try {
+    const res = await axios.get("/api/amc-category");
+    const data = res.data;
 
-      // Only filter Mutual Funds
-      const mutualFundCategory = data.find(
-        (cat) => cat.title === "Mutual Funds"
-      );
+    // Only find Mutual Funds category
+    const mutualFundCategory = data.find(
+      (cat) => cat.title === "Mutual Funds"
+    );
 
-      if (mutualFundCategory) {
-        setSelectedCategoryId(mutualFundCategory._id);
-      }
-    } catch (error) {
-      console.error("Error fetching categories:", error);
+    if (mutualFundCategory) {
+      setSelectedCategoryId(mutualFundCategory._id);
     }
-  };
+  } catch (error) {
+    console.error("Error fetching categories:", error.message || error);
+  }
+};
 
-  const fetchLogos = async (categoryID) => {
-    try {
-      const res = await fetch(`/api/amc-logos?categoryID=${categoryID}&addisstatus=true`);
-      const data = await res.json();
-      if (data.success) {
-        setAmcLogoData(data.data);
-      }
-    } catch (err) {
-      console.error("Failed to fetch AMC Logos:", err);
+const fetchLogos = async (categoryID) => {
+  try {
+    const res = await axios.get("/api/amc-logos", {
+      params: {
+        categoryID: categoryID,
+        addisstatus: true,
+      },
+    });
+
+    if (res.data.success) {
+      setAmcLogoData(res.data.data);
     }
-  };
-
+  } catch (err) {
+    console.error("Failed to fetch AMC Logos:", err.message || err);
+  }
+};
   return (
-    <div className="max-w-screen-xl mx-auto text-center">
-      <motion.div className="space-y-6 text-white text-center">
+    <div className="bg-white">
+      <div className="max-w-screen-xl main_section1 mx-auto text-center">
+      <motion.div className="space-y-6  text-center">
         <motion.h2 className="text-4xl md:text-4xl font-bold mb-6">
           Our <span className="text-[var(--rv-primary)]">Partners</span>
         </motion.h2>
-        <p className="text-[var(--rv-white)]/80">
+        <p className="text-gray-700">
           We collaborate with top Mutual Fund houses to provide trusted investment options.
         </p>
       </motion.div>
@@ -118,6 +124,7 @@ const SubscribCard = () => {
           ))}
         </CarouselContent>
       </Carousel>
+    </div>
     </div>
   );
 };

@@ -1,11 +1,22 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Input } from "@/components/ui/input";
+import "chart.js/auto";
+import { input } from "@/components/ui/input";
 import { SippieChart } from "@/components/charts/sippiechart";
 import { CalculatorReturnChart } from "@/components/charts/calculatorReturnChart";
 import axios from "axios";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 import { calculators } from "@/data/calculators";
 import { useRouter } from "next/navigation";
+import InnerBanner from "@/components/InnerBanner/InnerBanner";
+
 
 export default function Page() {
   const router = useRouter();
@@ -66,7 +77,7 @@ export default function Page() {
   const chartConfig = {
     invested: {
       label: "Invested Amount",
-      color: "var(--rv-fourth)",
+      color: "var(--rv-primary)",
     },
     return: {
       label: "Growth",
@@ -77,7 +88,7 @@ export default function Page() {
   const chartConfig1 = {
     investedAmount: {
       label: "Invested Amount",
-      color: "var(--rv-fourth)",
+      color: "var(--rv-primary)",
     },
     growth: {
       label: "Growth",
@@ -86,7 +97,9 @@ export default function Page() {
   };
 
   return (
-    <div className="pt-20 text-[var(--rv-white)]">
+    <div className="">
+      <InnerBanner pageName={"Step-Up SIP Calculator"} />
+    
       <div className="max-w-screen-xl mx-auto main_section">
         <div className=" ">
           <div className="mb-5 flex flex-col md:flex-row gap-5 justify-between ">
@@ -98,7 +111,7 @@ export default function Page() {
             <div className="flex justify-between gap-4">
               <span>Explore other calculators</span>
               <select
-                className="w-full bg-[var(--rv-black)] border-gray-600 border rounded-lg p-2"
+                className="w-full border border-gray-500 rounded-lg p-2"
                 onChange={handleCalculatorChange}
                 defaultValue=""
               >
@@ -118,7 +131,7 @@ export default function Page() {
             {isAuthorised ? (
               <div>
                 <div className="grid lg:grid-cols-2 grid-cols-1 gap-4 mb-4">
-                  <div className="col-span-1 rounded-2xl bg-[var(--rv-background)] border border-[var(--rv-primary)] p-5">
+                  <div className="col-span-1 border border-[var(--rv-primary)] rounded-2xl bg-white p-5">
                     <div className="sip-calculator container mx-auto p-3 sticky top-0 z-10">
                       <div className="input-fields mt-5 mb-10">
                         <div>
@@ -133,11 +146,11 @@ export default function Page() {
                                     parseFloat(e.target.value)
                                   )
                                 }
-                                className="text-[var(--rv-white)] bg-[var(--rv-forth)]  w-36 border px-2 py-2 rounded"
+                                className="font-semibold text-[var(--rv-primary)] w-36 border px-2 py-2 rounded"
                               />
                             </div>
                           </div>
-                          <Input
+                          <input
                             type="range"
                             min="500"
                             max="50000"
@@ -166,10 +179,10 @@ export default function Page() {
                               type="number"
                               value={investmentDuration}
                               onChange={(e) => setDuration(e.target.value)}
-                              className="text-[var(--rv-white)] bg-[var(--rv-forth)]  w-20 border px-2 py-2 rounded"
+                              className="font-semibold text-[var(--rv-primary)] w-20 border px-2 py-2 rounded"
                             />
                           </div>
-                          <Input
+                          <input
                             type="range"
                             min="1"
                             max="40"
@@ -199,10 +212,10 @@ export default function Page() {
                               onChange={(e) =>
                                 setExpectedReturn(parseFloat(e.target.value))
                               }
-                              className="text-[var(--rv-white)] bg-[var(--rv-forth)]  w-20 border px-2 py-2 rounded"
+                              className="font-semibold text-[var(--rv-primary)] w-20 border px-2 py-2 rounded"
                             />
                           </div>
-                          <Input
+                          <input
                             type="range"
                             min="1"
                             max="30"
@@ -235,10 +248,10 @@ export default function Page() {
                               onChange={(e) =>
                                 setStepUpPercentage(parseFloat(e.target.value))
                               }
-                              className="text-[var(--rv-white)] bg-[var(--rv-forth)]  w-20 border px-2 py-2 rounded"
+                              className="font-semibold text-[var(--rv-primary)] w-20 border px-2 py-2 rounded"
                             />
                           </div>
-                          <Input
+                          <input
                             type="range"
                             min="1"
                             max="30"
@@ -289,7 +302,7 @@ export default function Page() {
                       )}
                     </div>
                   </div>
-                  <div className='col-span-1'>
+                  <div className='col-span-1 space-y-3'>
                     <SippieChart
                       piedata={result}
                       title={'Current & Future Cost Of House Breakup'}

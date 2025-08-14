@@ -111,7 +111,7 @@ export default function AdvisorCategory() {
 
 
   return (
-    <section className="text-[var(--rv-white)] overflow-hidden ">
+    <section className="bg-white overflow-hidden ">
       <div className="max-w-screen-xl main_section mx-auto flex flex-col lg:flex-row gap-4 items-start">
         {/* Left - Categories & Funds */}
         <div className="w-full lg:w-1/2 bg-gradient-to-br from-[var(--rv-gredient)] to-[var(--rv-gredient1)] rounded-2xl  p-4 lg:p-10">
@@ -204,7 +204,7 @@ export default function AdvisorCategory() {
 
         {/* Right - Explore Mutual Funds */}
         <motion.div
-          className="w-full lg:w-1/2 text-[var(--rv-white)] p-6 lg:py-16 rounded-xl"
+          className="w-full lg:w-1/2  p-6 lg:py-16 rounded-xl"
           initial={{ x: 100, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
@@ -221,7 +221,7 @@ export default function AdvisorCategory() {
           </motion.h2>
 
           <motion.p
-            className="text-[var(--rv-white)]/80 leading-relaxed mb-6"
+            className="text-gray-700 leading-relaxed mb-6"
             initial={{ x: 20, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.5, duration: 0.5 }}

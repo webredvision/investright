@@ -160,7 +160,7 @@ export default function TopPerformingFunds() {
           {/* View All Funds Button */}
           {performanceData.length > 0 && (
             <div className="mt-6 text-center">
-              <Link href="/performance/fund-performance" className="btn-primary">
+              <Link href="/performance/fund-performance" className="btn-secondary">
                 View All Funds
               </Link>
             </div>

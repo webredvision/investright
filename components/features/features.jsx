@@ -46,8 +46,8 @@ const featureVariants = {
 
 export default function Features() {
   return (
-    <div className="">
-      <section className="max-w-screen-xl mx-auto main_section text-[var(--rv-white)] ">
+    <div className="bg-white">
+      <section className="max-w-screen-xl mx-auto main_section  ">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left side content */}
           <div>
@@ -64,7 +64,7 @@ export default function Features() {
 
             {/* Paragraph */}
             <motion.p
-              className="text-gray-300  mt-4 mb-8"
+              className="text-gray-700  mt-4 mb-8"
               initial={{ y: -20, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.9, duration: 0.6 }}
@@ -97,7 +97,7 @@ export default function Features() {
                   </div>
                   <div>
                     <h4 className="font-bold text-xl">{feature.title}</h4>
-                    <p className="text-gray-400 text-lg">{feature.description}</p>
+                    <p className="text-gray-700 text-lg">{feature.description}</p>
                   </div>
                 </motion.div>
               ))}

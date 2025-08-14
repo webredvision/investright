@@ -5,6 +5,8 @@ import { CalculatorReturnChart } from "@/components/charts/calculatorReturnChart
 import axios from "axios";
 import { calculators } from "@/data/calculators";
 import { useRouter } from "next/navigation";
+import InnerBanner from "@/components/InnerBanner/InnerBanner";
+
 
 export default function Page() {
     const router = useRouter();
@@ -71,22 +73,24 @@ export default function Page() {
             label: "Principal Loan Amount",
             color: "var(--rv-secondary)",
         },
-    };
-    
+    }
+
     return (
-        <div className="pt-20">
+        <div className="">
+            <InnerBanner pageName={"EMI Calculator"} />
+
             <div className="max-w-screen-xl mx-auto main_section">
                 <div className="">
                     <div className="mb-5 flex flex-col md:flex-row gap-5 justify-between ">
                         <div className="">
-                            <span className="text-2xl text-white md:text-3xl font-bold uppercase">
+                            <span className="text-2xl md:text-3xl font-bold uppercase">
                                 EMI Calculator
                             </span>
                         </div>
                         <div className="flex justify-between gap-4">
                             <span>Explore other calculators</span>
                             <select
-                                className="w-full  bg-[var(--rv-black)] text-white border border-gray-500 rounded-lg p-2"
+                                className="w-full border border-gray-500 rounded-lg p-2"
                                 onChange={handleCalculatorChange}
                                 defaultValue=""
                             >
@@ -102,7 +106,7 @@ export default function Page() {
                         </div>
                     </div>
                     <div className="grid lg:grid-cols-2 grid-cols-1 gap-4 mb-4 sticky top-0 z-10">
-                        <div className="col-span-1 border border-[var(--rv-primary)] rounded-2xl bg-[var(--rv-background)] p-5 text-white">
+                        <div className="col-span-1 border border-[var(--rv-primary)] rounded-2xl bg-white p-5">
                             <div className="input-fields mt-5 mb-10 sticky top-0 z-10">
                                 <div className="mb-5">
                                     <div className="flex justify-between">
@@ -112,7 +116,7 @@ export default function Page() {
                                             value={loanAmount}
                                             placeholder="0"
                                             onChange={(e) => setLoanAmount(parseFloat(e.target.value))}
-                                            className="text-[var(--rv-white)] bg-[var(--rv-forth)] w-36 border px-2 py-2 rounded"
+                                            className="font-semibold text-[var(--rv-primary)] w-36 border px-2 py-2 rounded"
                                         />
                                     </div>
                                     <input
@@ -140,7 +144,7 @@ export default function Page() {
                                             value={loanTenure}
                                             placeholder="0"
                                             onChange={(e) => setLoanTenure(parseFloat(e.target.value))}
-                                            className="text-[var(--rv-white)] bg-[var(--rv-forth)] w-20 border px-2 py-2 rounded"
+                                            className="font-semibold text-[var(--rv-primary)] w-20 border px-2 py-2 rounded"
                                         />
                                     </div>
                                     <input
@@ -168,7 +172,7 @@ export default function Page() {
                                             placeholder="0"
                                             value={interestRate}
                                             onChange={(e) => setInterestRate(parseFloat(e.target.value))}
-                                            className="text-[var(--rv-white)] bg-[var(--rv-forth)] w-20 border px-2 py-2 rounded"
+                                            className="font-semibold text-[var(--rv-primary)] w-20 border px-2 py-2 rounded"
                                         />
                                     </div>
                                     <input
@@ -192,31 +196,32 @@ export default function Page() {
                                     <div className="">
                                         <div className="">
                                             <div className="mb-4 text-center flex justify-between">
-                                                <h4 className="font-bold ">Loan EMI</h4>
+                                                <h4 className="font-bold text-gray-700">Loan EMI</h4>
                                                 <p className="text-xl font-extrabold text-[var(--rv-primary)]">₹{emi.toLocaleString()}</p>
                                             </div>
                                             <div className="mb-4 text-center flex justify-between">
-                                                <p className="text-lg">Principal Loan Amount</p>
-                                                <p className="text-xl font-bold ">₹{loanAmount.toLocaleString()}</p>
+                                                <p className="text-lg text-gray-600">Principal Loan Amount</p>
+                                                <p className="text-xl font-bold text-gray-800">₹{loanAmount.toLocaleString()}</p>
                                             </div>
                                             <div className="mb-4 text-center flex justify-between">
-                                                <p className="text-lg">Total Interest Payable</p>
-                                                <p className="text-xl font-bold">₹{totalInterest.toLocaleString()}</p>
+                                                <p className="text-lg text-gray-600">Total Interest Payable</p>
+                                                <p className="text-xl font-bold text-gray-800">₹{totalInterest.toLocaleString()}</p>
                                             </div>
                                             <div className="mb-4 text-center flex justify-between">
-                                                <p className="text-lg">Total Payment (Principal + Interest)</p>
-                                                <p className="text-xl font-bold">₹{totalAmountPayable.toLocaleString()}</p>
+                                                <p className="text-lg text-gray-600">Total Payment (Principal + Interest)</p>
+                                                <p className="text-xl font-bold text-gray-800">₹{totalAmountPayable.toLocaleString()}</p>
                                             </div>
                                         </div>
                                     </div>
                                 )}
                             </div>
                         </div>
-                        <div className="col-span-1 text-white">
+                        <div className="col-span-1">
                             <SippieChart
                                 piedata={result}
                                 title={"EMI Breakdown"}
                                 chartConfig={chartConfig}
+                                custom
                             />
                             <div className="mt-5">
                                 <CalculatorReturnChart chartConfig={chartConfig1} data={chartData} title={'EMI Breakdown'} />

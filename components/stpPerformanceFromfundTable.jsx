@@ -157,7 +157,7 @@ const StpPerformanceFromfundTable = (prop) => {
 
   return (
     <div>
-      <div className="w-full dark:text-[var(--rv-white)]">
+      <div className="w-full ">
         <div className="flex items-center py-4">
           <Input
             placeholder="Filter by title..."

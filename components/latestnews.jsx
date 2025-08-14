@@ -49,10 +49,11 @@ export default function LatestNews() {
     }, [activeCategory, ipodata, marketdata, populardata]); // Re-run when activeCategory or data changes
 
     return (
-        <div className="max-w-screen-xl mx-auto main_section text-center">
+        <div className="bg-white">
+            <div className="max-w-screen-xl mx-auto main_section1 text-center">
             
 <h2
-        className="text-4xl text-[var(--rv-white)] font-bold mb-4"
+        className="text-4xl  font-bold mb-4"
         // variants={fadeInUp}
         // initial="hidden"
         // whileInView="visible"
@@ -115,6 +116,7 @@ export default function LatestNews() {
                 </div>
             </div>
         </section>
+        </div>
         </div>
     );
 }

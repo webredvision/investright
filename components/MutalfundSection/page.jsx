@@ -6,10 +6,10 @@ import { motion, useInView } from "framer-motion";
 
 const MutalFundSection = () => {
   return (
-    <div>
-      <div className="max-w-screen-xl mx-auto  main_section">
+    <div className='bg-white'>
+      <div className="max-w-screen-xl mx-auto  main_section1">
         <motion.div
-          className="space-y-6 text-white text-center mb-10"
+          className="space-y-6  text-center mb-10"
         >
           <motion.h2
             className="text-4xl md:text-4xl font-bold mb-6"
@@ -17,7 +17,7 @@ const MutalFundSection = () => {
             Discover <span className="text-[var(--rv-primary)]">Top Funds</span>
           </motion.h2>
 
-          <p className="text-[var(--rv-white)]/80">
+          <p className="text-gray-700">
             Explore the best-performing mutual funds across categories.
             Compare returns, track performance trends, and make informed
             investment decisions with ease.

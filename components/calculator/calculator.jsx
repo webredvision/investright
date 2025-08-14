@@ -112,10 +112,10 @@ useEffect(() => {
   };
 
   return (
-    <section className="bg-[var(--rv-secondary)] ">
+    <section className="bg-white">
       <div className="max-w-screen-xl main_section mx-auto " ref={mainCounterRef}>
         <div className="  rounded-2xl">
-          <motion.h2 className="text-4xl font-bold mb-6 text-[var(--rv-white)] items-center text-center" initial={{ x: -100, opacity: 0 }}
+          <motion.h2 className="text-4xl font-bold mb-6  items-center text-center" initial={{ x: -100, opacity: 0 }}
           animate={isInView ? { x: 0, opacity: 1 } : {}}
           transition={{ duration: 0.6, ease: "easeOut" }}
           >

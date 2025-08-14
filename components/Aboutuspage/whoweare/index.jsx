@@ -8,8 +8,8 @@ const WhoWeare = ({ aboutus, missionVission }) => {
   }
   // console.log(missionVission)
   return (
-    <div>
-      <div className="max-w-screen-xl mx-auto main_section">
+    <div className='bg-white'>
+      <div className="max-w-screen-xl mx-auto main_section1">
         {/* Transforming Ambitions Section */}
         <section
           className="grid grid-cols-1 md:grid-cols-5 gap-2 items-center"
@@ -25,7 +25,7 @@ const WhoWeare = ({ aboutus, missionVission }) => {
           </div>
 
           <motion.div
-            className="md:col-span-3 text-[var(--rv-white)]  rounded-xl"
+            className="md:col-span-3   rounded-xl"
             initial={{ x: 100, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8 }}
@@ -41,7 +41,7 @@ const WhoWeare = ({ aboutus, missionVission }) => {
               Who <span className="text-[var(--rv-primary)]">We Are</span>
             </motion.h2>
             <motion.p
-              className="text-[var(--rv-white)]/80  leading-relaxed mb-6"
+              className="text-gray-700  leading-relaxed mb-6"
               initial={{ x: 20, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.5 }}

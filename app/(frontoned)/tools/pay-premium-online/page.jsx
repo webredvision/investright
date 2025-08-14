@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import InnerBanner from "@/components/InnerBanner/InnerBanner";
+import axios from "axios";
 
  
 export default function PayPremium() {
@@ -22,36 +23,40 @@ export default function PayPremium() {
       fetchLogos(selectedCategoryId);
     }
   }, [selectedCategoryId]);
- 
-  const fetchCategories = async () => {
-    try {
-      const res = await fetch("/api/amc-category");
-      const data = await res.json();
- 
-      const filtered = data.filter((cat) =>
-        ["Life Insurance", "Health Insurance", "General Insurance"].includes(cat.title)
-      );
- 
-      setAllCategory(filtered);
- 
-      if (filtered.length > 0) {
-        setSelectedCategoryId(filtered[0]._id);
-        setSelectedCategoryTitle(filtered[0].title);
-      }
-    } catch (error) {
-      console.error("Error fetching categories:", error);
+const fetchCategories = async () => {
+  try {
+    const res = await axios.get("/api/amc-category");
+    const data = res.data;
+
+    const filtered = data.filter((cat) =>
+      ["Life Insurance", "Health Insurance", "General Insurance"].includes(cat.title)
+    );
+
+    setAllCategory(filtered);
+
+    if (filtered.length > 0) {
+      setSelectedCategoryId(filtered[0]._id);
+      setSelectedCategoryTitle(filtered[0].title);
     }
-  };
- 
+  } catch (error) {
+    console.error("Error fetching categories:", error.message || error);
+  }
+};
+
 const fetchLogos = async (categoryID) => {
   try {
-    const res = await fetch(`/api/amc-logos?categoryID=${categoryID}&addisstatus=true`);
-    const data = await res.json();
-    if (data.success) {
-      setAmcLogoData(data.data);
+    const res = await axios.get(`/api/amc-logos`, {
+      params: {
+        categoryID: categoryID,
+        addisstatus: true, // Boolean or string depending on backend handling
+      },
+    });
+
+    if (res.data.success) {
+      setAmcLogoData(res.data.data);
     }
   } catch (err) {
-    console.error("Failed to fetch AMC Logos:", err);
+    console.error("Failed to fetch AMC Logos:", err.message || err);
   }
 };
  
@@ -88,7 +93,7 @@ const fetchLogos = async (categoryID) => {
             {amcLogoData.map((item, index) => (
               <Link href={item.logourl || "#"} key={index} target="_blank">
                 <div className="flex justify-center p-5 border text-center mb-3">
-                  <Image
+                  <img
                     src={`https://redvisionweb.com/${item.logo}`}
                     alt={`logo-${item.logoname}`}
                     width={150}

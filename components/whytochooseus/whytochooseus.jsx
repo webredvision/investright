@@ -52,8 +52,9 @@ const WhyChooseUs = ({sitedata}) => {
   };
 
   return (
-    <section
-      className="text-[var(--rv-white)] main_section max-w-screen-xl mx-auto "
+   <div className="bg-white">
+     <section
+      className=" main_section max-w-screen-xl mx-auto "
       ref={mainCounterRef}
     >
       <div className="grid grid-cols-2 justify-center items-center gap-4">
@@ -72,7 +73,7 @@ const WhyChooseUs = ({sitedata}) => {
           >
             Why <span className="text-[var(--rv-primary)]">Choose</span> Us?
           </motion.h2>
-          <p className="text-[var(--rv-white)]/80">
+          <p className="text-gray-700">
             At {sitedata?.websiteName}, we are more than just a wealth management firm—we are your partners in building a secure, purpose-driven financial future. Our client-first approach, backed by intelligence and quality, ensures that every financial roadmap we craft reflects your goals, values, and life ambitions.
           </p>
           <div className="relative w-full h-[300px] lg:h-[400px] rounded-md overflow-hidden">
@@ -154,6 +155,7 @@ const WhyChooseUs = ({sitedata}) => {
         </motion.div>
       </div>
     </section>
+   </div>
   );
 };
 
