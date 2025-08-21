@@ -25,7 +25,7 @@ export default function PayPremium() {
   }, [selectedCategoryId]);
 const fetchCategories = async () => {
   try {
-    const res = await axios.get("https://redvisionweb.com/api/category");
+    const res = await axios.get("/api/amc-category");
     const data = res.data;
 
     const filtered = data.filter((cat) =>
@@ -94,7 +94,7 @@ const fetchLogos = async (categoryID) => {
               <Link href={item.logourl || "#"} key={index} target="_blank">
                 <div className="flex justify-center p-5 border text-center mb-3">
                   <img
-                    src={`https://redvisionweb.com/${item.logo}`}
+                    src={`${process.env.NEXT_PUBLIC_DATA_API}/${item.logo}`}
                     alt={`logo-${item.logoname}`}
                     width={150}
                     height={100}

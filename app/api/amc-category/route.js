@@ -3,7 +3,7 @@ import axios from "axios";
 
 export async function GET() {
   try {
-    const response = await axios.get("https://redvisionweb.com/api/category", {
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_DATA_API}/api/category`, {
       headers: {
         "Content-Type": "application/json",
       },

@@ -28,8 +28,8 @@ const UsefulLinksPage = () => {
               >
                 <h3 className="text-xl font-semibold mb-4">{link?.title}</h3>
                 <p className="line-clamp-4">{link?.description}</p>
-                <Image
-                  src={`https://redvisionweb.com${link.image}` || "/placeholder-image.jpg"}
+                <img
+                  src={`${process.env.NEXT_PUBLIC_DATA_API}${link.image}` || "/placeholder-image.jpg"}
                   alt={link?.title}
                   width={80}
                   height={80}

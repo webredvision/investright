@@ -36,7 +36,7 @@ const SubscribCard = () => {
 
  const fetchCategories = async () => {
   try {
-    const res = await axios.get("https://redvisionweb.com/api/category");
+    const res = await axios.get("/api/amc-category");
     const data = res.data;
 
     // Only find Mutual Funds category
@@ -111,8 +111,8 @@ const fetchLogos = async (categoryID) => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Image
-                    src={`https://redvisionweb.com/${logo.logo}`}
+                  <img
+                    src={`${process.env.NEXT_PUBLIC_DATA_API}${logo.logo}`}
                     alt={logo.logoname}
                     width={160}
                     height={180}

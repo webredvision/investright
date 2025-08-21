@@ -56,7 +56,7 @@ const RiskProfile = () => {
 
     const fetchQuestions = async () => {
         try {
-            const response = await axios.get(`${process.env.NEXT_PUBLIC_DATA_API}/api/open-apis/risk-questions?apikey=${process.env.NEXT_PUBLIC_API_KEY}`);
+            const response = await axios.get(`/api/risk-questions`);
             if (response.status == 200) {
                 setQuestions(response.data)
             }

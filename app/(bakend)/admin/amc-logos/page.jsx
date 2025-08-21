@@ -41,7 +41,7 @@ const AmcsLogo = () => {
 
 const fetchCategories = async () => {
   try {
-    const res = await axios.get("https://redvisionweb.com/api/category");
+    const res = await axios.get("/api/amc-category");
     const data = res.data;
 
     setAllCategory(data);
@@ -164,7 +164,7 @@ useEffect(() => {
                       </div>
                       <div className="my-4">
                         <img
-                            src={`https://redvisionweb.com${item.logo}` || "/placeholder-image.jpg"} // Use string or fallback placeholder
+                            src={`${process.env.NEXT_PUBLIC_DATA_API}${item.logo}` || "/placeholder-image.jpg"} // Use string or fallback placeholder
                             width={150}
                             height={100}
                             alt="Logo"

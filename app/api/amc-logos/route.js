@@ -10,7 +10,7 @@ export async function POST(req) {
     // console.log(categoryID,"dbajdhbad")
 
     // Fetch source data from RedVision
-    const response = await axios.get("https://redvisionweb.com/api/amc-logo");
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_DATA_API}/api/amc-logo`);
     const sourceData = response.data;
     // console.log(sourceData)
 
