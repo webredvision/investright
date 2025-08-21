@@ -112,7 +112,7 @@ const fetchLogos = async (categoryID) => {
                   rel="noopener noreferrer"
                 >
                   <img
-                    src={`${process.env.NEXT_PUBLIC_DATA_API}${logo.logo}`}
+                    src={`https://redvisionweb.com${logo.logo}`}
                     alt={logo.logoname}
                     width={160}
                     height={180}

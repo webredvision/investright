@@ -164,7 +164,7 @@ useEffect(() => {
                       </div>
                       <div className="my-4">
                         <img
-                            src={`${process.env.NEXT_PUBLIC_DATA_API}${item.logo}` || "/placeholder-image.jpg"} // Use string or fallback placeholder
+                            src={`https://redvisionweb.com/${item.logo}` || "/placeholder-image.jpg"} // Use string or fallback placeholder
                             width={150}
                             height={100}
                             alt="Logo"
