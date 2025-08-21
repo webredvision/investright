@@ -361,7 +361,7 @@ p {
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: #404d3bf0;
+  background-color: var(--rv-secondary);
   border-radius: 100px;
   height: 100%;
   width: 100%;

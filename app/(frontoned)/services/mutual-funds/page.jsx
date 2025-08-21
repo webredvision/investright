@@ -25,7 +25,7 @@ const MutualFundsPage = () => {
     <div className="">
       <InnerBanner pageName="Mutual Fund Services" />
       <div className="bg-white">
-        <section className="max-w-screen-xl mx-auto main_section ">
+        <section className="container mx-auto main_section ">
       
       <div className="text-base leading-relaxed space-y-4 mb-10">
         <p>

@@ -15,7 +15,7 @@
 .aboutUsImages {
     position: relative;
     padding: 0 2rem 2rem 0;
-    background: url(/images/home/about1.jpg) no-repeat -100% -115%;
+    background: url(/images/home/about1.jpg) no-repeat -100% ;
     background-size: 85%;
     border-radius: 20px;
 }
@@ -186,12 +186,15 @@
         background-color: #f9f9f9;
     }
 
-    .aboutUsImages {
-        position: relative;
-        padding: 0 100px 420px 0;
-        background: url('/images/about-img-1.jpg') no-repeat;
-        border-radius: 20px;
-    }
+.aboutUsImages {
+    position: relative;
+    background: url('/images/home/about1.jpg') no-repeat center center;
+    background-size: cover;   /* ensures it covers the container */
+    background-position: center; /* keeps it centered */
+    border-radius: 20px;
+    min-height: 400px;
+}
+
 
     .contactCircle {
         display: none;

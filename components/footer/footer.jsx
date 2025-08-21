@@ -38,12 +38,12 @@ export function Footer({ sitedata, socialMedia, arnData, services }) {
     { title: "SEBI Circulars", link: "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListingAll=yes&search=Mutual+Funds", target: "_blank" },
   ];
   const socialIconMap = {
-    Facebook: <FaFacebook className="text-gray-400 text-2xl hover:text-[var(--rv-white)]" />,
-    Instagram: <FaInstagram className="text-gray-400 text-2xl hover:text-[var(--rv-white)]" />,
-    Linkedin: <FaLinkedin className="text-gray-400 text-2xl hover:text-[var(--rv-white)]" />,
-    Youtube: <FaYoutube className="text-gray-400 text-2xl hover:text-[var(--rv-white)]" />,
-    Twitter: <FaTwitter className="text-gray-400 text-2xl hover:text-[var(--rv-white)]" />,
-    Whatsapp: <FaWhatsapp className="text-gray-400 text-2xl hover:text-[var(--rv-white)]" />,
+    Facebook: <FaFacebook className="text-[var(--rv-gredient)] text-2xl hover:text-[var(--rv-gredient)]" />,
+    Instagram: <FaInstagram className="text-[var(--rv-gredient)] text-2xl hover:text-[var(--rv-gredient)]" />,
+    Linkedin: <FaLinkedin className="text-[var(--rv-gredient)] text-2xl hover:text-[var(--rv-gredient)]" />,
+    Youtube: <FaYoutube className="text-[var(--rv-gredient)] text-2xl hover:text-[var(--rv-gredient)]" />,
+    Twitter: <FaTwitter className="text-[var(--rv-gredient)] text-2xl hover:text-[var(--rv-gredient)]" />,
+    Whatsapp: <FaWhatsapp className="text-[var(--rv-gredient)] text-2xl hover:text-[var(--rv-gredient)]" />,
   };
   const tools = [
     { href: "/tools/calculators", text: "Calculators" },
@@ -54,11 +54,12 @@ export function Footer({ sitedata, socialMedia, arnData, services }) {
     { href: "/tools/useful-links", text: "Useful Links" },
 
   ];
+  console.log(services)
   return (
-    <div className={`" bg-[#04171f] overflow-hidden `}>
+    <div className={`"  overflow-hidden `}>
 
       <footer >
-        <section className="max-w-screen-xl mx-auto main_section1 ">
+        <section className="container mx-auto main_section1 ">
           <div className="">
             <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10" variants={fadeUp}
               initial="hidden"
@@ -78,7 +79,7 @@ export function Footer({ sitedata, socialMedia, arnData, services }) {
                     />
                   </Link>
                 </div>
-                <p className="mt-5 text-[var(--rv-white)] text-md hover:text-[var(--rv-white)] font-urbanist ">
+                <p className="mt-5 text-[var(--rv-gredient)] text-md hover:text-[var(--rv-gredient)] font-urbanist ">
                   {sitedata?.description}
                 </p>
 
@@ -87,13 +88,13 @@ export function Footer({ sitedata, socialMedia, arnData, services }) {
 
               {/* Services */}
               <div>
-                <h4 className="relative text-lg text-[var(--rv-white)] font-semibold mb-4">
+                <h4 className="relative text-lg text-[var(--rv-gredient)] font-semibold mb-4">
                   Services
                 </h4>
-                <ul className="space-y-2 text-md text-[var(--rv-white)] ">
+                <ul className="space-y-2 text-md text-[var(--rv-gredient)] ">
                   {services.map((item, index) => (
                     <li key={index}>
-                      <Link href={`${item?.link}`} className="hover:text-[var(--secondary)]">
+                      <Link href={`/services/${item?.link}`} className="hover:text-[var(--secondary)]">
                         {item?.name}
                       </Link>
                     </li>
@@ -103,10 +104,10 @@ export function Footer({ sitedata, socialMedia, arnData, services }) {
 
               {/* Tools */}
               <div>
-                <h4 className="relative text-lg text-[var(--rv-white)] font-semibold mb-4">
+                <h4 className="relative text-lg text-[var(--rv-gredient)] font-semibold mb-4">
                   Tools
                 </h4>
-                <ul className="space-y-2 text-md text-[var(--rv-white)]">
+                <ul className="space-y-2 text-md text-[var(--rv-gredient)]">
                   {tools.map((item, index) => (
                     <li key={index}>
                       <Link href={item.href} className="hover:text-[var(--secondary)]">
@@ -121,10 +122,10 @@ export function Footer({ sitedata, socialMedia, arnData, services }) {
 
               {/* Get in Touch */}
               <div>
-                <h4 className="relative text-lg text-[var(--rv-white)] font-semibold mb-4 ">
+                <h4 className="relative text-lg text-[var(--rv-gredient)] font-semibold mb-4 ">
                   Get In Touch
                 </h4>
-                <ul className="space-y-5 text-sm text-[var(--rv-white)]">
+                <ul className="space-y-5 text-sm text-[var(--rv-gredient)]">
                   <li className="flex gap-2 hover:text-[var(--secondary)] cursor-pointer">
                     <span><FaPhone className="" /></span>
                     <h5 className="font-medium">
@@ -176,13 +177,13 @@ export function Footer({ sitedata, socialMedia, arnData, services }) {
           whileInView="visible"
           viewport={{ once: true }}
         >
-          <div className="max-w-screen-xl mx-auto flex flex-col lg:flex-row items-center justify-between">
+          <div className="container mx-auto flex flex-col lg:flex-row items-center justify-between">
 
-            <div className="disclaimer-sec text-center border-b border-gray-200">
+            <div className="disclaimer-sec text-center border-b border-[bg-[var(--rv-secondary)]]">
               <div className="flex justify-center space-x-4 mt-5 mb-5">
                 {socialMedia?.map((item, index) => (
 
-                  <Link key={index} href={item.url} className="p-2 border border-white rounded-full cursor-pointer">
+                  <Link key={index} href={item.url} className="p-2 border border-[bg-[var(--rv-secondary)]] rounded-full cursor-pointer">
                     {socialIconMap[item.title] ?? null}
                   </Link>
 
@@ -191,12 +192,12 @@ export function Footer({ sitedata, socialMedia, arnData, services }) {
               </div>
 
               <div className="content-b ">
-                <p className="p-2 text-gray-300/90 flex flex-wrap items-center justify-center gap-1">
+                <p className="p-2 text-[var(--rv-gredient)]/90 flex flex-wrap items-center justify-center gap-1">
                   {amfisabilinks.map((item, index) => (
                     <span key={index}>
                       <Link
                         href={item.link}
-                        className="hover:text-[var(--rv-white)]"
+                        className="hover:text-[var(--rv-gredient)]"
                         target={item.target || "_self"}
                         rel={item.target === "_blank" ? "noopener noreferrer" : undefined}
                         download={item.link.endsWith(".pdf") ? true : undefined}
@@ -213,11 +214,11 @@ export function Footer({ sitedata, socialMedia, arnData, services }) {
                   <b>09-FEB-2025</b> TO <b>08-FEB-2028</b> */}
                 </p>
 
-                <p className="text-gray-200 mb-2">
+                <p className="text-[var(--rv-gredient)] mb-2">
                   <b>{sitedata.websiteName}</b> is an AMFI
                   Registered Mutual Fund Distributor.
                 </p>
-                <p className="text-gray-200 mb-2">
+                <p className="text-[var(--rv-gredient)] mb-2">
                   Disclaimer: Mutual fund investments are subject to market
                   risks. Please read the scheme information and other related
                   documents carefully before investing. Past performance is not
@@ -225,7 +226,7 @@ export function Footer({ sitedata, socialMedia, arnData, services }) {
                   investment requirements before choosing a fund, or designing a
                   portfolio that suits your needs.
                 </p>
-                <p className="text-gray-200 mb-5">
+                <p className="text-[var(--rv-gredient)] mb-5">
                   <b>{sitedata.websiteName}</b> makes no warranties or representations,
                   express or implied, on products offered through the platform
                   of <b>{sitedata.websiteName}</b>. It accepts no liability for any
@@ -240,7 +241,7 @@ export function Footer({ sitedata, socialMedia, arnData, services }) {
                     <div className="image">
                       <img src="/amfi.jpg" height={100} width={100} />
                     </div>
-                    <div className="contentb text-gray-200">
+                    <div className="contentb text-[var(--rv-gredient)]">
                       <p>AMFI Registered</p>
                       <p>ARN - {arnData[0]?.arn}</p>
                       <p>EUIN -{arnData[0]?.euins[0]?.euin}  </p>{" "}
@@ -263,18 +264,18 @@ export function Footer({ sitedata, socialMedia, arnData, services }) {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="max-w-screen-xl mx-auto mt-5 px-2 text-white">
+          className="container mx-auto mt-5 px-2 text-[var(--rv-gredient)]">
           <div className=" flex flex-col md:flex-row justify-between">
             <div >
               <p>
-                © Copyright 2025 - <strong className="text-gray-300/90 bold">{sitedata.websiteName}</strong>. All Right Reserved
+                © Copyright 2025 - <strong className="text-[var(--rv-gredient)]/90 bold">{sitedata.websiteName}</strong>. All Right Reserved
               </p>
             </div>
             <div >
               <Link
                 target="_blank"
                 href="https://www.redvisiontechnologies.com/"
-                className="hover:underline hover:text-[var(--rv-white)] me-4 md:me-6"
+                className="hover:underline hover:text-[var(--rv-gredient)] me-4 md:me-6"
               >
                 <p>Designed & Developed by REDVision Global Technologies</p>
               </Link>

@@ -7,7 +7,7 @@ import { FaCalendar } from "react-icons/fa";
 const Blog = ({ blogs }) => {
   return (
     <section className="bg-white">
-      <div className="max-w-screen-xl mx-auto main_section1">
+      <div className="container mx-auto main_section1">
         {/* Section Title */}
         <h2 className="text-4xl font-bold mb-6  items-center text-center" initial={{ x: -100, opacity: 0 }}
         // animate={isInView ? { x: 0, opacity: 1 } : {}}

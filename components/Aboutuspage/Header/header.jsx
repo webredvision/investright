@@ -8,7 +8,7 @@ const HeaderAboutus = ({ aboutus }) => {
   }
   return (
     <div>
-      <div className="max-w-screen-xl mx-auto main_section1">
+      <div className="container mx-auto main_section1">
         <section
           className="grid grid-cols-1 md:grid-cols-5 gap-12 mb-6 items-center"
         >

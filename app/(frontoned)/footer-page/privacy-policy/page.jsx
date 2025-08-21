@@ -19,7 +19,7 @@ const PrivacyPage = async () => {
     return (
         <div className={`${styles.footerpage} `}>
             <InnerBanner pageName={"Privacy Policy"} />
-            <div className="max-w-screen-xl mx-auto main-section tex-white">
+            <div className="container mx-auto main-section tex-white">
 
                 {/* Heading and Subheading */}
 

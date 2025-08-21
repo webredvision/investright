@@ -7,7 +7,7 @@ import Link from "next/link";
 import CryptoJS from "crypto-js";
 
 
-export default function AdvisorCategory() {
+export default function  AdvisorCategory() {
   const [categories, setCategories] = useState([]);
   const [categoriesFunds, setCategoriesFunds] = useState([]);
   const [selectedCatId, setSelectedCatId] = useState(null);
@@ -112,7 +112,7 @@ export default function AdvisorCategory() {
 
   return (
     <section className="bg-white overflow-hidden ">
-      <div className="max-w-screen-xl main_section mx-auto flex flex-col lg:flex-row gap-4 items-start">
+      <div className="container main_section mx-auto flex flex-col lg:flex-row gap-4 items-start">
         {/* Left - Categories & Funds */}
         <div className="w-full lg:w-1/2 bg-gradient-to-br from-[var(--rv-gredient)] to-[var(--rv-gredient1)] rounded-2xl  p-4 lg:p-10">
           <h2 className="text-[var(--rv-white)] text-center text-3xl font-bold mb-2">
@@ -197,14 +197,14 @@ export default function AdvisorCategory() {
                 </div>
               ))
             ) : (
-              <p>No fund data available</p>
+              <p className="text-white">No fund data available</p>
             )}
           </div>
         </div>
 
         {/* Right - Explore Mutual Funds */}
         <motion.div
-          className="w-full lg:w-1/2  p-6 lg:py-16 rounded-xl"
+          className="w-full lg:w-1/2  md:p-6 lg:py-16 rounded-xl"
           initial={{ x: 100, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}

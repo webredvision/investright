@@ -70,8 +70,8 @@ const fetchLogos = async (categoryID) => {
 };
   return (
     <div className="bg-white">
-      <div className="max-w-screen-xl main_section1 mx-auto text-center">
-      <motion.div className="space-y-6  text-center">
+      <div className="container main_section1 mx-auto text-center">
+      <motion.div className="space-y-6  text-center mb-6">
         <motion.h2 className="text-4xl md:text-4xl font-bold mb-6">
           Our <span className="text-[var(--rv-primary)]">Partners</span>
         </motion.h2>
@@ -105,7 +105,7 @@ const fetchLogos = async (categoryID) => {
               key={index}
               className="pl-1 md:basis-1/2 lg:basis-1/5"
             >
-              <div className="px-5 main_section">
+              <div className="px-5">
                 <a
                   href={logo.logourl}
                   target="_blank"

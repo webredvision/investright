@@ -78,7 +78,7 @@ export default function Page() {
   return (
     <div className="">
        <InnerBanner pageName={"House Planning Calculator"} />
-      <div className="max-w-screen-xl mx-auto main_section">
+      <div className="container mx-auto main_section">
         <div className=" ">
           <div className="mb-5 flex justify-between">
             <div className="">

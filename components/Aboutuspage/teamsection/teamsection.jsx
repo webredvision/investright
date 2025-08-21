@@ -23,7 +23,8 @@ const TeamSection = ({ teams }) => {
     setIsModalOpen(false);
   };
 
-  const settings = {
+  // Slider settings only for > 3 members
+  const sliderSettings = {
     arrows: false,
     infinite: true,
     speed: 600,
@@ -32,20 +33,14 @@ const TeamSection = ({ teams }) => {
     autoplay: true,
     autoplaySpeed: 4000,
     responsive: [
-      {
-        breakpoint: 1024,
-        settings: { slidesToShow: 2 },
-      },
-      {
-        breakpoint: 640,
-        settings: { slidesToShow: 1 },
-      },
+      { breakpoint: 1024, settings: { slidesToShow: 2 } },
+      { breakpoint: 640, settings: { slidesToShow: 1 } },
     ],
   };
 
   return (
     <div className="bg-white">
-      <div className="max-w-screen-xl mx-auto main_section">
+      <div className="container mx-auto main_section">
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -53,24 +48,48 @@ const TeamSection = ({ teams }) => {
           className="text-center"
         >
           <motion.h2
-            className=" text-4xl font-bold mb-6"
+            className="text-4xl font-bold mb-6"
             initial={{ x: 20, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.5 }}
             viewport={{ once: true }}
           >
-            Our <span className="text-[var(--rv-primary)]">Teams</span>
+            Our <span className="text-[var(--rv-primary)]">Team</span>
           </motion.h2>
 
           <div className="relative">
-            <Slider ref={sliderRef} {...settings}>
-              {teams.map((member, index) => (
-                <div
-                  key={index}
-                  className="px-4 cursor-pointer"
-                  onClick={() => openModal(member)}
-                >
-                  <div className="relative overflow-hidden rounded-2xl shadow-lg group">
+            {/* === CASE 1: Only one member === */}
+            {teams.length === 1 && (
+              <div
+                className="flex justify-center"
+                onClick={() => openModal(teams[0])}
+              >
+                <div className="relative overflow-hidden rounded-2xl shadow-lg group max-w-sm w-full cursor-pointer">
+                  <Image
+                    src={teams[0]?.image?.url}
+                    alt={teams[0]?.name}
+                    width={400}
+                    height={400}
+                    className="w-full h-[400px] object-cover object-top"
+                  />
+                  <div className="absolute bottom-0 w-full h-[30%] bg-gradient-to-t from-[var(--rv-secondary)] via-[var(--rv-secondary)]/50 to-transparent"></div>
+                  <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-center text-[var(--rv-white)]">
+                    <h3 className="text-xl font-semibold">{teams[0]?.name}</h3>
+                    <p className="font-semibold">{teams[0]?.designation}</p>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* === CASE 2: Two members === */}
+            {teams.length === 2 && (
+              <div className="flex flex-col md:flex-row justify-center gap-6">
+                {teams.map((member, index) => (
+                  <div
+                    key={index}
+                    className="relative overflow-hidden rounded-2xl shadow-lg group max-w-sm w-full cursor-pointer"
+                    onClick={() => openModal(member)}
+                  >
                     <Image
                       src={member?.image?.url}
                       alt={member?.name}
@@ -81,31 +100,85 @@ const TeamSection = ({ teams }) => {
                     <div className="absolute bottom-0 w-full h-[30%] bg-gradient-to-t from-[var(--rv-secondary)] via-[var(--rv-secondary)]/50 to-transparent"></div>
                     <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-center text-[var(--rv-white)]">
                       <h3 className="text-xl font-semibold">{member?.name}</h3>
-                       <p className="font-semibold ">
-                {member.designation}
-              </p>
+                      <p className="font-semibold">{member?.designation}</p>
                     </div>
                   </div>
-                </div>
-              ))}
-            </Slider>
+                ))}
+              </div>
+            )}
 
-            {/* Arrow buttons */}
-            <button
-              onClick={() => sliderRef.current.slickPrev()}
-              className="flex absolute left-0 top-1/2 -translate-y-1/2 bg-white text-black rounded-full p-2 shadow z-10 hover:bg-gray-200"
-              aria-label="Previous"
-            >
-              <FaChevronLeft size={20} />
-            </button>
+            {/* === CASE 3: Exactly three members === */}
+            {/* {teams.length === 3 && (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {teams.map((member, index) => (
+                  <div
+                    key={index}
+                    className="relative overflow-hidden rounded-2xl shadow-lg group cursor-pointer"
+                    onClick={() => openModal(member)}
+                  >
+                    <Image
+                      src={member?.image?.url}
+                      alt={member?.name}
+                      width={400}
+                      height={400}
+                      className="w-full h-[400px] object-cover object-top"
+                    />
+                    <div className="absolute bottom-0 w-full h-[30%] bg-gradient-to-t from-[var(--rv-secondary)] via-[var(--rv-secondary)]/50 to-transparent"></div>
+                    <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-center text-[var(--rv-white)]">
+                      <h3 className="text-xl font-semibold">{member?.name}</h3>
+                      <p className="font-semibold">{member?.designation}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )} */}
 
-            <button
-              onClick={() => sliderRef.current.slickNext()}
-              className="flex absolute right-0 top-1/2 -translate-y-1/2 bg-white text-black rounded-full p-2 shadow z-10 hover:bg-gray-200"
-              aria-label="Next"
-            >
-              <FaChevronRight size={20} />
-            </button>
+            {/* === CASE 4: More than three members (use slider) === */}
+            {teams.length >= 3 && (
+              <>
+                <Slider ref={sliderRef} {...sliderSettings}>
+                  {teams.map((member, index) => (
+                    <div
+                      key={index}
+                      className="px-4 cursor-pointer"
+                      onClick={() => openModal(member)}
+                    >
+                      <div className="relative overflow-hidden rounded-2xl shadow-lg group">
+                        <Image
+                          src={member?.image?.url}
+                          alt={member?.name}
+                          width={400}
+                          height={400}
+                          className="w-full h-[400px] object-cover object-top"
+                        />
+                        <div className="absolute bottom-0 w-full h-[30%] bg-gradient-to-t from-[var(--rv-secondary)] via-[var(--rv-secondary)]/50 to-transparent"></div>
+                        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-center text-[var(--rv-white)]">
+                          <h3 className="text-xl font-semibold">{member?.name}</h3>
+                          <p className="font-semibold">{member?.designation}</p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </Slider>
+
+                {/* Arrows */}
+                <button
+                  onClick={() => sliderRef.current.slickPrev()}
+                  className="flex absolute left-0 top-1/2 -translate-y-1/2 bg-white text-black rounded-full p-2 shadow z-10 hover:bg-gray-200"
+                  aria-label="Previous"
+                >
+                  <FaChevronLeft size={20} />
+                </button>
+
+                <button
+                  onClick={() => sliderRef.current.slickNext()}
+                  className="flex absolute right-0 top-1/2 -translate-y-1/2 bg-white text-black rounded-full p-2 shadow z-10 hover:bg-gray-200"
+                  aria-label="Next"
+                >
+                  <FaChevronRight size={20} />
+                </button>
+              </>
+            )}
           </div>
         </motion.section>
       </div>
@@ -123,7 +196,7 @@ const TeamSection = ({ teams }) => {
               <IoClose />
             </button>
 
-            {/* Image Section - Big on Mobile */}
+            {/* Image Section */}
             <div className="w-full md:w-1/2 h-72 md:h-auto relative flex-shrink-0">
               <Image
                 src={selectedMember.image?.url}

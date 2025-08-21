@@ -21,7 +21,7 @@ const LifeHealthInsurancePage = () => {
     <div>
         <InnerBanner pageName="Life & Health Insurance Advisory" />
       <div className="bg-white">
-        <section className="max-w-screen-xl mx-auto main_section ">
+        <section className="container mx-auto main_section ">
       {/* Heading */}
       
 

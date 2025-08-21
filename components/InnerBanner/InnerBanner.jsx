@@ -6,8 +6,8 @@ import styles from "./InnerBanner.module.css";
 
 const InnerBanner = ({ pageName, showBreadcrumb = true, subpages }) => {
   return (
-    <div className="flex bg-center bg-no-repeat bg-cover bg-[url('/images/inner-banner-01.jpg')] overflow-hidden text-start justify-start items-center h-64">
-      <div className="max-w-screen-xl mx-auto text-center items-center mt-20">
+    <div className="flex bg-center bg-no-repeat bg-cover bg-[url('/images/inner-banner-01.webp')] overflow-hidden text-start justify-start items-center h-64">
+      <div className="container mx-auto text-center items-center mt-20">
         <h1 className="text-[var(--rv-white)] text-3xl md:text-5xl font-bold">
           {pageName}
         </h1>

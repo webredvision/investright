@@ -22,7 +22,7 @@ const PMSPage = () => {
     <div >
       <InnerBanner pageName="Portfolio Management Services (PMS)" />
       <div className="bg-white">
-        <section className="max-w-screen-xl mx-auto main_section">
+        <section className="container mx-auto main_section">
      
 
       {/* Introduction */}

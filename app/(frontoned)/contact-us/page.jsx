@@ -9,7 +9,7 @@ export default async function ContactUs() {
   return (
     <div>
       <InnerBanner pageName="Contact Us" />
-      <div className=" max-w-screen-xl mx-auto  main_section1">
+      <div className=" container mx-auto  main_section1">
         {/* Contact Info Cards */}
         <div className="flex flex-col overflow-hidden rounded-lg w-full">
           {/* Icons Row */}
@@ -48,7 +48,7 @@ export default async function ContactUs() {
           {/* Content Row */}
         </div>
       </div>
-      <div className=" max-w-screen-xl mx-auto  main_section">
+      <div className=" container mx-auto  main_section">
         <h2
           className="text-4xl font-bold mb-6  items-center text-center"
           initial={{ x: -100, opacity: 0 }}

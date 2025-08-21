@@ -233,7 +233,7 @@ export default function Page() {
     <div className="">
       <InnerBanner pageName={"SIP Performance"} />
       {/* <Banner title={"SIP Performance"} /> */}
-      <div className="px-3 lg:px-2 max-w-screen-xl mx-auto py-[30px] md:py-[60px]">
+      <div className="px-3 lg:px-2 container mx-auto py-[30px] md:py-[60px]">
         <Toaster />
         <div>
           <div>

@@ -6,9 +6,9 @@ import { motion } from "framer-motion";
 
 export default function AboutUsSection({ aboutUs, sitedata }) {
   return (
-    <section className={`${styles.aboutUs} bg-white main_section1 `}>
-      <div className="max-w-screen-xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2">
+    <section className={`${styles.aboutUs} bg-white main_section `}>
+      <div className="container mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 px-2 md:px-0">
           {/* Left Image Section */}
           <div className={styles.aboutUsImages}>
             <div

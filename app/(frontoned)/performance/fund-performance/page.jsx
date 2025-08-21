@@ -7,7 +7,7 @@ export default function MarketUpdate() {
   return (
     <div className="">
      <InnerBanner pageName="Fund Performance" subpages="Performance"/>
-      <div className="max-w-screen-xl mx-auto main_section ">
+      <div className="container mx-auto main_section ">
         <FundCategoryTabs/>
       </div>
     </div>

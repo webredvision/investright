@@ -52,12 +52,12 @@ const WhyChooseUs = ({sitedata}) => {
   };
 
   return (
-   <div className="bg-white">
+   <div className="bg-[#D0F0FC]">
      <section
-      className=" main_section max-w-screen-xl mx-auto "
+      className=" main_section container mx-auto "
       ref={mainCounterRef}
     >
-      <div className="grid grid-cols-2 justify-center items-center gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 justify-center items-center gap-4">
         {/* Left: Image + Paragraph (50%) */}
         <motion.div
           className="space-y-6"

@@ -113,7 +113,7 @@ useEffect(() => {
 
   return (
     <section className="bg-white">
-      <div className="max-w-screen-xl main_section mx-auto " ref={mainCounterRef}>
+      <div className="container main_section mx-auto " ref={mainCounterRef}>
         <div className="  rounded-2xl">
           <motion.h2 className="text-4xl font-bold mb-6  items-center text-center" initial={{ x: -100, opacity: 0 }}
           animate={isInView ? { x: 0, opacity: 1 } : {}}
@@ -123,7 +123,7 @@ useEffect(() => {
           </motion.h2>
           {/* <SectionHeading heading="SIP Calculator" title="Power of SIP" variant="dark" /> */}
           <div className="grid lg:grid-cols-2 grid-cols-1 gap-4 ">
-            <motion.div className="col-span-1 shadow-lg bg-gradient-to-br from-[var(--rv-gredient)] to-[var(--rv-gredient1)] rounded-2xl px-10 py-4 flex flex-col justify-between"
+            <motion.div className="col-span-1 shadow-lg bg-gradient-to-br from-[var(--rv-gredient)] to-[var(--rv-gredient1)] rounded-2xl px-4 md:px-10 py-4 flex flex-col justify-between"
             initial={{ x: -100, opacity: 0 }}
             animate={isInView ? { x: 0, opacity: 1 } : {}}
             transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}

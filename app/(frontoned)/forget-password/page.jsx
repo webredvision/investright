@@ -11,7 +11,7 @@ const SignIn = async () => {
       {/* source:https://codepen.io/owaiswiz/pen/jOPvEPB */}
            <InnerBanner pageName={"Forget Password"}/>
       <div className="min-h-[600px]  text-gray-900 flex justify-center">
-        <div className="max-w-screen-xl m-0 sm:m-10   flex justify-center flex-1">
+        <div className="container m-0 sm:m-10   flex justify-center flex-1">
           <ForgetPassword />
           <div className="flex-1 bg-indigo-100 text-center hidden lg:flex " style={{
                 backgroundImage:

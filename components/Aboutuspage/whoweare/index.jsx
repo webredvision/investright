@@ -8,17 +8,17 @@ const WhoWeare = ({ aboutus, missionVission }) => {
   }
   // console.log(missionVission)
   return (
-    <div className='bg-white'>
-      <div className="max-w-screen-xl mx-auto main_section1">
+    <div className='bg-[#D0F0FC]'>
+      <div className="container mx-auto main_section1">
         {/* Transforming Ambitions Section */}
         <section
           className="grid grid-cols-1 md:grid-cols-5 gap-2 items-center"
         >
           <div className="relative md:col-span-2">
-            <Image
+            <img
               src="/images/whowe.webp"
               alt="About Us"
-              width={400}
+              width={500}
               height={550}
               className=" rounded-xl  shadow-lg"
             />

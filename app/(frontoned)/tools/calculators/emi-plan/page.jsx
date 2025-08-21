@@ -79,7 +79,7 @@ export default function Page() {
         <div className="">
             <InnerBanner pageName={"EMI Calculator"} />
 
-            <div className="max-w-screen-xl mx-auto main_section">
+            <div className="container mx-auto main_section">
                 <div className="">
                     <div className="mb-5 flex flex-col md:flex-row gap-5 justify-between ">
                         <div className="">

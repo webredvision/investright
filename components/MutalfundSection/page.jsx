@@ -6,8 +6,8 @@ import { motion, useInView } from "framer-motion";
 
 const MutalFundSection = () => {
   return (
-    <div className='bg-white'>
-      <div className="max-w-screen-xl mx-auto  main_section1">
+    <div className='bg-[#D0F0FC]'>
+      <div className="container mx-auto  main_section">
         <motion.div
           className="space-y-6  text-center mb-10"
         >

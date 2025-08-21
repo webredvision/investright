@@ -59,7 +59,7 @@ const BusinessModel  = () => {
   return (
     <div>
        <div className="bg-[var(--rv-ternary)]">
-      <div className="max-w-screen-xl mx-auto  main_section">
+      <div className="container mx-auto  main_section">
          <h2 className="text-4xl font-bold mb-6 text-[var(--rv-white)] items-center text-center" initial={{ x: -100, opacity: 0 }}
           // animate={isInView ? { x: 0, opacity: 1 } : {}}
           // transition={{ duration: 0.6, ease: "easeOut" }}

@@ -73,7 +73,7 @@ export function ContactUs({ sitedata }) {
 
   return (
     <div className="main_section relative bg-[#b2b2b21f]">
-      <section className="max-w-screen-xl mx-auto text-center items-center">
+      <section className="container mx-auto text-center items-center">
         {/* Left Section */}
         <h2 className="topheading text-[var(--rv-primary)]">GET STARTED</h2>
           <h2 className="subheading text-[var(--rv-primary)] mb-4">

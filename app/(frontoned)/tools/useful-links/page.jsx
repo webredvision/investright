@@ -19,7 +19,7 @@ const UsefulLinksPage = () => {
   return (
     <div className="">
       <InnerBanner pageName={"Useful Links"} />
-      <div className='max-w-screen-xl mx-auto flex flex-col justify-center main_section'>
+      <div className='container mx-auto flex flex-col justify-center main_section'>
         <div className='grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5'>
           {usefulLink.map((link, index) => (
             <Link href={link.link} key={index} className={styles.cardsContainer}>

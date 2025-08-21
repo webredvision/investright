@@ -17,7 +17,7 @@ export default function Page() {
     return (
         <div className="">
             <InnerBanner pageName={"Financial Tools"} />
-            <div className='max-w-screen-xl mx-auto flex flex-col justify-center main_section'>
+            <div className='container mx-auto flex flex-col justify-center main_section'>
                 <div className="flex justify-center mb-14">
                     <div className="inline-flex border border-[var(--rv-primary)] rounded-full shadow-inner">
                         <Link

@@ -89,7 +89,7 @@ useEffect(() => {
      };
 
   return (
-    <div className="max-w-screen-xl mx-auto main_section">
+    <div className="container mx-auto main_section">
       {/* Filters */}
       <div className="flex flex-col md:flex-row justify-between items-center mb-4 gap-3">
         <input

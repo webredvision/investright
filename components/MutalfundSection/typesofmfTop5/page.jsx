@@ -5,7 +5,7 @@ import Link from "next/link";
 import CryptoJS from "crypto-js";
 import TopFundskeleton from "@/components/skeletons/topFundskeleton";
 
-export default function TopPerformingFunds() {
+export default function   TopPerformingFunds() {
   const [activeTab, setActiveTab] = useState("Equity");
   const [subcategories, setSubCategories] = useState("Small Cap Fund");
   const [loading, setLoading] = useState(false);
@@ -130,7 +130,7 @@ export default function TopPerformingFunds() {
                   {performanceData.map((fund, idx) => (
                     <tr
                       key={idx}
-                      className="hover:bg-[var(--rv-primary)] cursor-pointer border-b border-[var(--rv-ternary)]"
+                      className="hover:bg-[var(--rv-secondary)] cursor-pointer border-b border-[var(--rv-ternary)]"
                       onClick={() => handleSelectFunds(fund)}
                     >
                       <td className="px-4 py-3 font-medium ">

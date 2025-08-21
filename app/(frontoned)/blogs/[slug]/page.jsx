@@ -47,7 +47,7 @@ const SinglePostPage = async ({ params }) => {
     return (
         <div>
             <InnerBanner pageName={post?.posttitle} />
-            <div className="flex main_section max-w-screen-xl mx-auto flex-col">
+            <div className="flex main_section container mx-auto flex-col">
             <div className="">
                 <div className="">
                     {/* <h1 className="text-5xl font-bold text-gray-800 mb-5">{post?.posttitle}</h1> */}

@@ -55,7 +55,7 @@ export default function TopSuggestedFund({ performanceData, schemeName }) {
   };
 
   return (
-    <div className="max-w-screen-xl mx-auto">
+    <div className="container mx-auto">
       {/* Fund List */}
       <div className="bg-[var(--rv-primary)] text-[var(--rv-white)] shadow rounded  overflow-hidden">
         {filteredFunds.length > 0 ? (

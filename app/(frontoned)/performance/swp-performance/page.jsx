@@ -299,7 +299,7 @@ export default function Page() {
         <div className="">
             <InnerBanner pageName={"SWP Performance"} />
             {/* <Banner title={"SWP Performance"} /> */}
-            <div className="max-w-screen-xl mx-auto py-[30px] md:py-[60px] lg:px-1 px-3">
+            <div className="container mx-auto py-[30px] md:py-[60px] lg:px-1 px-3">
                 <Toaster />
                 <div>
                     <div className='col-span-1 border border-gray-200 rounded-2xl bg-white p-2 mb-3'>

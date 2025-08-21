@@ -79,7 +79,7 @@ export default function Page() {
    <div>
     <InnerBanner pageName={performanceData?.funddes} />
      <div className="bg-[var(--rv-white)]">
-      <div className="max-w-screen-xl mx-auto main_section">
+      <div className="container mx-auto main_section">
         <div>
           {loading ? (
             <Loader />

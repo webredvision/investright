@@ -50,7 +50,7 @@ export default function LatestNews() {
 
     return (
         <div className="bg-white">
-            <div className="max-w-screen-xl mx-auto main_section1 text-center">
+            <div className="container mx-auto main_section1 text-center">
             
 <h2
         className="text-4xl  font-bold mb-4"

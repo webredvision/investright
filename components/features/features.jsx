@@ -46,8 +46,8 @@ const featureVariants = {
 
 export default function Features() {
   return (
-    <div className="bg-white">
-      <section className="max-w-screen-xl mx-auto main_section  ">
+    <div className="bg-[#D0F0FC]">
+      <section className="container mx-auto main_section  ">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left side content */}
           <div>

@@ -276,7 +276,7 @@ export default function RetirementCalculator() {
   return (
     <div className="">
       <InnerBanner pageName={"Retirement Planning Calculator"} />
-      <div className="max-w-screen-xl mx-auto main_section">
+      <div className="container mx-auto main_section">
         <div>
           <div>
             <div className="mb-5 flex flex-col md:flex-row gap-5 justify-between ">

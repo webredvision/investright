@@ -99,7 +99,7 @@ export default function Page() {
   return (
     <div className="">
       <InnerBanner pageName={performanceData?.funddes} />
-      <div className="max-w-screen-xl mx-auto main_section lg:px-1 px-3 ">
+      <div className="container mx-auto main_section lg:px-1 px-3 ">
         <div>
           {loading ? (
             <Loading />

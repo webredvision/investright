@@ -35,8 +35,8 @@ export default async function Page() {
         <SubscribCard amclogos={amclogos} />
         <TeamSection teams={teams}/>
         <Testimonials testimonials={testimonials} />
-        <Blog blogs={blogs} />
-        <LatestNews />
+        {/* <Blog blogs={blogs} /> */}
+        {/* <LatestNews /> */}
         <FAQ Faqs={Faqs} />
       </main>
     </div>

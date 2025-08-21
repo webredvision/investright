@@ -101,7 +101,7 @@
 //                     </div>
 //                 </div>
 //             </div>
-//             <div className="text-gray-50 w-full mx-auto max-w-screen-xl p-4 md:flex md:justify-between border-t border-gray-300">
+//             <div className="text-gray-50 w-full mx-auto container p-4 md:flex md:justify-between border-t border-gray-300">
 //                 <p className="sm:text-center">
 //                     © 2025{" "}
 //                     <Link href="/" className="hover:underline">

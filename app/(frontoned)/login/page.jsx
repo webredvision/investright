@@ -12,7 +12,7 @@ const SignIn = async () => {
       <div className="">
         <InnerBanner pageName={"Login"} />
         <div className="min-h-[500px]   text-gray-900 flex justify-center ">
-          <div className="max-w-screen-xl m-0 sm:m-10  flex justify-center flex-1">
+          <div className="container m-0 sm:m-10  flex justify-center flex-1">
             <div className="flex-1 bg-indigo-100 text-center hidden lg:flex " style={{
               backgroundImage:
                 'url("/LOGIN 9.jpg")',

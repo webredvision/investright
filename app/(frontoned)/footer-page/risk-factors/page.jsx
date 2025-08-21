@@ -9,7 +9,7 @@ export default function RiskFactors() {
         <div className={`${styles.footerpage} `}>
             <InnerBanner pageName={"Risk Factor"} />
 
-            <div className="max-w-screen-xl mx-auto main_section text-gray-700" >
+            <div className="container mx-auto main_section text-gray-700" >
 
                 <div className="container">
                     <div>

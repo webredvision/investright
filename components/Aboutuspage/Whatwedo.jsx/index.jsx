@@ -10,7 +10,7 @@ const Whatwedo = () => {
   return (
     <div>
         <div className="bg-[var(--rv-ternary)]">
-        <div className="max-w-screen-xl mx-auto main_section">
+        <div className="container mx-auto main_section">
           {/* Transforming Ambitions Section */}
           <section
             className="grid grid-cols-1 md:grid-cols-5 gap-12 mb-6 items-center"

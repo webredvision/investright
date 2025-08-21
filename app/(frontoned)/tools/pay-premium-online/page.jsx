@@ -64,7 +64,7 @@ const fetchLogos = async (categoryID) => {
   return (
     <div className="">
         <InnerBanner pageName={"Pay Premium Online"} />
-      <section className="max-w-screen-xl mx-auto main_section">
+      <section className="container mx-auto main_section">
      
  
         <div>

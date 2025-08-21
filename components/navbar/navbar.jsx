@@ -10,7 +10,6 @@ import { Button } from "../ui/button";
 import { productData } from "@/data/services";
 import CryptoJS from "crypto-js";
 
-
 const Navbar = ({ services }) => {
   const path = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -30,7 +29,6 @@ const Navbar = ({ services }) => {
   const searchRef = useRef(null);
   const SECRET_KEY = process.env.NEXT_PUBLIC_SECRET_KEY;
   const debounceTimeout = useRef(null);
-
 
   useEffect(() => {
     const checkScreenSize = () => {
@@ -64,7 +62,6 @@ const Navbar = ({ services }) => {
   };
 
   const fetchSearchResults = async (query) => {
-
     if (!query) {
       setSearchResults([]);
       setIsSearchOpen(false);
@@ -107,7 +104,6 @@ const Navbar = ({ services }) => {
       timestamp: Date.now(),
     };
 
-
     const encrypted = CryptoJS.AES.encrypt(
       JSON.stringify(dataToStore),
       SECRET_KEY
@@ -131,34 +127,35 @@ const Navbar = ({ services }) => {
 
   return (
     <div
-      className={`fixed top-0 w-full z-50 ${isMobileMenuOpen
-        ? "bg-[var(--rv-secondary)]"
-        : isScrolled
-          ? "bg-[var(--rv-gredient)] shadow-lg"
-          : "bg-transparent text-white"
-        }`}
+      className={`fixed top-0 w-full z-50 ${
+        isMobile
+          ? "bg-[var(--rv-white)]"
+          : isScrolled
+          ? "bg-[var(--rv-white)] shadow-lg"
+          : "bg-transparent text-black"
+      }`}
     >
-      <nav
-        className={` max-w-screen-xl mx-auto   transition-colors duration-300 `}
-      >
+      <nav className={` container mx-auto   transition-colors duration-300 `}>
         <div className="flex flex-wrap items-center justify-between mx-auto">
           <Link href="/" className="">
-           <Image
-  src="/logo.png"
-  alt="logo"
-  width={0}
-  height={0}
-  sizes="100vw"
-  style={{ width: isScrolled ? "200px" : "300px", height: "auto" }}
-  className="rounded  transition-all duration-300"
-/>
-
+            <Image
+              src="/logo.png"
+              alt="logo"
+              width={0}
+              height={0}
+              sizes="100vw"
+              style={{
+                width: isMobile ? "200px" : isScrolled ? "350px" : "350px",
+                height: "auto",
+              }}
+              className="rounded  transition-all duration-300"
+            />
           </Link>
           <div className="flex items-center gap-2 lg:hidden">
             {/* Mobile Menu Toggle Button */}
             <button
               type="button"
-              className="inline-flex items-center p-2 w-10 h-10 justify-center text-lg rounded-lg hover:bg-[var(--rv-primary)] text-white focus:outline-none"
+              className="inline-flex items-center p-2 w-10 h-10 justify-center text-lg rounded-lg hover:bg-[var(--rv-primary)] text-[var(--rv-gredient)] focus:outline-none"
               aria-expanded={isMobileMenuOpen}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
@@ -170,14 +167,18 @@ const Navbar = ({ services }) => {
                 strokeWidth="2"
                 viewBox="0 0 24 24"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
               </svg>
             </button>
 
             {/* Search Toggle Button */}
             <button
               type="button"
-              className="inline-flex items-center p-2 w-10 h-10 justify-center text-lg rounded-lg hover:bg-[var(--rv-primary)] text-white focus:outline-none"
+              className="inline-flex items-center p-2 w-10 h-10 justify-center text-lg rounded-lg hover:bg-[var(--rv-primary)] text-[var(--rv-gredient)] focus:outline-none"
               aria-expanded={isSearchOption}
               onClick={() => setisSearchOption(!isSearchOption)}
             >
@@ -209,13 +210,19 @@ const Navbar = ({ services }) => {
                 placeholder="Search Funds..."
                 value={searchQuery}
                 onChange={handleSearchChange}
-                className={ `border-gray-300 text-gray-700  placeholder-gray-400 focus:ring-gray-500 focus:border-gray-500 rounded-full w-full lg:w-80 pl-10 pr-10 py-2 ${isScrolled ? 'bg-[var(--rv-white)]' : 'bg-white'}`}
+                className={`border border-[var(--rv-gredient)] text-gray-700  placeholder-gray-400 focus:ring-gray-500 focus:border-gray-500 rounded-full w-full lg:w-80 pl-10 pr-10 py-2 ${
+                  isScrolled ? "bg-[var(--rv-white)]" : "bg-white"
+                }`}
               />
 
               {/* Search Icon */}
               <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
                 <svg
-                  className={`w-5 h-5 ${isScrolled ? 'text-[var(--rv-primary)]' : 'text-[var(--rv-primary)]'}`}
+                  className={`w-5 h-5 ${
+                    isScrolled
+                      ? "text-[var(--rv-primary)]"
+                      : "text-[var(--rv-primary)]"
+                  }`}
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -295,7 +302,7 @@ const Navbar = ({ services }) => {
                   placeholder="Search Funds..."
                   value={searchQuery}
                   onChange={handleSearchChange}
-                  className="border border-gray-500 text-gray-700 bg-white placeholder-gray-400 focus:ring-gray-500 focus:border-gray-500 rounded-full w-full lg:w-80 pl-10 pr-10 py-2"
+                  className="border border-[var(--rv-gredient)] text-gray-700 bg-white placeholder-gray-400 focus:ring-gray-500 focus:border-gray-500 rounded-full w-full lg:w-80 pl-10 pr-10 py-2"
                 />
 
                 {/* Search Icon */}
@@ -372,38 +379,178 @@ const Navbar = ({ services }) => {
           )}
 
           <div
-            className={`${isMobileMenuOpen ? "block" : "hidden"
-              } w-full lg:block lg:w-auto`}
+            className={`${
+              isMobileMenuOpen ? "block" : "hidden"
+            } w-full lg:block lg:w-auto`}
             id="navbar-multi-level"
           >
-            <ul className="flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg lg:space-x-5 rtl:space-x-reverse lg:flex-row lg:mt-0 lg:border-0 lg:items-center text-lg">
-              <li>
-                <Link
-                  href="/"
-                  className={`block py-2 px-3 rounded md:bg-transparent ${path === "/" ? "text-[var(--rv-primary)]" : "text-white"
+            <div className="max-h-[400px] overflow-y-auto lg:max-h-none lg:overflow-visible">
+              <ul className="flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg lg:space-x-5 rtl:space-x-reverse lg:flex-row lg:mt-0 lg:border-0 lg:items-center text-lg">
+                <li>
+                  <Link
+                    href="/"
+                    className={`block py-2 px-3 rounded md:bg-transparent ${
+                      path === "/"
+                        ? "text-[var(--rv-primary)]"
+                        : "text-[var(--rv-gredient)]"
                     } lg:p-0 hover:text-[var(--rv-primary)]`}
-                  aria-current="page"
-                >
-                  <p className="font-medium hover:text-[var(--rv-primary)]">
-                    Home
-                  </p>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/about-us"
-                  className={`font-semibold block py-2 px-3 rounded md:bg-transparent ${path === "/about-us"
-                    ? "text-[var(--rv-primary)]"
-                    : "text-white"
+                    aria-current="page"
+                  >
+                    <p className="font-medium hover:text-[var(--rv-primary)]">
+                      Home
+                    </p>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/about-us"
+                    className={`font-semibold block py-2 px-3 rounded md:bg-transparent ${
+                      path === "/about-us"
+                        ? "text-[var(--rv-primary)]"
+                        : "text-[var(--rv-gredient)]"
                     } lg:p-0 md:hover:text-[var(--rv-primary)]`}
+                  >
+                    <p className="hover:text-[var(--rv-primary)]">About Us</p>
+                  </Link>
+                </li>
+                <li
+                  className={`relative lg:hidden ${!isMobile ? "group" : ""}`}
+                  onMouseEnter={
+                    !isMobile ? () => setOpenDropdown(true) : undefined
+                  }
+                  onMouseLeave={
+                    !isMobile ? () => setOpenDropdown(false) : undefined
+                  }
                 >
-                  <p className="hover:text-[var(--rv-primary)]">
-                    About Us
-                  </p>
-                </Link>
-              </li>
-              <li
-                className={`relative ${!isMobile ? "group" : ""}`}
+                  <button
+                    id="dropdownServicesLink"
+                    className="flex items-center justify-between w-full py-2 px-3 text-[var(--rv-gredient)] hover:text-[var(--rv-primary)] md:hover:bg-transparent lg:p-0 lg:w-auto font-semibold"
+                    onClick={() => handleMainClick("services")}
+                  >
+                    <p className="hover:text-[var(--rv-primary)]">Services</p>
+                    <svg
+                      className="w-2.5 h-2.5 ms-2.5"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 10 6"
+                    >
+                      <path
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="m1 1 4 4 4-4"
+                      />
+                    </svg>
+                  </button>
+
+                  <div
+                    className={`${openDropdown ? "block" : "hidden"} ${
+                      !isMobile ? "lg:hidden lg:group-hover:block" : ""
+                    }  divide-y divide-gray-900 rounded-lg w-full lg:w-72  mt-2`}
+                  >
+                    <ul className="py-2 text-sm text-gray-800 max-h-[400px] overflow-y-auto">
+                      {services.map((service, index) => (
+                        <li key={index} className="group relative">
+                          <Link
+                            href={`/services/${service.link}`}
+                            className="block px-4 py-2 hover:bg-gray-100 transition-colors"
+                          >
+                            {service.name}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </li>
+
+                <li
+                  className={`relative lg:hidden ${!isMobile ? "group" : ""}`}
+                  onMouseEnter={
+                    !isMobile ? () => setOpenDropdownTools(true) : undefined
+                  }
+                  onMouseLeave={
+                    !isMobile ? () => setOpenDropdownTools(false) : undefined
+                  }
+                >
+                  <button
+                    id="dropdownNavbarLink"
+                    className="flex items-center justify-between text-[var(--rv-gredient)] w-full py-2 px-3 hover:text-[var(--rv-primary)] lg:hover:bg-transparent lg:border-0 lg:p-0 lg:w-auto font-semibold"
+                    onClick={() => handleMainClick("tools")}
+                  >
+                    <p>Tools</p>
+                    <svg
+                      className="w-2.5 h-2.5 ms-2.5"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 10 6"
+                    >
+                      <path
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="m1 1 4 4 4-4"
+                      />
+                    </svg>
+                  </button>
+
+                  <div
+                    className={`${openDropdownTools ? "block" : "hidden"} ${
+                      !isMobile ? "lg:hidden lg:group-hover:block" : ""
+                    }  divide-y divide-gray-900 rounded-lg w-full lg:w-60  mt-2`}
+                  >
+                    <ul
+                      className="py-2 text-sm text-gray-800"
+                      aria-labelledby="dropdownNavbarLink"
+                    >
+                      <li>
+                        <Link
+                          href="/tools/calculators"
+                          className="block px-4 py-2 hover:bg-gray-100"
+                        >
+                          Financial Calculators
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/tools/financial-health"
+                          className="block px-4 py-2 hover:bg-gray-100"
+                        >
+                          Financial Health
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/tools/risk-profile"
+                          className="block px-4 py-2 hover:bg-gray-100"
+                        >
+                          Risk Profile
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/tools/pay-premium-online"
+                          className="block px-4 py-2 hover:bg-gray-100"
+                        >
+                          Pay Premium Online
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/tools/useful-links"
+                          className="block px-4 py-2 hover:bg-gray-100"
+                        >
+                          Useful links
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+<li
+                className={`relative hidden lg:block ${!isMobile ? "group" : ""}`}
                 onMouseEnter={
                   !isMobile ? () => setOpenDropdown(true) : undefined
                 }
@@ -413,7 +560,7 @@ const Navbar = ({ services }) => {
               >
                 <button
                   id="dropdownServicesLink"
-                  className="flex items-center justify-between w-full py-2 px-3 text-white hover:text-[var(--rv-primary)] md:hover:bg-transparent  lg:p-0 lg:w-auto font-semibold"
+                  className="flex items-center justify-between w-full py-2 px-3 text-[var(--rv-gredient)] hover:text-[var(--rv-primary)] md:hover:bg-transparent  lg:p-0 lg:w-auto font-semibold"
                   onClick={() => handleMainClick("services")}
                 >
                   <p className="hover:text-[var(--rv-primary)]">
@@ -456,7 +603,7 @@ const Navbar = ({ services }) => {
                 </div>
               </li>
               <li
-                className={`relative ${!isMobile ? "group" : ""}`}
+                className={`relative hidden lg:block ${!isMobile ? "group" : ""}`}
                 onMouseEnter={
                   !isMobile ? () => setOpenDropdownTools(true) : undefined
                 }
@@ -466,7 +613,7 @@ const Navbar = ({ services }) => {
               >
                 <button
                   id="dropdownNavbarLink"
-                  className="flex items-center justify-between text-white w-full py-2 px-3 hover:text-[var(--rv-primary)] lg:hover:bg-transparent lg:border-0  lg:p-0 lg:w-auto font-semibold"
+                  className="flex items-center justify-between text-[var(--rv-gredient)] w-full py-2 px-3 hover:text-[var(--rv-primary)] lg:hover:bg-transparent lg:border-0  lg:p-0 lg:w-auto font-semibold"
                   onClick={() => handleMainClick("tools")}
                 >
                   <p>Tools</p>
@@ -546,7 +693,7 @@ const Navbar = ({ services }) => {
                   </ul>
                 </div>
               </li>
-              {/* <li>
+                {/* <li>
                 <Link
                   href="/blogs"
                   className={`block py-2 px-3 text-gray-800 rounded bg-transparent ${
@@ -560,33 +707,32 @@ const Navbar = ({ services }) => {
                   </p>
                 </Link>
               </li> */}
-              <li>
-                <Link
-                  href="/contact-us"
-                  className={`block font-semibold py-2 px-3 rounded ${path === "/contact-us"
-                    ? "text-[var(--rv-primary)]"
-                    : ""
+                <li>
+                  <Link
+                    href="/contact-us"
+                    className={`block font-semibold py-2 px-3 rounded ${
+                      path === "/contact-us" ? "text-[var(--rv-primary)]" : ""
                     } lg:p-0 md:hover:text-[var(--rv-primary)]`}
-                >
-                  <p className=" text-white hover:text-[var(--rv-primary)]">
-                    Contact Us
-                  </p>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/login"
-                  className={`font-semibold block py-2 px-3 rounded md:bg-transparent ${path === "/login"
-                    ? "text-[var(--rv-primary)]"
-                    : ""
+                  >
+                    <p className=" text-[var(--rv-gredient)] hover:text-[var(--rv-primary)]">
+                      Contact Us
+                    </p>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/login"
+                    className={`font-semibold block py-2 px-3 rounded md:bg-transparent ${
+                      path === "/login" ? "text-[var(--rv-primary)]" : ""
                     } lg:p-0 `}
-                >
-                  <p className="hover:text-[var(--rv-primary)] text-white">
-                    Login
-                  </p>
-                </Link>
-              </li>
-            </ul>
+                  >
+                    <p className="hover:text-[var(--rv-primary)] text-[var(--rv-gredient)]">
+                      Login
+                    </p>
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </nav>
