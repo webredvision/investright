@@ -41,7 +41,7 @@ const AmcsLogo = () => {
 
 const fetchCategories = async () => {
   try {
-    const res = await axios.get("/api/amc-category");
+    const res = await axios.get("https://redvisionweb.com/api/category");
     const data = res.data;
 
     setAllCategory(data);
@@ -80,23 +80,7 @@ useEffect(() => {
 
 
  
-  const handleAddCategory = async () => {
-    try {
-      const response = await axios.post("/api/category/", { category });
-      if (response.status === 201) {
-        toast("Category added successfully.");
-        setCategory("");
-        fetchCategories();
-        fetchAllLogos();
-      } else {
-        fetchCategories()
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      alert("An unexpected error occurred.");
-    }
-    setShowModal(false);
-  };
+
 
   const handleStatusChange = async (id, addisstatus) => {
     try {
@@ -111,103 +95,7 @@ useEffect(() => {
     }
   };
 
-  const handleAddAmcsLogo = async () => {
-    try {
-      const formData = new FormData();
-      formData.append("logoname", amcsLogoData.logoname);
-      formData.append("logourl", amcsLogoData.logourl);
-      formData.append("logo", amcsLogoData.logo);
-      formData.append("logocategory", amcsLogoData.logocategory);
-      const response = await axios.post("/api/amc-logo", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-      if (response.status === 201) {
-        toast.success("AMCS logo added successfully.");
-        setAmcsLogoData({
-          logoname: "",
-          logourl: "",
-          logo: "",
-          logocategory: "",
-          id: ''
-        });
-        fetchCategories();
-        fetchAllLogos();
-      }
-    } catch (error) {
-      console.error("Error adding AMCS logo:", error);
-      alert("An unexpected error occurred.");
-    }
-    closeModal();
-  };
 
-  const handleEditAmcsLogo = async (id) => {
-    try {
-      const formData = new FormData();
-      formData.append("logoname", amcsLogoData.logoname);
-      formData.append("logourl", amcsLogoData.logourl);
-      formData.append("logo", amcsLogoData.logo);
-      formData.append("logocategory", amcsLogoData.logocategory);
-      const response = await axios.put(`/api/amc-logo/${id}`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-      if (response.status === 200) {
-        toast.success("AMCS logo edited successfully.");
-        setAmcsLogoData({
-          logoname: "",
-          logourl: "",
-          logo: "",
-          logocategory: "",
-          id: ""
-        });
-        fetchCategories();
-        fetchAllLogos();
-      }
-    } catch (error) {
-      console.error("Error adding AMCS logo:", error);
-      alert("An unexpected error occurred.");
-    }
-    setShowEditModal(false);
-  };
-
-  const handleDeleteAmcLogo = async (id) => {
-    try {
-      const response = await axios.delete(`/api/amc-logo/${id}`);
-      if (response.status === 201) {
-        toast.success("Category deleted successfully.");
-        fetchAllLogos();
-      } else {
-        alert(response.statusText);
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      alert("An unexpected error occurred.");
-    }
-  };
-
-  const handleEditModelOpen = async (id) => {
-    setShowEditModal(true)
-    try {
-      const response = await axios.get(`/api/amc-logo/${id}`);
-      if (response.status === 200) {
-        setAmcsLogoData({
-          logoname: response.data.logoname,
-          logourl: response.data.logourl,
-          logo: response.data.logo,
-          logocategory: response.data.logocategory,
-          id: response.data._id
-        });
-        fetchCategories();
-        fetchAllLogos();
-      }
-    } catch (error) {
-      console.error("Error adding AMCS logo:", error);
-      alert("An unexpected error occurred.");
-    }
-  }
 
   return (
     <>
@@ -275,21 +163,12 @@ useEffect(() => {
                         </button>
                       </div>
                       <div className="my-4">
-                        {item.logo && typeof item?.logo !== "string" ? (
-                          <Image
-                            src={URL.createObjectURL(item.logo)} // Generate a temporary URL for File
-                            width={150}
-                            height={100}
-                            alt="Uploaded Logo"
-                          />
-                        ) : (
-                          <Image
+                        <img
                             src={`https://redvisionweb.com${item.logo}` || "/placeholder-image.jpg"} // Use string or fallback placeholder
                             width={150}
                             height={100}
                             alt="Logo"
                           />
-                        )}
                       </div>
                       <p className="font-semibold">{item.logoname}</p>
                     </div>

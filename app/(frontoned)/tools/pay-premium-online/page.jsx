@@ -25,7 +25,7 @@ export default function PayPremium() {
   }, [selectedCategoryId]);
 const fetchCategories = async () => {
   try {
-    const res = await axios.get("/api/amc-category");
+    const res = await axios.get("https://redvisionweb.com/api/category");
     const data = res.data;
 
     const filtered = data.filter((cat) =>
