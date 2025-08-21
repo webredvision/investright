@@ -237,7 +237,7 @@ export default function  AdvisorCategory() {
             can invest with confidence and focus on what truly matters — your future.
           </motion.p>
 
-          <Link href="/products/mutual-funds">
+          <Link href="/services/mutual-funds">
             <motion.button
               className="btn-secondary"
               initial={{ x: 20, opacity: 0 }}

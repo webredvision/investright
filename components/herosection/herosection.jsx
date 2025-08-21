@@ -15,7 +15,7 @@ export default function HeroSection({ sitedata }) {
         >
           Invest in <br /> Professionally <br /> Managed Funds
         </motion.h1>
-        <motion.p className="text-[var(--rv-gredient)] max-w-xl"
+        <motion.p className="text-[var(--rv-white)] max-w-xl"
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 1.8, duration: 0.8 }}
